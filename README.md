@@ -6,7 +6,7 @@ version 0.12.1.
 ## Tools used
 bootstrap / jQuery / Angular / SCSS / Grunt
 
-##Installation
+## Installation
 
 npm install
 
@@ -27,4 +27,3 @@ https://github.com/yeoman/generator-angular
 ## Testing
 
 Running `grunt test` will run the unit tests with karma.
-
