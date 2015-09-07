@@ -22,7 +22,7 @@ angular.module('electionApp')
           deferred.reject();
         });
       return deferred.promise;
-    }
+    };
 
     var getPartyById = function (id){
       var deferred = $q.defer();
@@ -37,10 +37,10 @@ angular.module('electionApp')
           deferred.reject();
         });
       return deferred.promise;
-    }
+    };
 
     return {
       getAllParties: getAllParties,
       getPartyById: getPartyById
-    }
+    };
   }]);
