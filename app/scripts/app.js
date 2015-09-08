@@ -57,6 +57,7 @@ angular
     $urlRouterProvider.otherwise("/");
 
     // Angular Material Config
-    $mdThemingProvider.theme('default');
-    
+    $mdThemingProvider.theme('default')
+        .primaryPalette('blue-grey')
+        .accentPalette('orange');
     });
