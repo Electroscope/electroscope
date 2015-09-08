@@ -20,6 +20,7 @@ angular
   ])
 
   .value("mpsApiConfig", {baseURL: "http://api.maepaysoh.org", token: "2a12ac8c-184c-57dc-a8e6-5e57ff488cac"})
+
   .config(function ($stateProvider, $urlRouterProvider, $mdThemingProvider) {
 
     $stateProvider.state("home", {
@@ -38,7 +39,15 @@ angular
       url: "/parties",
       templateUrl: 'views/parties.html',
       controller: 'partiesCtrl as parties'
-    });
+    })
+
+    .state("candidates", {
+      url: "/candidates",
+      templateUrl: 'views/candidates.html',
+      controller: 'candidatesCtrl as candidates'
+    })
+
+    ;
 
     $urlRouterProvider.otherwise("/");
 
