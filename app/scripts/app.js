@@ -15,11 +15,12 @@ angular
     'ngResource',
     'ui.router',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'ngMaterial'
   ])
 
   .value("mpsApiConfig", {baseURL: "http://api.maepaysoh.org", token: "2a12ac8c-184c-57dc-a8e6-5e57ff488cac"})
-  .config(function ($stateProvider, $urlRouterProvider) {
+  .config(function ($stateProvider, $urlRouterProvider, $mdThemingProvider) {
 
     $stateProvider.state("home", {
        url: "/",
@@ -37,9 +38,11 @@ angular
       url: "/parties",
       templateUrl: 'views/parties.html',
       controller: 'partiesCtrl as parties'
-    })
-
-    ;
+    });
 
     $urlRouterProvider.otherwise("/");
-  });
+
+    // Angular Material Config
+    $mdThemingProvider.theme('default');
+    
+    });
