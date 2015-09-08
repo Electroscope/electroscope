@@ -19,6 +19,11 @@ angular
     'ngMaterial'
   ])
 
+  .config(['$httpProvider', function ($httpProvider) {
+             // enable http caching
+            $httpProvider.defaults.cache = true;
+       }])
+
   .value("mpsApiConfig", {baseURL: "http://api.maepaysoh.org", token: "2a12ac8c-184c-57dc-a8e6-5e57ff488cac"})
 
   .config(function ($stateProvider, $urlRouterProvider, $mdThemingProvider) {
