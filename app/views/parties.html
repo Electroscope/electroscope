@@ -1,3 +1,8 @@
-<ul>
-  <li ng-repeat="party in parties.parties">{{ party.party_name }}</li>
-</ul>
+<md-list>
+  <md-list-item class="md-2-line" ng-repeat="party in parties.parties">
+  	<img ng-src="{{party.party_seal}}" class="md-avatar" alt="{{party.party_name}}" />
+  	<div class="md-list-item-text" layout="column">
+    	{{ party.party_name }}
+    </div>
+  </md-list-item>
+</md-list>

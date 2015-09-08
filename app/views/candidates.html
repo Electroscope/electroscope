@@ -1,3 +1,7 @@
-<ul>
-  <li ng-repeat="candidate in candidates.candidates">{{ candidate.name }}</li>
-</ul>
+<md-list>
+  <md-list-item class="md-2-line" ng-repeat="candidate in candidates.candidates">
+  	<div class="md-list-item-text" layout="column">
+    	{{ candidate.name }}
+    </div>
+  </md-list-item>
+</md-list>
