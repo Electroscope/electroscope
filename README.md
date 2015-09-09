@@ -8,9 +8,10 @@ bootstrap / jQuery / Angular / SCSS / Grunt
 
 ## Installation
 
+```bash
 npm install
-
 bower install
+```
 
 
 ## Build & development
