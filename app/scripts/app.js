@@ -24,6 +24,13 @@ angular
             $httpProvider.defaults.cache = true;
        }])
 
+  // inject lodash as constant
+  .constant('_', window._)
+  // use in views, ng-repeat="x in _.range(3)"
+  .run(function ($rootScope) {
+     $rootScope._ = window._;
+  })
+
   .value("mpsApiConfig", {baseURL: "http://api.maepaysoh.org", token: "2a12ac8c-184c-57dc-a8e6-5e57ff488cac"})
 
   .config(function ($stateProvider, $urlRouterProvider, $mdThemingProvider) {
@@ -43,7 +50,24 @@ angular
     .state("parties", {
       url: "/parties",
       templateUrl: 'views/parties.html',
-      controller: 'partiesCtrl as parties'
+      abstract: true
+    })
+
+    .state('report',{
+      views: {
+        'partyList': {
+          templateUrl: 'party_list.html',
+          controller: function($scope){ ... controller stuff just for filters view ... }
+        },
+        'partyDetail': {
+          templateUrl: 'party_detail.html',
+          controller: function($scope){ ... controller stuff just for tabledata view ... }
+        },
+        'partyVisualization': {
+          templateUrl: 'party_visualization.html',
+          controller: function($scope){ ... controller stuff just for graph view ... }
+        }
+      }
     })
 
     .state("candidates", {
@@ -59,4 +83,4 @@ angular
     // Angular Material Config
     $mdThemingProvider.theme('default');
     
-    });
+  });

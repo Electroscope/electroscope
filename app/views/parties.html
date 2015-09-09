@@ -1,3 +1,5 @@
-<ul>
-  <li ng-repeat="party in parties.parties">{{ party.party_name }}</li>
-</ul>
+<div ui-view>
+  <div ui-view="partyList"></div>
+  <div ui-view="partyDetail"></div>
+  <div ui-view="partyVisualization"></div
+</div>
