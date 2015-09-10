@@ -55,6 +55,11 @@ angular
     })
 
     .state('report',{
+      resolve: {
+        parties: [ "partyService", function(partyService){
+          return partyService.getAllParties()
+        }]
+      },
       url: "/report",
       templateUrl: 'views/report.html',
       controller: 'reportCtrl as report'

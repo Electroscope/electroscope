@@ -2,16 +2,12 @@
 
 
 angular.module('electionApp')
-  .controller('reportCtrl', [ function () {
-    var dummyData = [
-      {party: "A", count: 4},
-      {party: "B", count: 7},
-      {party: "C", count: 9},
-      {party: "D", count: 9},
-      {party: "E", count: 5},
-      {party: "F", count: 4},
-      {party: "G", count: 3}
-    ];
+  .controller('reportCtrl', ["parties", function (parties) {
+    var me = this;
+
+    var dummyData = parties.map(function(party){
+      return {party: party.abbreviation || party.party_name.substr(0,2), count: Math.floor(Math.random() * 20)}
+    });
 
     var drawBarChart = function(){
       var margin = {top: 20, right: 20, bottom: 30, left: 40},
@@ -48,7 +44,10 @@ angular.module('electionApp')
         svg.append("g")
             .attr("class", "barchart x axis")
             .attr("transform", "translate(0," + height + ")")
-            .call(xAxis);
+            .call(xAxis)
+            .selectAll("text")
+                .attr("transform", "rotate(90)")
+                .style("text-anchor", "start");;
 
         svg.append("g")
             .attr("class", "barchart y axis")
@@ -63,6 +62,10 @@ angular.module('electionApp')
         svg.selectAll(".bar")
             .data(dummyData)
           .enter().append("rect")
+            .attr("fill", function(d, i){
+              var colorRange = d3.scale.category20().range();
+              return colorRange[( i % colorRange.length)];
+            })
             .attr("class", "barchart bar")
             .attr("x", function(d) { return x(d.party); })
             .attr("width", x.rangeBand())
@@ -102,6 +105,8 @@ angular.module('electionApp')
         }
     };
 
-    this.drawBarChart = drawBarChart;
+    me.drawBarChart = drawBarChart;
+    console.log("Inside then callback");
     drawBarChart();
+       
   }]);
