@@ -50,24 +50,13 @@ angular
     .state("parties", {
       url: "/parties",
       templateUrl: 'views/parties.html',
-      abstract: true
+      controller: "partiesCtrl as parties"
     })
 
     .state('report',{
-      views: {
-        'partyList': {
-          templateUrl: 'party_list.html',
-          controller: function($scope){ ... controller stuff just for filters view ... }
-        },
-        'partyDetail': {
-          templateUrl: 'party_detail.html',
-          controller: function($scope){ ... controller stuff just for tabledata view ... }
-        },
-        'partyVisualization': {
-          templateUrl: 'party_visualization.html',
-          controller: function($scope){ ... controller stuff just for graph view ... }
-        }
-      }
+      url: "/report",
+      templateUrl: 'views/report.html',
+      controller: 'reportCtrl as report'
     })
 
     .state("candidates", {

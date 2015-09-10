@@ -1,6 +1,8 @@
 
-<div ui-view>
-  <div ui-view="partyList"></div>
-  <div ui-view="partyDetail"></div>
-  <div ui-view="partyVisualization"></div
-</div>
+
+<md-grid-list md-cols="2" md-row-height="200px">
+  <md-grid-tile ng-repeat="party in parties.parties">
+    <img ng-src="{{party.party_seal}}" class="md-avatar" alt="{{party.party_name}}" />
+    <h3>{{ party.party_name }}</h3>
+  </md-grid-tile>
+</md-grid-list>
