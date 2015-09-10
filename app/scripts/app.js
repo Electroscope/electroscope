@@ -16,7 +16,8 @@ angular
     'ui.router',
     'ngSanitize',
     'ngTouch',
-    'ngMaterial'
+    'ngMaterial',
+    'nvd3ChartDirectives'
   ])
 
   .config(['$httpProvider', function ($httpProvider) {
