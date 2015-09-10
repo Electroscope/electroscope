@@ -6,29 +6,31 @@ angular.module('electionApp')
     var me = this;
 
     var dummyData = parties.map(function(party){
-      return {party: party.abbreviation || party.party_name.substr(0,2), count: Math.floor(Math.random() * 20)}
+      return {party: party.abbreviation || party._id, count: Math.floor(Math.random() * 20)}
     });
 
+    this.parties = parties;
+
     var drawBarChart = function(){
-      var margin = {top: 20, right: 20, bottom: 30, left: 40},
+      var margin = {top: 40, right: 20, bottom: 30, left: 40},
           width = 960 - margin.left - margin.right,
-          height = 500 - margin.top - margin.bottom;
+          height = 1000 - margin.top - margin.bottom;
 
       // var formatPercent = d3.format(".0%");
 
       var x = d3.scale.ordinal()
-          .rangeRoundBands([0, width], .1, 1);
+          .rangeRoundBands([0, height], 1, 1);
 
       var y = d3.scale.linear()
-          .range([height, 0]);
+          .range([0, width]);
 
       var xAxis = d3.svg.axis()
           .scale(x)
-          .orient("bottom");
+          .orient("left");
 
       var yAxis = d3.svg.axis()
           .scale(y)
-          .orient("left")
+          .orient("top")
           // .tickFormat(formatPercent);
 
       var svg = d3.select("#party-bar-chart").append("svg")
@@ -43,19 +45,19 @@ angular.module('electionApp')
 
         svg.append("g")
             .attr("class", "barchart x axis")
-            .attr("transform", "translate(0," + height + ")")
+            .attr("transform", "translate(0," + margin.left + ")")
             .call(xAxis)
             .selectAll("text")
-                .attr("transform", "rotate(90)")
+                // .attr("transform", "rotate(-90)")
                 .style("text-anchor", "start");;
 
         svg.append("g")
             .attr("class", "barchart y axis")
             .call(yAxis)
           .append("text")
-            .attr("transform", "rotate(-90)")
-            .attr("y", 6)
-            .attr("dy", ".71em")
+            // .attr("transform", "translate(" + [margin.left + 40, margin.top ] + ")")
+            // .attr("y", 6)
+            // .attr("dy", ".71em")
             .style("text-anchor", "end")
             .text("Member Count");
 
@@ -64,13 +66,13 @@ angular.module('electionApp')
           .enter().append("rect")
             .attr("fill", function(d, i){
               var colorRange = d3.scale.category20().range();
-              return colorRange[( i % colorRange.length)];
+              return colorRange[(i % colorRange.length)];
             })
             .attr("class", "barchart bar")
-            .attr("x", function(d) { return x(d.party); })
-            .attr("width", x.rangeBand())
-            .attr("y", function(d) { return y(d.count); })
-            .attr("height", function(d) { return height - y(d.count); });
+            .attr("x", function(d) { return 0; })
+            .attr("height", x.rangeBand())
+            .attr("y", function(d) { return x(d.party) + margin.top; })
+            .attr("width", function(d) { return width - y(d.count); });
 
         d3.select("input").on("change", change);
 
@@ -96,7 +98,7 @@ angular.module('electionApp')
 
           transition.selectAll(".bar")
               .delay(delay)
-              .attr("x", function(d) { return x0(d.party); });
+              .attr("y", function(d) { return x0(d.party) + margin.top; });
 
           transition.select(".x.axis")
               .call(xAxis)
