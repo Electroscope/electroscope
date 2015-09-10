@@ -57,7 +57,7 @@ angular
     .state('report',{
       resolve: {
         parties: [ "partyService", function(partyService){
-          return partyService.getAllParties()
+          return partyService.getAllParties();
         }]
       },
       url: "/report",

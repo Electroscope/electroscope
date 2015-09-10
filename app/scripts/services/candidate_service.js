@@ -43,5 +43,5 @@ angular.module('electionApp')
     return {
       getAllCandidates: getAllCandidates,
       getCandidateById: getCandidateById
-    }
+    };
   }]);

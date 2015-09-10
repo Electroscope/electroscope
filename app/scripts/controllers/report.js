@@ -4,10 +4,13 @@
 angular.module('electionApp')
   .controller('reportCtrl', ["parties", function (parties) {
     var me = this;
+    var d3 = window.d3;
 
     var dummyData = parties.map(function(party){
-      return {party: party.abbreviation || party._id, count: Math.floor(Math.random() * 20)}
+      return {party: party.abbreviation || party._id, count: Math.floor(Math.random() * 20)};
     });
+
+    console.log(dummyData);
 
     this.parties = parties;
 
@@ -19,7 +22,7 @@ angular.module('electionApp')
       // var formatPercent = d3.format(".0%");
 
       var x = d3.scale.ordinal()
-          .rangeRoundBands([0, height], 1, 1);
+          .rangeRoundBands([0, height], 0.1, 1);
 
       var y = d3.scale.linear()
           .range([0, width]);
@@ -30,7 +33,7 @@ angular.module('electionApp')
 
       var yAxis = d3.svg.axis()
           .scale(y)
-          .orient("top")
+          .orient("top");
           // .tickFormat(formatPercent);
 
       var svg = d3.select("#party-bar-chart").append("svg")
@@ -48,8 +51,7 @@ angular.module('electionApp')
             .attr("transform", "translate(0," + margin.left + ")")
             .call(xAxis)
             .selectAll("text")
-                // .attr("transform", "rotate(-90)")
-                .style("text-anchor", "start");;
+                .style("text-anchor", "start");
 
         svg.append("g")
             .attr("class", "barchart y axis")
@@ -74,20 +76,16 @@ angular.module('electionApp')
             .attr("y", function(d) { return x(d.party) + margin.top; })
             .attr("width", function(d) { return width - y(d.count); });
 
-        d3.select("input").on("change", change);
-
-        var sortTimeout = setTimeout(function() {
-          d3.select("input").property("checked", true).each(change);
-        }, 2000);
-
         function change() {
           clearTimeout(sortTimeout);
 
           // Copy-on-write since tweens are evaluated after a delay.
-          var x0 = x.domain(dummyData.sort(this.checked
-              ? function(a, b) { return b.count - a.count; }
-              : function(a, b) { return d3.ascending(a.party, b.party); })
-              .map(function(d) { return d.party; }))
+          var sortFunction = this.checked ? 
+                function(a, b) { return b.count - a.count; }
+              : function(a, b) { return d3.ascending(a.party, b.party); };
+          var x0 = x.domain(
+                dummyData.sort(sortFunction).map(function(d) { return d.party; })
+              )
               .copy();
 
           svg.selectAll(".bar")
@@ -105,6 +103,13 @@ angular.module('electionApp')
             .selectAll("g")
               .delay(delay);
         }
+
+        d3.select("input").on("change", change);
+
+        var sortTimeout = setTimeout(function() {
+          d3.select("input").property("checked", true).each(change);
+        }, 2000);
+
     };
 
     me.drawBarChart = drawBarChart;
