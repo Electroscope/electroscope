@@ -65,6 +65,12 @@ angular
       controller: 'reportCtrl as report'
     })
 
+    .state('maptest',{
+      url: "/maptest",
+      templateUrl: 'views/maptest.html',
+      controller: 'maptestCtrl as maptest'
+    })
+
     .state("candidates", {
       url: "/candidates",
       templateUrl: 'views/candidates.html',
