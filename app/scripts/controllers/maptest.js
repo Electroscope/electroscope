@@ -18,6 +18,7 @@ angular.module('electionApp')
     var svg = d3.select("#maptest").append("svg")
         .attr("width", width)
         .attr("height", height);
+    var tooltip = d3.select("#maptest").append("div").attr("class", "tooltip hidden");
 
     function drawMap(){
       d3.json("http://localhost:3000/districts.topojson", function(error, data) {
@@ -64,6 +65,7 @@ angular.module('electionApp')
 
         var map = svg.append('g').attr('class', 'boundary');
 
+
         var lastClickedId = void 0;
         var alreadyZoomed = false;
 
@@ -71,12 +73,13 @@ angular.module('electionApp')
           var newBounds = path.bounds(d);
           var scale = computeScaleFromBounds(newBounds);
           var translationPoints = computeTranslatePointsForScale(newBounds, scale);
-          console.log("Clicked", d);
-          map.selectAll("path");
-          d3.select(this)
-                    .style("fill", "#aaa");
+         
 
-           if (!alreadyZoomed) {
+          if (!alreadyZoomed) {
+            map.selectAll("path").style('fill', 'steelblue');//make last Cliced element normal
+            lastClickedId = d.properties.DT_PCODE;
+            d3.select(this)
+                      .style("fill", "#aaa");
             map.transition()
               .duration(1000)
               .delay(100)
@@ -100,10 +103,12 @@ angular.module('electionApp')
               .attr("cy", 10)
               .attr("r", 3)
               .style("fill", "red");
-          d3.select("#" + lastClickedId).style('fill', 'steelblue');
           
-          lastClickedId = d.properties.DT_PCODE;
         };
+
+        var offsetL = document.getElementById('maptest').offsetLeft + 40;
+        var offsetT =document.getElementById('maptest').offsetTop + 20;
+
 
         map.selectAll("path")
                    .data(districts.features)
@@ -118,6 +123,16 @@ angular.module('electionApp')
                       // return fill(d.properties.Shape_Leng);
                       return "steelblue";
                    })
+                   .on("mousemove", function(d,i) {
+                     var mouse = d3.mouse(svg.node()).map( function(d) { return parseInt(d); } );
+                       tooltip
+                         .classed("hidden", false)
+                         .attr("style", "left:"+(mouse[0]+offsetL)+"px;top:"+(mouse[1]+offsetT)+"px")
+                         .html(d.properties.DT);
+                     })
+                     .on("mouseout",  function(d,i) {
+                       tooltip.classed("hidden", true)
+                     })
                    ;
 
       var zoom = d3.behavior.zoom()
