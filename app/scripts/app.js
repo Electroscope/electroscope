@@ -43,6 +43,11 @@ angular
      })
 
     .state("about", {
+      resolve: {
+        topoJSON: [ "geoService", function(geoService){
+          return geoService.getDistrictsTopoJSON();
+        }]
+      },
       url: "/about",
       templateUrl: 'views/about.html',
       controller: 'AboutCtrl as about'
@@ -57,12 +62,18 @@ angular
     .state('report',{
       resolve: {
         parties: [ "partyService", function(partyService){
-          return partyService.getAllParties();
+          return [];//partyService.getAllParties();
         }]
       },
       url: "/report",
       templateUrl: 'views/report.html',
       controller: 'reportCtrl as report'
+    })
+
+    .state('issues_report',{
+      url: "/issues_report",
+      templateUrl: 'views/issues_report.html',
+      controller: 'issuesReportCtrl as issueReport'
     })
 
     .state('maptest',{

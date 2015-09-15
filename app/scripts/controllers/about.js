@@ -8,10 +8,7 @@
  * Controller of the electionApp
  */
 angular.module('electionApp')
-  .controller('AboutCtrl', function () {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+  .controller('AboutCtrl', function (topoJSON) {
+    this.topoJSON = topoJSON;
+    
   });

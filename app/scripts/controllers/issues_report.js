@@ -2,17 +2,11 @@
 
 
 angular.module('electionApp')
-  .controller('reportCtrl', ["parties", function (parties) {
+  .controller('issuesReportCtrl', [function () {
     var me = this;
     var d3 = window.d3;
 
-    var dummyData = parties.map(function(party){
-      return {party: party.abbreviation || party._id, count: Math.floor(Math.random() * 20)};
-    });
-
-    console.log(dummyData);
-
-    this.parties = parties;
+    var dummyData = [];
 
     this.issues = [
       { "_id" : null, "count" : 1093 },
@@ -57,7 +51,7 @@ angular.module('electionApp')
     dummyData = this.issues;
 
     var drawBarChart = function(){
-      var margin = {top: 40, right: 20, bottom: 30, left: 40},
+      var margin = {top: 40, right: 20, bottom: 30, left: 100},
           width = 960 - margin.left - margin.right,
           height = 1000 - margin.top - margin.bottom;
 
@@ -71,14 +65,16 @@ angular.module('electionApp')
 
       var xAxis = d3.svg.axis()
           .scale(x)
-          .orient("left");
+          .orient("left")
+          .tickPadding(margin.left - 20)
+          ;
 
       var yAxis = d3.svg.axis()
           .scale(y)
           .orient("top");
           // .tickFormat(formatPercent);
 
-      var svg = d3.select("#party-bar-chart").append("svg")
+      var svg = d3.select("#issues-bar-chart").append("svg")
           .attr("width", width + margin.left + margin.right)
           .attr("height", height + margin.top + margin.bottom)
         .append("g")
@@ -93,7 +89,8 @@ angular.module('electionApp')
             .attr("transform", "translate(0," + margin.left + ")")
             .call(xAxis)
             .selectAll("text")
-                .style("text-anchor", "start");
+                .style("text-anchor", "start")
+                ;
 
         svg.append("g")
             .attr("class", "barchart y axis")
