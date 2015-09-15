@@ -77,6 +77,11 @@ angular
     })
 
     .state('maptest',{
+      resolve: {
+        geojson: function(geoService){          
+          return geoService.getDistrictsTopoJSON();
+        }
+      },
       url: "/maptest",
       templateUrl: 'views/maptest.html',
       controller: 'maptestCtrl as maptest'

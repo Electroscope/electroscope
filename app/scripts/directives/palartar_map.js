@@ -9,7 +9,7 @@
 angular.module('electionApp')
   .directive('palartarMap', function () {
     return {
-      template: '<div id="region-name" ng-model="regionName">{{regionName}}</div>',
+      template: '<div id="region-name" ng-bind="regionName"></div>',
       restrict: 'E',
       scope: {
         geojson: '='
@@ -18,7 +18,27 @@ angular.module('electionApp')
         console.log("POSTLINK called", scope, attrs);
         var d3 = window.d3;
         var data = scope.geojson;
+        var regionNameField, regionCodeField, regionAttr;
         scope.regionName = "Districts";
+        switch(attrs.regiontype){
+          case "townships":
+            regionNameField = "TS";
+            regionCodeField = "TS_PCODE";
+            regionAttr = 'townships';
+            break;
+          case "districts":
+            regionNameField = "DT";
+            regionCodeField = "DT_PCODE";
+            regionAttr = 'districts';
+            break;
+          case "states":
+            console.log("States");
+            regionNameField = "ST";
+            regionCodeField = "ST_PCODE";
+            regionAttr = 'output2';
+            break;
+        }
+       
 
         var defaultColor = attrs.defaultcolor;
         var width = attrs.width,
@@ -56,9 +76,9 @@ angular.module('electionApp')
 
         //Get Boundary from data and scale it to fit the svg size
         var path = d3.geo.path().projection(projection);
-        var districts = topojson.feature(data, data.objects.districts);           
+        var regions = topojson.feature(data, data.objects[regionAttr]);           
         
-        var bounds = path.bounds(districts);
+        var bounds = path.bounds(regions);
         var originalScale = computeScaleFromBounds(bounds);
         var originalTranslationPoints = computeTranslatePointsForScale(bounds, originalScale);
 
@@ -78,10 +98,11 @@ angular.module('electionApp')
          
           
           if (!alreadyZoomed) {
-            scope.regionName = d.properties.DT;
+            scope.regionName = d.properties[regionNameField];
+            // scope.$setDirty();
             scope.$apply();
             map.selectAll("path").style('fill', 'steelblue');//make last Cliced element normal
-            lastClickedId = d.properties.DT_PCODE;
+            lastClickedId = d.properties[regionCodeField];
             d3.select(this)
                       .style("fill", "#aaa");
             map.transition()
@@ -90,7 +111,7 @@ angular.module('electionApp')
               .attr("transform", "translate(" +translationPoints + ")scale(" + scale + ")");
            } else {
             console.log(originalScale, originalTranslationPoints);
-            scope.regionName = "Districts" ;
+            scope.regionName = regionAttr ;
             scope.$apply();
             map.selectAll("path").style('fill', 'steelblue');
             map.transition()
@@ -110,12 +131,12 @@ angular.module('electionApp')
 
 
         map.selectAll("path")
-                  .data(districts.features)
+                  .data(regions.features)
                   .enter()
                   .append("path")
                   .attr("d", path)
                   .attr('id', function(d, i){
-                    return d.properties.DT_PCODE;
+                    return d.properties[regionCodeField];
                   })
                   .on('click', changeZoomOnClick)
                   .style("fill", function(d, i){
@@ -126,7 +147,7 @@ angular.module('electionApp')
                     tooltip
                         .classed("hidden", false)
                         .attr("style", "left:"+(mouse[0]+offsetL)+"px;top:"+(mouse[1]+offsetT)+"px")
-                        .html(d.properties.DT);
+                        .html(d.properties[regionNameField]);
                   })
                   .on("mouseout",  function(d,i) {
                     tooltip.classed("hidden", true)

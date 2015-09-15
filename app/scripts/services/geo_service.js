@@ -3,14 +3,14 @@ angular.module('electionApp')
     
     var getDistrictsTopoJSON = function(){
       var deferred = $q.defer();
-      var url = "http://localhost:3000/districts.topojson";
+      var url = "http://localhost:3000/states_regions.topojson";
       $http.get(url).success(function(data){
         deferred.resolve(data);
       }).error(function(response){
         console.log(response);
         deferred.reject(response);
       });
-      return deferred;
+      return deferred.promise;
     };
 
     return {
