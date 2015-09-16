@@ -87,6 +87,12 @@ angular
       controller: 'maptestCtrl as maptest'
     })
 
+    .state("circular_menu", {
+      url: "/circular_menu",
+      templateUrl: 'views/circular_menu.html',
+      controller: 'circularMenuCtrl as circularMenu'
+    })
+
     .state("candidates", {
       url: "/candidates",
       templateUrl: 'views/candidates.html',
