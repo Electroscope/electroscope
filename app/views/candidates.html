@@ -1,7 +1,43 @@
-<md-list>
-  <md-list-item class="md-2-line" ng-repeat="candidate in candidates.candidates">
-  	<div class="md-list-item-text" layout="column">
-    	{{ candidate.name }}
-    </div>
-  </md-list-item>
-</md-list>
+<md-fab-toolbar md-open="demo.isOpen" count="demo.count"
+                md-direction="{{demo.selectedDirection}}">
+  <md-fab-trigger class="align-with-text">
+    <md-button aria-label="menu" class="md-fab md-primary">
+      <md-icon md-svg-src="img/icons/menu.svg"></md-icon>
+    </md-button>
+  </md-fab-trigger>
+  <md-toolbar>
+    <md-fab-actions class="md-toolbar-tools">
+      <md-button aria-label="comment" class="md-button">
+        Lower House
+      </md-button>
+      <md-button aria-label="label" class="md-button">
+        Upper House
+      </md-button>
+      <md-button aria-label="photo" class="md-button">
+        Regional
+      </md-button>
+    </md-fab-actions>
+  </md-toolbar>
+</md-fab-toolbar>
+
+<md-grid-list md-cols-sm="1" md-cols-md="2" md-cols-gt-md="3" md-row-height-gt-md="1:1" md-row-height="4:3" md-gutter="8px" md-gutter-gt-sm="4px" >
+    <md-grid-tile ng-repeat="candidate in candidates.candidates"
+                  md-rowspan="3"
+                  md-colspan="1"
+                  md-colspan-sm="1">
+        <md-card>
+             <img ng-src="{{candidate.photo_url}}" class="md-card-image" alt="Washed Out">
+             <md-card-content>
+               <h2 class="md-title">{{candidate.name}}</h2>
+               <p>
+                 Some Content
+               </p>
+             </md-card-content>
+             <div class="md-actions" layout="row" layout-align="end center">
+               <md-button>{{candidate.legislature}}</md-button>
+               <md-button>{{canidate.party.name}}</md-button>
+             </div>
+        </md-card>
+      <md-grid-tile-footer><h3>Footer</h3></md-grid-tile-footer>
+    </md-grid-tile>
+</md-grid-list>

@@ -98,7 +98,7 @@ angular.module('electionApp')
 
     var data = d3.range(20),
         angle = d3.scale.ordinal().domain(data).rangeBands([0, 2 * Math.PI]);
-    var path = svg.append("path")
+    var path = svg.append("path.tt")
         .attr("d", d3.svg.arc()
         .innerRadius(ringRadius - 30)
         .outerRadius(ringRadius)
@@ -108,7 +108,8 @@ angular.module('electionApp')
         .attr("fill", "steelblue")
         ;
 
-    setInterval(moveAround, 3000);
+    // setInterval(moveAround, 3000);
+    moveAround();
 
     function moveAround(){
       svg.select('circle')
@@ -120,11 +121,12 @@ angular.module('electionApp')
     };
 
     function translateAlong(path) {
-      console.log(path);
       var l = path.getTotalLength();
+      console.log(l);
       return function(d, i, a) {
         return function(t) {
           var p = path.getPointAtLength(t * l);
+          console.log(p);
           return "translate(" + p.x + "," + p.y + ")";
         };
       };
