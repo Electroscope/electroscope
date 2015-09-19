@@ -49,37 +49,49 @@ angular.module('electionApp')
         {
           "name": "ပြည်သူ့လွှတ်တော်",
           "states": [
-            "name": "ကယားပြည်နယ်",
-            "ST_PCODE": "MMR002",
-            "districts": [
-              "name": "ဒီမောဆိုမဲဆန္ဒနယ်",
-              "DT_PCODE": "MMR002D001",
-              "candidates": 6
-            ]
+            {
+              "name": "ကယားပြည်နယ်",
+              "ST_PCODE": "MMR002",
+              "districts": [
+                {              
+                  "name": "ဒီမောဆိုမဲဆန္ဒနယ်",
+                  "DT_PCODE": "MMR002D001",
+                  "candidates": 6
+                }
+              ]
+            }
           ]
         },        
         {
           "name": "ပြည်သူ့လွှတ်တော်",
           "states": [
-            "name": "ကယားပြည်နယ်",
-            "ST_PCODE": "MMR002",
-            "districts": [
-              "name": "ဒီမောဆိုမဲဆန္ဒနယ်",
-              "DT_PCODE": "MMR002D001",
-              "candidates": 6
-            ]
+            {
+              "name": "ကယားပြည်နယ်",
+              "ST_PCODE": "MMR002",
+              "districts": [
+                {              
+                  "name": "ဒီမောဆိုမဲဆန္ဒနယ်",
+                  "DT_PCODE": "MMR002D001",
+                  "candidates": 6
+                }
+              ]
+            }
           ]
         },
         {
           "name": "ပြည်သူ့လွှတ်တော်",
           "states": [
-            "name": "ကယားပြည်နယ်",
-            "ST_PCODE": "MMR002",
-            "districts": [
-              "name": "ဒီမောဆိုမဲဆန္ဒနယ်",
-              "DT_PCODE": "MMR002D001",
-              "candidates": 6
-            ]
+            {
+              "name": "ကယားပြည်နယ်",
+              "ST_PCODE": "MMR002",
+              "districts": [
+                {              
+                  "name": "ဒီမောဆိုမဲဆန္ဒနယ်",
+                  "DT_PCODE": "MMR002D001",
+                  "candidates": 6
+                }
+              ]
+            }
           ]
         }
 
@@ -95,4 +107,5 @@ angular.module('electionApp')
       getAllCandidates: getAllCandidates,
       getCandidateById: getCandidateById,
       getPartyCandidateCountByState: getPartyCandidateCountByState
+    };
   }]);

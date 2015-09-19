@@ -3,19 +3,8 @@
     <md-tabs md-dynamic-height md-border-bottom>
       <md-tab label="Lower House">
         <md-content class="md-padding" layout="row" layout-wrap width="100%">
-          <md-card ng-repeat="candidate in candidates.candidates" flex="15">
-               <img ng-src="{{candidate.photo_url}}" class="md-card-image" alt="Washed Out">
-               <md-card-content>
-                 <h2 class="md-title">{{candidate.name}}</h2>
-                 <p>
-                   Some Content
-                 </p>
-               </md-card-content>
-               <div class="md-actions" layout="row" layout-align="end center">
-                 <md-button>{{candidate.legislature}}</md-button>
-                 <md-button>{{canidate.party.name}}</md-button>
-               </div>
-          </md-card>
+          <candidate-card ng-repeat="candidate in candidates.candidates" candidate="candidate">
+          </candidate-card>
         </md-content>
       </md-tab>
       <md-tab label="Upper House">

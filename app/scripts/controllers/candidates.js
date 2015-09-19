@@ -12,12 +12,8 @@ angular.module('electionApp')
     var me = this;
 
     candidateService.getAllCandidates().then(function(candidates){
+      console.log("Candidates", candidates);
       me.candidates = candidates;
     });
-
-    var onStateClick = function(st_pcode){
-
-    };
-
 
   }]);
