@@ -7,7 +7,7 @@ router.get('/', function(req, res, next) {
 });
 
 
-router.get('/', function (req, res) {
+router.get('/candidates', function (req, res) {
   res.render("candidates", { title: "electroscope"});
 });
 
