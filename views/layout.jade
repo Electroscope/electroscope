@@ -4,6 +4,9 @@ html
     title= title
     link(rel='stylesheet', href='/Materialize/dist/css/materialize.min.css')
     link(rel='stylesheet' href='https://fonts.googleapis.com/icon?family=Material+Icons')
+
+    block style
+
     link(rel='stylesheet', href='/css/style.css')
   body
     header
@@ -18,7 +21,9 @@ html
             li.bold
                 a.waves-effect.waves-teal(href='/') Home
             li.bold
-                a.waves-effect.waves-teal(href='candidate') Candiates
+                a.waves-effect.waves-teal(href='candidates') Candiates
+            li.bold
+                a.waves-effect.waves-teal(href='candidates') Parties
     main
         block content
 
