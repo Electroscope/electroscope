@@ -14,3 +14,9 @@ header, main, footer {
 .side-nav li a {
 	color: #fff !important;
 }
+
+.candidate-list img.party-flag {
+	width: 50px;
+	float: left;
+	margin-right: 5px;
+}
