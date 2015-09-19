@@ -12,7 +12,8 @@ angular.module('electionApp')
       template: '<div id="region-name" ng-bind="regionName"></div>',
       restrict: 'E',
       scope: {
-        geojson: '='
+        geojson: '=',
+        onClick: '&'
       },
       link: function postLink(scope, element, attrs) {
         console.log("POSTLINK called", scope, attrs);
