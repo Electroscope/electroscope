@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "postinstall": "bower install",
+    "postinstall": "gulp production && bower install",
     "start": "nodemon ./bin/www"
   },
   "dependencies": {
@@ -12,6 +12,10 @@
     "debug": "~2.2.0",
     "express": "~4.13.1",
     "gulp": "^3.9.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-uglify": "^1.4.1",
+    "gulp-util": "^3.0.6",
+    "gulp-watch": "^4.3.5",
     "jade": "~1.11.0",
     "morgan": "~1.6.1",
     "serve-favicon": "~2.3.0"
