@@ -18,8 +18,13 @@ angular
     'ngTouch',
     'ngMaterial',
     'nvd3ChartDirectives',
-    'ngMorph'
+    'ngMorph',
+    'angular-cache'
   ])
+
+  // .config(function (CacheFactoryProvider){
+  //   angular.extend(CacheFactoryProvider.defaults, { maxAge: 15 * 60 * 1000 });
+  // })
 
   .config(['$httpProvider', function ($httpProvider) {
              // enable http caching
