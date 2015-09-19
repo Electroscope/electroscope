@@ -3,20 +3,27 @@ html
   head
     title= title
     link(rel='stylesheet', href='/Materialize/dist/css/materialize.min.css')
+    link(rel='stylesheet' href='https://fonts.googleapis.com/icon?family=Material+Icons')
     link(rel='stylesheet', href='/css/style.css')
   body
-    div(class='navbar-fixed blue-grey darken-1')
-        nav
-            div(class='nav-wrapper')
-                ul(class='right hide-on-med-and-down')
-                    li
-                        a(href='#') Home
-
-    block content
-
-    footer(class="page-footer")
-        div(class='container') Electroscope Project - Maepaysoh Hack Challenge
+    header
+        div(class="container")
+            a.button-collapse.top-nav.waves-effect.waves-light.circle.hide-on-large-only(href='#', data-activates='nav-mobile')
+                i.mdi-navigation-menu
+        
+        ul#nav-mobile.side-nav.fixed.blue-grey.darken-1.white-text(style='width: 240px;')
+            li.logo
+                a#logo-container.brand-logo(href='http://materializecss.com/') 
+                    i.material-icons assessment 
+            li.bold
+                a.waves-effect.waves-teal(href='/') Home
+            li.bold
+                a.waves-effect.waves-teal(href='candidate') Candiates
+    main
+        block content
 
     block script
 
     script(src="/js/{page_name}/app.min.js")
+
+

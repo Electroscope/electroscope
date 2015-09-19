@@ -1,0 +1,16 @@
+header, main, footer {
+    padding-left: 240px;
+}
+
+.side-nav .logo {
+	text-align: center;
+	padding: 20px 0px;
+}
+
+#logo-container .material-icons {
+	font-size: 60px !important;
+}	
+
+.side-nav li a {
+	color: #fff !important;
+}
