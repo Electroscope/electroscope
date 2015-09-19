@@ -5,7 +5,17 @@ html
     link(rel='stylesheet', href='/Materialize/dist/css/materialize.min.css')
     link(rel='stylesheet', href='/css/style.css')
   body
+    div(class='navbar-fixed blue-grey darken-1')
+        nav
+            div(class='nav-wrapper')
+                ul(class='right hide-on-med-and-down')
+                    li
+                        a(href='#') Home
+
     block content
+
+    footer(class="page-footer")
+        div(class='container') Electroscope Project - Maepaysoh Hack Challenge
 
     block script
 
