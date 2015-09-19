@@ -17,7 +17,8 @@ angular
     'ngSanitize',
     'ngTouch',
     'ngMaterial',
-    'nvd3ChartDirectives'
+    'nvd3ChartDirectives',
+    'ngMorph'
   ])
 
   .config(['$httpProvider', function ($httpProvider) {
@@ -97,6 +98,12 @@ angular
       url: "/candidates",
       templateUrl: 'views/candidates.html',
       controller: 'candidatesCtrl as candidates'
+    })
+
+    .state("candidates.detail", {
+      url: "/candidates/:id",
+      templateUrl : "views/candidate_detail.html",
+      controller: "candidatesCtrl as candidates"
     })
 
     ;
