@@ -1,0 +1,23 @@
+{
+  "name": "electroscope-frontend",
+  "version": "0.1.0",
+  "description": "Something",
+  "main": "index.js",
+  "scripts": {
+    "postinstall": "bower install",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.com/dreamingblackcat/arplarelection.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/dreamingblackcat/arplarelection/issues"
+  },
+  "homepage": "https://gitlab.com/dreamingblackcat/arplarelection#README",
+  "dependencies": {
+    "gulp": "^3.9.0"
+  }
+}
