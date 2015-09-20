@@ -15,6 +15,14 @@ header, main, footer {
 	color: #fff !important;
 }
 
+.election-year a {
+	color: #fff !important;
+}
+
+.election-year .indicator {
+	background: #f44336
+}
+
 .candidate-list img.party-flag {
 	width: 50px;
 	float: left;
@@ -26,9 +34,26 @@ header, main, footer {
 	margin-top: 0px;
 }
 
+.activator {
+	cursor: pointer;
+}
+
+.sub-title {
+	text-align: center;
+	font-size: 20px;
+}
+
 .card-panel .panel-title {
 	font-size: 20px;
 	margin-top: 0px;
+}
+
+.candidate-list .card-reveal .card-title {
+	font-size: 16px;
+}
+
+.candidate-list .card-reveal .btn {
+	width: 100%;
 }
 
 .candidate-profile {

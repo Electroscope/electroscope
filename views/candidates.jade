@@ -8,54 +8,55 @@ block content
   nav
     .nav-wrapper.blue-grey.darken-1.white-text
       .brand-logo.center
-        h5.header အမျိုးသားလွတ်တော်
+        //Change constituency name when click on location
+        h5.header အမျိုးသားလွတ်တော် (ကော့မှူးမဲဆန္ဒနယ်)
   .row
-    ul.tabs.teal.lighten-5
-      li.tab.col.s4
-        a(href="#year-2015").active.black-text ၂၀၁၅
-      li.tab.col.s4
-        a(href="#year-2015").black-text ၂၀၁၂
-      li.tab.col.s4
-        a(href="#year-2015").black-text ၂၀၁၀
-    .col.s12.m3
-      ul
-        li.state
+    .col.s12.m4
+      ul.collection
+        li.state.collection-item
           a(href="#state-MMR005") MMR005
-        li.state
+        li.state.collection-item
           a(href="#state-MMR004") MMR004
-        li.state
+        li.state.collection-item
           a(href="#state-MMR003") MMR003
-        li.state
+        li.state.collection-item
           a(href="#state-MMR017") MMR017
-        li.state
+        li.state.collection-item
           a(href="#state-MMR001") MMR001
-        li.state
+        li.state.collection-item
           a(href="#state-MMR002") MMR002
-        li.state
+        li.state.collection-item
           a(href="#state-MMR015") MMR015
-        li.state
+        li.state.collection-item
           a(href="#state-MMR016") MMR016
-        li.state
+        li.state.collection-item
           a(href="#state-MMR014") MMR014
-        li.state
+        li.state.collection-item
           a(href="#state-MMR006") MMR006
-        li.state
+        li.state.collection-item
           a(href="#state-MMR007") MMR007
-        li.state
+        li.state.collection-item
           a(href="#state-MMR008") MMR008
-        li.state
+        li.state.collection-item
           a(href="#state-MMR009") MMR009
-        li.state
+        li.state.collection-item
           a(href="#state-MMR010") MMR010
-        li.state
+        li.state.collection-item
           a(href="#state-MMR018") MMR018
-        li.state
+        li.state.collection-item
           a(href="#state-MMR011") MMR011
-        li.state
+        li.state.collection-item
           a(href="#state-MMR012") MMR012
-        li.state
+        li.state.collection-item
           a(href="#state-MMR013") MMR013
-    .col.s12.m9
+    .col.s12.m8
+      ul.tabs.blue-grey.lighten-1.election-year
+        li.tab.col.s4
+          a(href="#year-2015").active ၂၀၁၅
+        li.tab.col.s4
+          a(href="#year-2015") ၂၀၁၂
+        li.tab.col.s4
+          a(href="#year-2015") ၂၀၁၀
       .row.candidate-list
         // Going to replace this loop with Vue Template
         each a in [1]
@@ -71,7 +72,12 @@ block content
               .card-reveal
                 span.card-title.grey-text.text-darken-4 ဒေါ်အောင်ဆန်းစုကြည်
                   i.material-icons.right close
-                p Some more information here
+                p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat.
+                <a class="waves-effect waves-light btn blue-grey">More Details</a>
+
 
 block script
   script(src='http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.js')
