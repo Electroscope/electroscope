@@ -2,27 +2,76 @@ extend layout
 
 block style
   link(rel='stylesheet' href="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.css")
+  link(rel='stylesheet' href="#{page_name}/.css")
 
 block content
-  .col.s12.m4
-    #map
-  .col.s12.m8
-    .row.candidate-list
-      // Going to replace this loop with Vue Template
-      each a in [1]
-       .col.s3
-          .card
-            .card-image
-              img(src="https://storage.googleapis.com/staticassets/candidate-photos/Scan_B_20150813_0046.jpg", class="activator")
-              span.card-title ဒေါ်အောင်ဆန်းစုကြည်
-            .card-content
-              i.material-icons.right more_vert
-              img(src="https://storage.googleapis.com/staticassets/flags-and-logos/40-flag.png" class="party-flag")
-              p အမျိုးသားဒီမိုကရေစီအဖွဲ့ချုပ်ပါတီ
-            .card-reveal
-              span.card-title.grey-text.text-darken-4 ဒေါ်အောင်ဆန်းစုကြည်
-                i.material-icons.right close
-              p Some more information here
+  nav
+    .nav-wrapper.blue-grey.darken-1.white-text
+      .brand-logo.center
+        h5.header အမျိုးသားလွတ်တော်
+  .row
+    ul.tabs.teal.lighten-5
+      li.tab.col.s4
+        a(href="#year-2015").active.black-text ၂၀၁၅
+      li.tab.col.s4
+        a(href="#year-2015").black-text ၂၀၁၂
+      li.tab.col.s4
+        a(href="#year-2015").black-text ၂၀၁၀
+    .col.s12.m3
+      ul
+        li.state
+          a(href="#state-MMR005") MMR005
+        li.state
+          a(href="#state-MMR004") MMR004
+        li.state
+          a(href="#state-MMR003") MMR003
+        li.state
+          a(href="#state-MMR017") MMR017
+        li.state
+          a(href="#state-MMR001") MMR001
+        li.state
+          a(href="#state-MMR002") MMR002
+        li.state
+          a(href="#state-MMR015") MMR015
+        li.state
+          a(href="#state-MMR016") MMR016
+        li.state
+          a(href="#state-MMR014") MMR014
+        li.state
+          a(href="#state-MMR006") MMR006
+        li.state
+          a(href="#state-MMR007") MMR007
+        li.state
+          a(href="#state-MMR008") MMR008
+        li.state
+          a(href="#state-MMR009") MMR009
+        li.state
+          a(href="#state-MMR010") MMR010
+        li.state
+          a(href="#state-MMR018") MMR018
+        li.state
+          a(href="#state-MMR011") MMR011
+        li.state
+          a(href="#state-MMR012") MMR012
+        li.state
+          a(href="#state-MMR013") MMR013
+    .col.s12.m9
+      .row.candidate-list
+        // Going to replace this loop with Vue Template
+        each a in [1]
+          .col.s4
+            .card
+              .card-image
+                img(src="https://storage.googleapis.com/staticassets/candidate-photos/Scan_B_20150813_0046.jpg", class="activator")
+                span.card-title ဒေါ်အောင်ဆန်းစုကြည်
+              .card-content
+                i.material-icons.right more_vert
+                img(src="https://storage.googleapis.com/staticassets/flags-and-logos/40-flag.png" class="party-flag")
+                p အမျိုးသားဒီမိုကရေစီအဖွဲ့ချုပ်ပါတီ
+              .card-reveal
+                span.card-title.grey-text.text-darken-4 ဒေါ်အောင်ဆန်းစုကြည်
+                  i.material-icons.right close
+                p Some more information here
 
 block script
   script(src='http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.js')
