@@ -11,7 +11,7 @@ var electroscope = (function () {
       });
   }
 
-  var elescope = {
+  var api = {
     countByParty: function (query, callback) {
       get({
         url: base + "/api/candidates/count-by-party",
@@ -20,5 +20,5 @@ var electroscope = (function () {
     }
   };
 
-  return elescope;
-}())
+  return api;
+}());
