@@ -10,4 +10,8 @@ router.get('/candidates', function (req, res) {
   res.render("candidates", { title: "electroscope", page_name: "candidates"});
 });
 
+router.get('/candidates/details', function (req, res) {
+  res.render("candidate-detail", { title: "electroscope", page_name: "candidates-details"});
+});
+
 module.exports = router;
