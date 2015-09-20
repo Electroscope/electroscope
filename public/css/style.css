@@ -20,3 +20,27 @@ header, main, footer {
 	float: left;
 	margin-right: 5px;
 }
+
+#title-nav p {
+	text-align: center;
+	margin-top: 0px;
+}
+
+.card-panel .panel-title {
+	font-size: 20px;
+	margin-top: 0px;
+}
+
+.candidate-profile {
+	text-align: center;
+}
+
+#rival-candidates {
+	overflow: hidden;
+}
+
+.avatar {
+	width: 100px;
+	height: 100px;
+	margin: auto;
+}
