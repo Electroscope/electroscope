@@ -1,28 +1,28 @@
 extend layout
 
 block style
-	link(rel='stylesheet' href="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.css")
+  link(rel='stylesheet' href="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.css")
 
 block content
-	.col.s12.m4
-		#map
-	.col.s12.m8
-		.row.candidate-list
-			// Going to replace this loop with Vue Template
-			- for (var x = 0; x < 15; x++)
-				.col.s3
-					.card
-						.card-image
-							img(src="https://storage.googleapis.com/staticassets/candidate-photos/Scan_B_20150813_0046.jpg", class="activator")
-							span.card-title ဒေါ်အောင်ဆန်းစုကြည်
-						.card-content
-							i.material-icons.right more_vert
-							img(src="https://storage.googleapis.com/staticassets/flags-and-logos/40-flag.png" class="party-flag")
-							p အမျိုးသားဒီမိုကရေစီအဖွဲ့ချုပ်ပါတီ
-						.card-reveal
-							span.card-title.grey-text.text-darken-4 ဒေါ်အောင်ဆန်းစုကြည်
-								i.material-icons.right close
-							p Some more information here
+  .col.s12.m4
+    #map
+  .col.s12.m8
+    .row.candidate-list
+      // Going to replace this loop with Vue Template
+      each a in [1]
+       .col.s3
+          .card
+            .card-image
+              img(src="https://storage.googleapis.com/staticassets/candidate-photos/Scan_B_20150813_0046.jpg", class="activator")
+              span.card-title ဒေါ်အောင်ဆန်းစုကြည်
+            .card-content
+              i.material-icons.right more_vert
+              img(src="https://storage.googleapis.com/staticassets/flags-and-logos/40-flag.png" class="party-flag")
+              p အမျိုးသားဒီမိုကရေစီအဖွဲ့ချုပ်ပါတီ
+            .card-reveal
+              span.card-title.grey-text.text-darken-4 ဒေါ်အောင်ဆန်းစုကြည်
+                i.material-icons.right close
+              p Some more information here
 
 block script
-	script(src='http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.js')
+  script(src='http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.js')
