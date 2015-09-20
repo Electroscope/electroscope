@@ -8,7 +8,7 @@ var gutil = require("gulp-util");
 // External Library 
 var __BOWER = path.join(__dirname, "bower_components");
 var __JQUERY = path.join(__BOWER, "jquery/dist/jquery.min.js");
-var __MATERIAL_LITE = path.join(__BOWER, "material-design-lite/material.min.js");
+var __MATERIAL_LITE = path.join(__BOWER, "Materialize/dist/js/materialize.min.js");
 var __MOMENT = path.join(__BOWER, "moment/min/moment.min.js");
 // var __HIGHMAP = path.join(__BOWER, "highmaps-release/highmaps.js");
 
