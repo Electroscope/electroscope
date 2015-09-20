@@ -5,6 +5,11 @@ var uglify = require("gulp-uglify");
 var watch = require("gulp-watch");
 var gutil = require("gulp-util");
 
+// JS Paths
+function jsPath(_path){
+  return path.join(__dirname + "./assets/js", _path);
+}
+
 // External Library 
 var __BOWER = path.join(__dirname, "bower_components");
 var __JQUERY = path.join(__BOWER, "jquery/dist/jquery.min.js");
@@ -17,13 +22,9 @@ var __LIBS = path.join(__dirname, "./app/assets/js/libs");
 // var __MARKER_CULSTERER = path.join(__LIBS, "marker_clusterer.js");
 // var __MARKER_WITH_LABEL = path.join(__LIBS, "marker_with_label_packed.js");
 // var __EVENT_TRACKER = path.join(__LIBS, "eventTracker.js");
+var __MAEPAYSOH = jsPath("api.js");
 
-var DEFAULT = [__JQUERY, __MATERIAL_LITE, __MOMENT];
-
-// JS Paths
-function jsPath(_path){
-  return path.join(__dirname + "./assets/js", _path);
-}
+var DEFAULT = [__JQUERY, __MATERIAL_LITE, __MOMENT, __MAEPAYSOH];
 
 function concatDefault(__DEFAULTS, assets, other){
   var paths = [];
