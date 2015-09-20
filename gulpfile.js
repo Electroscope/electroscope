@@ -5,40 +5,44 @@ var uglify = require("gulp-uglify");
 var watch = require("gulp-watch");
 var gutil = require("gulp-util");
 
+// JS Paths
+function jsPath(_path){
+  return path.join(__dirname, "/assets/js", _path);
+}
+
 // External Library 
 var __BOWER = path.join(__dirname, "bower_components");
 var __JQUERY = path.join(__BOWER, "jquery/dist/jquery.min.js");
 var __MATERIAL_LITE = path.join(__BOWER, "Materialize/dist/js/materialize.min.js");
 var __MOMENT = path.join(__BOWER, "moment/min/moment.min.js");
-// var __HIGHMAP = path.join(__BOWER, "highmaps-release/highmaps.js");
-
+var __LEAFLET = path.join(__BOWER, "leaflet/dist/leaflet.js");
+var __D3 = path.join(__BOWER, "d3/d3.min.js");
+var __TOPOJSON = path.join(__BOWER, "topojson/topojson.js");
 // Internal Library
-var __LIBS = path.join(__dirname, "./app/assets/js/libs");
+var __LIBS = path.join(__dirname, "app/assets/js/libs");
+
 // var __MARKER_CULSTERER = path.join(__LIBS, "marker_clusterer.js");
 // var __MARKER_WITH_LABEL = path.join(__LIBS, "marker_with_label_packed.js");
 // var __EVENT_TRACKER = path.join(__LIBS, "eventTracker.js");
+var __MAEPAYSOH = jsPath("api.js");
 
-var DEFAULT = [__JQUERY, __MATERIAL_LITE, __MOMENT];
+var __DEFAULT = [__JQUERY, __MATERIAL_LITE, __MOMENT, __MAEPAYSOH];
 
-// JS Paths
-function jsPath(_path){
-  return path.join(__dirname + "./assets/js", _path);
-}
-
-function concatDefault(__DEFAULTS, assets, other){
+function concatDefault(assets, other){
   var paths = [];
   if(assets) paths = assets.map(jsPath);
   if(other) paths = paths.concat(other);
-  return __DEFAULTS.concat(paths);
+  return __DEFAULT.concat(paths);
 }
 
 var PAGES = {
-  "candidates": concatDefault(["candidates.js"],["http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.js"])
+  "candidates": concatDefault(["candidates.js"],[__LEAFLET])
 };
 
 // Watch task for gulp
 gulp.task("watch", function () {
   gulp.watch("gulpfile.js", ["scripts"]);
+  gulp.watch("./assets/js/*.js", ["scripts"]);
   gulp.watch("./assets/js/**/*.js", ["scripts"]);
 });
 
