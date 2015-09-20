@@ -34,7 +34,8 @@ function concatDefault(__DEFAULTS, assets, other){
 }
 
 var PAGES = {
-  "candidates": concatDefault(["candidates.js"],["http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.js"])
+  "candidates": concatDefault(["candidates.js"],["http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.js"]),
+  "maptest": concatDefault(["candidates.js"],["http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.js"])
 };
 
 // Watch task for gulp
