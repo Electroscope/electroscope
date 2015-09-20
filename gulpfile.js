@@ -18,12 +18,10 @@ var __MOMENT = path.join(__BOWER, "moment/min/moment.min.js");
 var __LEAFLET = path.join(__BOWER, "leaflet/dist/leaflet.js");
 var __D3 = path.join(__BOWER, "d3/d3.min.js");
 var __TOPOJSON = path.join(__BOWER, "topojson/topojson.js");
+
 // Internal Library
 var __LIBS = path.join(__dirname, "app/assets/js/libs");
 
-// var __MARKER_CULSTERER = path.join(__LIBS, "marker_clusterer.js");
-// var __MARKER_WITH_LABEL = path.join(__LIBS, "marker_with_label_packed.js");
-// var __EVENT_TRACKER = path.join(__LIBS, "eventTracker.js");
 var __MAEPAYSOH = jsPath("api.js");
 
 var __DEFAULT = [__JQUERY, __MATERIAL_LITE, __MOMENT, __MAEPAYSOH];
@@ -36,7 +34,8 @@ function concatDefault(assets, other){
 }
 
 var PAGES = {
-  "candidates": concatDefault(["candidates.js"],[__LEAFLET])
+  "candidates": concatDefault(["candidates.js"],[__LEAFLET]),
+  "candidates-detail": concatDefault(["candidates-detail.js"],[__LEAFLET]),
 };
 
 // Watch task for gulp
