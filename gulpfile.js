@@ -28,14 +28,15 @@ var __DEFAULT = [__JQUERY, __MATERIAL_LITE, __MOMENT, __MAEPAYSOH];
 
 function concatDefault(assets, other){
   var paths = [];
-  if(assets) paths = assets.map(jsPath);
   if(other) paths = paths.concat(other);
+  if(assets) paths = paths.concat(assets.map(jsPath));
   return __DEFAULT.concat(paths);
 }
 
 var PAGES = {
   "candidates": concatDefault(["candidates.js"],[__LEAFLET]),
   "candidates-detail": concatDefault(["candidates-detail.js"],[__LEAFLET]),
+  "maptest": concatDefault(["maptest.js"], [__D3, __TOPOJSON])
 };
 
 // Watch task for gulp
