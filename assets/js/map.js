@@ -62,6 +62,7 @@
               .enter()
               .append("path")
               .attr("d", path)
+              .attr("class", "map_region")
               .attr('id', function(d, i){
                 return d.properties[regionCodeField];
               })
