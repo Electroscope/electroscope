@@ -34,9 +34,9 @@ function concatDefault(assets, other){
 }
 
 var PAGES = {
-  "candidates": concatDefault(["candidates.js"],[__LEAFLET]),
+  "candidates": concatDefault(["candidates.js", "map.js", "maptest.js"],[__D3, __TOPOJSON]),
   "candidates-detail": concatDefault(["candidates-detail.js"],[__LEAFLET]),
-  "maptest": concatDefault(["maptest.js"], [__D3, __TOPOJSON])
+  "maptest": concatDefault(["map.js", "maptest.js"], [__D3, __TOPOJSON])
 };
 
 // Watch task for gulp
