@@ -69,3 +69,10 @@ header, main, footer {
 	height: 100px;
 	margin: auto;
 }
+
+/* Media Query */
+@media only screen and (max-width: 992px) {
+	header, main, footer {
+    	padding-left: 0px;
+	}
+}
