@@ -120,6 +120,22 @@ header, main, footer {
   vertical-align: middle;
 }
 
+.horz-party-info {
+	overflow: hidden;
+	margin-top: 15px;
+}
+
+.horz-party-info img {
+	width: 50px;
+	float: left;
+	margin-right: 15px;
+}
+
+.horz-party-info p {
+	float: left;
+	margin-top: 4px;
+}
+
 /* Media Query */
 @media only screen and (max-width: 992px) {
 	header, main, footer {
