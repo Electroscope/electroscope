@@ -14,6 +14,10 @@ router.get('/candidates/details', function (req, res) {
   res.render("candidate-detail", { title: "electroscope", page_name: "candidates-details"});
 });
 
+router.get('/party/details', function (req, res) {
+  res.render('party-detail', {title: 'Party Detail', page_name : 'party-detail'});
+})
+
 router.get('/maptest', function(req, res){
   res.render("maptest",{ title: "electroscope", page_name: "maptest"});
 });

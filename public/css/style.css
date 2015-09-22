@@ -7,6 +7,14 @@ header, main, footer {
 	padding: 20px 0px;
 }
 
+.content-center {
+	text-align: center;
+}
+
+.h-overflow {
+	overflow: hidden;
+}
+
 #logo-container .material-icons {
 	font-size: 60px !important;
 }	
@@ -68,6 +76,48 @@ header, main, footer {
 	width: 100px;
 	height: 100px;
 	margin: auto;
+}
+
+/* CSS Responsive Circle with Vertical Align */
+/* http://codepen.io/cbracco/pen/qnduh */
+.circle {
+  position: relative;
+  display: block;
+  margin: 0 auto;
+  color: #fff;
+  font-size: 24px;
+  text-align: center;
+  width: 80%
+}
+
+.circle:after {
+  display: block;
+  padding-bottom: 100%;
+  width: 100%;
+  height: 0;
+  border-radius: 50%;
+  content: "";
+}
+
+.circle_inner {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.circle_wrapper {
+  display: table;
+  width: 100%;
+  height: 100%;
+}
+
+.circle_content {
+  display: table-cell;
+  padding: 1em;
+  vertical-align: middle;
 }
 
 /* Media Query */
