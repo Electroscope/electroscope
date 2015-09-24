@@ -20,28 +20,35 @@ block content
         li.tab.col.s4
           a(href="#year-2015").active ၂၀၁၅
         li.tab.col.s4
-          a(href="#year-2015") ၂၀၁၂
+          a(href="#year-2012") ၂၀၁၂
         li.tab.col.s4
-          a(href="#year-2015") ၂၀၁၀
-      .row.candidate-list
-        // Going to replace this loop with Vue Template
-        each a in [1]
-          .col.s4
-            .card
-              .card-image
-                img(src="https://storage.googleapis.com/staticassets/candidate-photos/Scan_B_20150813_0046.jpg", class="activator")
-                span.card-title ဒေါ်အောင်ဆန်းစုကြည်
-              .card-content
-                i.material-icons.right more_vert
-                img(src="https://storage.googleapis.com/staticassets/flags-and-logos/40-flag.png" class="party-flag")
-                p အမျိုးသားဒီမိုကရေစီအဖွဲ့ချုပ်ပါတီ
-              .card-reveal
-                span.card-title.grey-text.text-darken-4 ဒေါ်အောင်ဆန်းစုကြည်
-                  i.material-icons.right close
+          a(href="#year-2010") ၂၀၁၀
+      #year-2015 
+        .row.candidate-list
+          // Going to replace this loop with Vue Template
+          each a in [1]
+            .col.s4
+              .card
+                .card-image
+                  img(src="https://storage.googleapis.com/staticassets/candidate-photos/Scan_B_20150813_0046.jpg", class="activator")
+                  span.card-title ဒေါ်အောင်ဆန်းစုကြည်
+                .card-content
+                  i.material-icons.right more_vert
+                  img(src="https://storage.googleapis.com/staticassets/flags-and-logos/40-flag.png" class="party-flag")
+                  p အမျိုးသားဒီမိုကရေစီအဖွဲ့ချုပ်ပါတီ
+                .card-reveal
+                  span.card-title.grey-text.text-darken-4 ဒေါ်အောင်ဆန်းစုကြည်
+                    i.material-icons.right close
 
-                p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                consequat.
-                a.waves-effect.waves-light.btn.blue-grey(href="candidates/details") More Details
+                  p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                  consequat.
+                  a.waves-effect.waves-light.btn.blue-grey(href="candidates/details") More Details
+      #year-2012
+        .row
+          h2 This is 2012 data
+      #year-2010
+        .row
+          h2 This is 2010 data
 block script
