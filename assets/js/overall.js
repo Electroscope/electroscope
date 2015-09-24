@@ -90,17 +90,93 @@
       var genderPieChart = new Chart(ctx).Pie(pieData, {
           animateScale: false
       });
+    },
+    religion: function(response){
+      var data = response.data[0];
+      data["religion_counts"]= data["religion_counts"].sort(function(first, second){
+        return second.count - first.count;
+      });
 
+      console.log(data["religion_counts"]);
+
+      var colors = ["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd", "#8c564b", "#e377c2", "#7f7f7f", "#bcbd22", "#17becf"];
+      var polarData = data["religion_counts"].map(function(item, index){
+        var base = colors[Math.floor(Math.random() * colors.length) ];
+        var highlight = colors[Math.floor(Math.random() * colors.length) ];
+        return {
+          value: item["count"],
+          color: base,
+          highlight: highlight,
+          label: item["religion"]
+        };
+      });
+      
+      var canvas = document.getElementById('religion-canvas');
+      var ctx = canvas.getContext("2d");
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      var radarChart = new Chart(ctx).Doughnut(polarData, {
+          segmentStrokeColor: "#000000",
+          scaleFontFamily: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
+          scaleFontSize: 12,
+          scaleFontStyle: "normal",
+          scaleFontColor: "#000"
+      });
+    },
+    ethnicity: function(response){
+      var data = response.data[0];
+      data["ethnicity_counts"]= data["ethnicity_counts"].sort(function(first, second){
+        return second.count - first.count;
+      });
+
+      var other = {
+        ethnicity: other,
+        count: 0
+      };
+
+      data["ethnicity_counts"] = data["ethnicity_counts"].filter(function(item){
+        if(item.count < 20){
+          other.count += 1;
+          console.log("other found");
+          return false;
+        }else{
+          return true;
+        }
+      });
+      data["ethnicity_counts"].push(other);
+
+      var colors = ["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd", "#8c564b", "#e377c2", "#7f7f7f", "#bcbd22", "#17becf"];
+      var polarData = data["ethnicity_counts"].map(function(item, index){
+        var base = colors[Math.floor(Math.random() * colors.length) ];
+        var highlight = colors[Math.floor(Math.random() * colors.length) ];
+        return {
+          value: item["count"],
+          color: base,
+          highlight: highlight,
+          label: item["ethnicity"]
+        };
+      });
+      
+      var canvas = document.getElementById('ethnicity-canvas');
+      var ctx = canvas.getContext("2d");
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      var radarChart = new Chart(ctx).Pie(polarData, {
+          segmentStrokeColor: "#000000",
+          scaleFontFamily: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
+          scaleFontSize: 12,
+          scaleFontStyle: "normal",
+          scaleFontColor: "#000"
+      });
     }
   };
-  var baseUrl = "http://localhost:3000";
+
   $(document).ready(function(){
+    var baseUrl = "http://localhost:3000";
     $('ul.tabs').tabs();
     var chartList = [
       "agegroup",
       "gender",
-      "ethnicity",
-      "religion"
+      "religion",
+      "ethnicity"
     ];
     chartList.map(function(chartType){
       $.getJSON(baseUrl + "/api/candidates/count/by-"+chartType, chartCallbacks[chartType]);
