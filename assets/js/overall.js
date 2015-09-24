@@ -21,7 +21,7 @@
           labels: labels,
           datasets: [
               {
-                  label: "",
+                  label: "By Age Group",
                   fillColor: "rgba(247, 50, 50, 0.75)",
                   strokeColor: "rgba(247, 50, 50, 0.8)",
                   highlightFill: "rgba(247, 50, 50, 0.5)",
@@ -34,17 +34,12 @@
       var ctx = canvas.getContext("2d");
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       var myChart = new Chart(ctx).Bar(chartData, {
-          barShowStroke: false,
-          scaleFontFamily: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
-
-         // Number - Scale label font size in pixels
-         scaleFontSize: 12,
-
-         // String - Scale label font weight style
-         scaleFontStyle: "normal",
-
-         // String - Scale label font colour
-         scaleFontColor: "#fff"
+        barShowStroke: false,
+        // Options for Labels
+        scaleFontFamily: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
+        scaleFontSize: 12,
+        scaleFontStyle: "normal",
+        scaleFontColor: "#fff"
       });
     },
     gender: function(response){
