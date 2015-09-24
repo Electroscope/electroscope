@@ -4,7 +4,7 @@ header, main, footer {
 
 /* Menu */
 .menu-collapse {
-	width: 80px;
+	width: 80px !important;
 }
 
 .nav-menu-title {
