@@ -11,14 +11,14 @@ html
   body
     header
       div(class="container")
-        ul#nav-mobile.side-nav.fixed.blue-grey.darken-1.white-text(style='width: 240px;')
+        ul#collapse-sidenav.side-nav.fixed.blue-grey.darken-1.white-text.menu-collapse.enable-collapse
           li.logo
-            a#logo-container.brand-logo(href='http://materializecss.com/') 
+            a#logo-container.brand-logo(href='/') 
               i.material-icons assessment 
           li.bold
-            a.waves-effect.waves-teal(href='/') Home
-          li.bold
-            a.waves-effect.waves-teal(href='/candidates') Candiates
+            a.waves-effect.waves-teal.nav-menu(href='/candidates')
+              i.material-icons perm_identity
+              span.nav-menu-title Candidates
     main
       block content
 
