@@ -24,7 +24,9 @@ var __LIBS = path.join(__dirname, "app/assets/js/libs");
 
 var __MAEPAYSOH = jsPath("api.js");
 
-var __DEFAULT = [__JQUERY, __MATERIAL_LITE, __MOMENT, __MAEPAYSOH];
+var __COMMONJS = jsPath("main.js");
+
+var __DEFAULT = [__JQUERY, __MATERIAL_LITE, __MOMENT, __MAEPAYSOH, __COMMONJS];
 
 function concatDefault(assets, other){
   var paths = [];
