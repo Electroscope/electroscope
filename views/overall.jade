@@ -1,0 +1,16 @@
+extends layout
+
+block content
+
+  .container
+    nav
+      .nav-wrapper
+        ul#nav-mobile.right.hide-on-med-and-down
+          li
+            a#agegroup-chart(href='#') By Age
+          li
+            a#gender-chart(href='#') By Gender
+          li
+            a#ethinicity-chart(href='#') By Ethnicity
+
+    .row#chart-content

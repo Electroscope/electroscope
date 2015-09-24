@@ -1,0 +1,30 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/Materialize/dist/css/materialize.min.css')
+    link(rel='stylesheet' href='https://fonts.googleapis.com/icon?family=Material+Icons')
+
+    block style
+
+    link(rel='stylesheet', href='/css/style.css')
+  body
+    header
+      div(class="container")
+        ul#nav-mobile.side-nav.fixed.blue-grey.darken-1.white-text(style='width: 240px;')
+          li.logo
+            a#logo-container.brand-logo(href='http://materializecss.com/') 
+              i.material-icons assessment 
+          li.bold
+            a.waves-effect.waves-teal(href='/') Home
+          li.bold
+            a.waves-effect.waves-teal(href='/candidates') Candiates
+          li.bold
+            a.waves-effect.waves-teal(href='/overall') Overall
+    main
+      block content
+
+    block script
+    script(src="/js/#{page_name}/app.min.js")
+
+
