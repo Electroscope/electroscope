@@ -4,19 +4,15 @@ block content
 
   .container
     .row
-      .col.s12
-        ul.tabs.blue-grey.lighten-1.chart-nav
-          li#agegroup-chart.tab.col.s4
-            a.active(href='#agegroup') By Age Group
-          li#gender-chart.tab.col.s4
-            a(href='#gender') By Gender
-          //- li#ethnicity-chart.tab.col.s4(href='#ethnicity')
-          //-   | By Ethnicity
-          //- li#religion-chart.tab.col.s4(href='#religion')
-          //-   | By Ethnicity
-
-    
-      #agegroup
-        canvas#agegroup-canvas(width="600px", height="400px")
-      #gender
-        #gender-bar
+      .col.s6
+        .card.blue-grey.darken-1
+          .card-content.white-text
+            span.card-title Candidates According To Age Group
+            canvas#agegroup-canvas(width="300px", height="300px")
+          
+      .col.s6
+        .card.blue-grey.darken-1
+          .card-content.center.white-text
+            span.card-title Candidate Gender Ratio
+            #gender-bar
+            canvas#gender-canvas(width="300px", height="300px")

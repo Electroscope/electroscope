@@ -21,11 +21,11 @@
           labels: labels,
           datasets: [
               {
-                  label: "By Age Group",
-                  fillColor: "rgba(238, 110, 115, 0.5)",
-                  strokeColor: "rgba(238, 110, 115, 0.8)",
-                  highlightFill: "rgba(238, 110, 115, 0.75)",
-                  highlightStroke: "rgba(238, 110, 115, 1)",
+                  label: "",
+                  fillColor: "rgba(247, 50, 50, 0.75)",
+                  strokeColor: "rgba(247, 50, 50, 0.8)",
+                  highlightFill: "rgba(247, 50, 50, 0.5)",
+                  highlightStroke: "rgba(247, 50, 50, 1)",
                   data: counts
               }
           ]
@@ -34,7 +34,17 @@
       var ctx = canvas.getContext("2d");
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       var myChart = new Chart(ctx).Bar(chartData, {
-          barShowStroke: false
+          barShowStroke: false,
+          scaleFontFamily: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
+
+         // Number - Scale label font size in pixels
+         scaleFontSize: 12,
+
+         // String - Scale label font weight style
+         scaleFontStyle: "normal",
+
+         // String - Scale label font colour
+         scaleFontColor: "#fff"
       });
     },
     gender: function(response){
@@ -46,8 +56,8 @@
       var malePercent = (maleCount / total) * 100;
       var femalePercent = (femaleCount / total) * 100;
       console.log("% ", malePercent, femalePercent, total);
-      var maleIcon = "<i class='material-icons' style='color: red'>android</i>";
-      var femaleIcon = "<i class='material-icons' style='color: green'>android</i>";
+      var maleIcon = "<i class='material-icons' style='color: #FF8A7F'>android</i>";
+      var femaleIcon = "<i class='material-icons' style='color: #46BFBD'>android</i>";
 
       var generateIconsByPercent = function(icon, percentage){
         var i;
@@ -63,7 +73,7 @@
       html += generateIconsByPercent(maleIcon, malePercent);
       html += generateIconsByPercent(femaleIcon, femalePercent);
       html += "Female";
-      html += "<canvas id='gender-canvas' width='400px' height='400px'></canvas>";
+      // html += "<canvas id='gender-canvas' width='400px' height='400px'></canvas>";
       $("#gender-bar").html(html);
       var pieData = [
         {
@@ -83,7 +93,7 @@
       var ctx = canvas.getContext("2d");
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       var genderPieChart = new Chart(ctx).Pie(pieData, {
-          animateScale: true
+          animateScale: false
       });
 
     }
