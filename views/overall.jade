@@ -3,14 +3,20 @@ extends layout
 block content
 
   .container
-    nav
-      .nav-wrapper
-        ul#nav-mobile.right.hide-on-med-and-down
-          li
-            a#agegroup-chart(href='#') By Age
-          li
-            a#gender-chart(href='#') By Gender
-          li
-            a#ethinicity-chart(href='#') By Ethnicity
+    .row
+      .col.s12
+        ul.tabs.blue-grey.lighten-1.chart-nav
+          li#agegroup-chart.tab.col.s4.active(href='#agegroup')
+            a By Age Group
+          li#gender-chart.tab.col.s4(href='#gender')
+            a By Gender
+          //- li#ethnicity-chart.tab.col.s4(href='#ethnicity')
+          //-   | By Ethnicity
+          //- li#religion-chart.tab.col.s4(href='#religion')
+          //-   | By Ethnicity
 
-    .row#chart-content
+    
+      #agegroup
+        canvas#agegroup-canvas(width="600px", height="400px")
+      #gender
+        #gender-bar

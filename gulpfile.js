@@ -13,12 +13,12 @@ function jsPath(_path){
 // External Library 
 var __BOWER = path.join(__dirname, "bower_components");
 var __JQUERY = path.join(__BOWER, "jquery/dist/jquery.min.js");
-var __MATERIAL_LITE = path.join(__BOWER, "Materialize/dist/js/materialize.min.js");
+var __MATERIAL_LITE = path.join(__BOWER, "Materialize/dist/js/materialize.js");
 var __MOMENT = path.join(__BOWER, "moment/min/moment.min.js");
 var __LEAFLET = path.join(__BOWER, "leaflet/dist/leaflet.js");
 var __D3 = path.join(__BOWER, "d3/d3.js");
 var __TOPOJSON = path.join(__BOWER, "topojson/topojson.js");
-var __CHARTJS = path.join(__BOWER, "Chartjs/Chart.js")
+var __CHARTJS = path.join(__BOWER, "Chart.js/Chart.js")
 // Internal Library
 var __LIBS = path.join(__dirname, "app/assets/js/libs");
 
@@ -37,7 +37,7 @@ var PAGES = {
   "candidates": concatDefault(["candidates.js", "map.js", "maptest.js"],[__D3, __TOPOJSON]),
   "candidates-detail": concatDefault(["candidates-detail.js"],[__LEAFLET]),
   "maptest": concatDefault(["map.js", "maptest.js"], [__D3, __TOPOJSON]),
-  "overall": concatDefault(["overall.js"], [__D3, __TOPOJSON, __CHARTJS])
+  "overall": concatDefault(["overall.js"], [__MATERIAL_LITE, __D3, __TOPOJSON, __CHARTJS ])
 };
 
 // Watch task for gulp
