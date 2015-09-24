@@ -11,7 +11,7 @@ jQuery(function(){
 
 	$(".button-collapse").sideNav();
 
-	$('.side-nav .enable-collapse').hover(function(){
+	$('.side-nav.enable-collapse').hover(function(){
 		$(this).toggleClass('menu-collapse');
 		$(this).toggleClass('menu-expand');
 	});
