@@ -181,6 +181,10 @@
     chartList.map(function(chartType){
       $.getJSON(baseUrl + "/api/candidates/count/by-"+chartType, chartCallbacks[chartType]);
     });
+
+    $.getJSON(baseUrl + "/api/candidates/count/by-gender?group_by=party", function(response){
+      console.log(response.data);
+    });
   });
 
 })();

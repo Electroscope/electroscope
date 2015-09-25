@@ -23,28 +23,31 @@ block content
           a(href="#lower_house") ပြည်သူ့လွှတ်တော်
         li.tab.col.s4
           a(href="#regional_house") တိုင်းဒေသကြီး/ပြည်နယ်လွှတ်တော်
+      .nav-wrapper
+        h5.center ပါတီအလိုက်　ပါဝင်ယှဉ်ပြိုင်သော　အမတ်လောင်းဦးရေစာရင်း
       #upper_house 
         .row.candidate-list
+          h3.center Please Select a State/Division from the map.
           // Going to replace this loop with Vue Template
-          each a in [1]
-            .col.s4
-              .card
-                .card-image
-                  img(src="https://storage.googleapis.com/staticassets/candidate-photos/Scan_B_20150813_0046.jpg", class="activator")
-                  span.card-title ဒေါ်အောင်ဆန်းစုကြည်
-                .card-content
-                  i.material-icons.right more_vert
-                  img(src="https://storage.googleapis.com/staticassets/flags-and-logos/40-flag.png" class="party-flag")
-                  p အမျိုးသားဒီမိုကရေစီအဖွဲ့ချုပ်ပါတီ
-                .card-reveal
-                  span.card-title.grey-text.text-darken-4 ဒေါ်အောင်ဆန်းစုကြည်
-                    i.material-icons.right close
+          //- each a in [1]
+          //-   .col.s4
+          //-     .card
+          //-       .card-image
+          //-         img(src="https://storage.googleapis.com/staticassets/candidate-photos/Scan_B_20150813_0046.jpg", class="activator")
+          //-         span.card-title ဒေါ်အောင်ဆန်းစုကြည်
+          //-       .card-content
+          //-         i.material-icons.right more_vert
+          //-         img(src="https://storage.googleapis.com/staticassets/flags-and-logos/40-flag.png" class="party-flag")
+          //-         p အမျိုးသားဒီမိုကရေစီအဖွဲ့ချုပ်ပါတီ
+          //-       .card-reveal
+          //-         span.card-title.grey-text.text-darken-4 ဒေါ်အောင်ဆန်းစုကြည်
+          //-           i.material-icons.right close
 
-                  p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                  consequat.
-                  a.waves-effect.waves-light.btn.blue-grey(href="candidates/details") More Details
+          //-         p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+          //-         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+          //-         quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          //-         consequat.
+          //-         a.waves-effect.waves-light.btn.blue-grey(href="candidates/details") More Details
       #lower_house
         .row
           h2 This is 2012 data
