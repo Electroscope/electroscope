@@ -4,35 +4,41 @@ block content
   .row
     .col.s4
       .collection.state-list
-        a.collection-item.state-list-item.waves-effect.waves-teal
+        a.collection-item.state-list-item.waves-effect.waves-teal(data-st_code="MMR017")
           | Ayeyarwady
-        a.collection-item.state-list-item.waves-effect.waves-teal
-          | Bago
-        a.collection-item.state-list-item.waves-effect.waves-teal
+        a.collection-item.state-list-item.waves-effect.waves-teal(data-st_code="MMR007")
+          | Bago_East
+        a.collection-item.state-list-item.waves-effect.waves-teal(data-st_code="MMR008")
+          | Bago_west
+        a.collection-item.state-list-item.waves-effect.waves-teal(data-st_code="MMR004")
           | Chin
-        a.collection-item.state-list-item.waves-effect.waves-teal
+        a.collection-item.state-list-item.waves-effect.waves-teal(data-st_code="MMR001")
           | Kachin
-        a.collection-item.state-list-item.waves-effect.waves-teal
+        a.collection-item.state-list-item.waves-effect.waves-teal(data-st_code="MMR002")
           | Kayah
-        a.collection-item.state-list-item.waves-effect.waves-teal
+        a.collection-item.state-list-item.waves-effect.waves-teal(data-st_code="MMR003")
           | Kayin
-        a.collection-item.state-list-item.waves-effect.waves-teal
+        a.collection-item.state-list-item.waves-effect.waves-teal(data-st_code="MMR009")
           | Magway
-        a.collection-item.state-list-item.waves-effect.waves-teal
+        a.collection-item.state-list-item.waves-effect.waves-teal(data-st_code="MMR010")
           | Mandalay
-        a.collection-item.state-list-item.waves-effect.waves-teal.active
+        a.collection-item.state-list-item.waves-effect.waves-teal.active(data-st_code="MMR011")
           | Mon
-        a.collection-item.state-list-item.waves-effect.waves-teal
+        a.collection-item.state-list-item.waves-effect.waves-teal(data-st_code="MMR018")
           | Naypyitaw  Council
-        a.collection-item.state-list-item.waves-effect.waves-teal
+        a.collection-item.state-list-item.waves-effect.waves-teal(data-st_code="MMR012")
           | Rakhine
-        a.collection-item.state-list-item.waves-effect.waves-teal
+        a.collection-item.state-list-item.waves-effect.waves-teal(data-st_code="MMR005")
           | Sagaing
-        a.collection-item.state-list-item.waves-effect.waves-teal
-          | Shan
-        a.collection-item.state-list-item.waves-effect.waves-teal
+        a.collection-item.state-list-item.waves-effect.waves-teal(data-st_code="MMR016")
+          | Shan_East
+        a.collection-item.state-list-item.waves-effect.waves-teal(data-st_code="MMR015")
+          | Shan_North
+        a.collection-item.state-list-item.waves-effect.waves-teal(data-st_code="MMR014")
+          | Shan_South
+        a.collection-item.state-list-item.waves-effect.waves-teal(data-st_code="MMR006")
           | Tanintharyi
-        a.collection-item.state-list-item.waves-effect.waves-teal
+        a.collection-item.state-list-item.waves-effect.waves-teal(data-st_code="MMR013")
           | Yangon
 
     .col.s8
@@ -48,17 +54,14 @@ block content
             .btn ပါတီအလိုက်　အမတ်လောင်းအရေအတွက်
           #legislature_counts
             .row
-              .candidate-count.col.s12.content-center
-                canvas#AMH-canvas(width="200px", height="200px")
-                p.content-center အမျိုးသားလွှတ်တော်
+              .candidate-count.col.s12.content-center#AMH-canvas
+              p.content-center အမျိုးသားလွှတ်တော်
             .row
-              .candidate-count.col.s12.content-center
-                canvas#PTH-canvas(width="200px", height="200px")
-                p.content-center ပြည်သူ့လွှတ်တော်
+              .candidate-count.col.s12.content-center#PTH-canvas
+              p.content-center ပြည်သူ့လွှတ်တော်
             .row
-              .candidate-count.col.s12.content-center
-                canvas#RGH-canvas(width="200px", height="200px")
-                p.content-center တိုင်းဒေသကြီး/ပြည်နယ် လွှတ်တော်
+              .candidate-count.col.s12.content-center#RGH-canvas
+              p.content-center တိုင်းဒေသကြီး/ပြည်နယ် လွှတ်တော်
 
       .row
         #state-details
