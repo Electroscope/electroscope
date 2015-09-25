@@ -18,7 +18,8 @@ var __MOMENT = path.join(__BOWER, "moment/min/moment.min.js");
 var __LEAFLET = path.join(__BOWER, "leaflet/dist/leaflet.js");
 var __D3 = path.join(__BOWER, "d3/d3.js");
 var __TOPOJSON = path.join(__BOWER, "topojson/topojson.js");
-var __CHARTJS = path.join(__BOWER, "Chart.js/Chart.js")
+var __CHARTJS = path.join(__BOWER, "Chart.js/Chart.js");
+var __HO_CHARTJS = path.join(__BOWER,"Chart.HorizontalBar.js/Chart.HorizontalBar.js");
 // Internal Library
 var __LIBS = path.join(__dirname, "app/assets/js/libs");
 
@@ -42,9 +43,9 @@ var PAGES = {
   "maptest": concatDefault(["map2.js", "maptest.js"], [__D3, __TOPOJSON]),
   "overall": concatDefault(["overall.js"], [__MATERIAL_LITE, __D3, __TOPOJSON, __CHARTJS ]),
   "choropleth": concatDefault(["map.js", "choropleth.js"], [__MATERIAL_LITE, __D3, __TOPOJSON, __CHARTJS ]),
-  "2015_parties": concatDefault([ "2015_parties.js"], [__MATERIAL_LITE, __D3, __TOPOJSON, __CHARTJS ]),
+  "2015_parties": concatDefault([ "2015_parties.js"], [__MATERIAL_LITE, __D3, __TOPOJSON, __CHARTJS,__HO_CHARTJS ]),
   "2015_states": concatDefault([ "2015_states.js"], [__MATERIAL_LITE, __D3, __TOPOJSON, __CHARTJS ]),
-  "2015_parliments": concatDefault([ "2015_parliments.js"], [__MATERIAL_LITE, __D3, __TOPOJSON, __CHARTJS ])
+  "2015_parliments": concatDefault([ "2015_parliments.js"], [__MATERIAL_LITE, __D3, __TOPOJSON, __CHARTJS, ])
   
 };
 

@@ -20,6 +20,7 @@
     "Materialize": "materialize#~0.97.1",
     "moment": "~2.10.6",
     "topojson": "~1.6.19",
-    "vue": "~0.12.14"
+    "vue": "~0.12.14",
+    "Chart.HorizontalBar.js": "chart.horizontalbar#~1.0.3"
   }
 }

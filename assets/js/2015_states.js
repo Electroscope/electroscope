@@ -1,1 +1,4 @@
-alert('states');
+$('document').ready(function(){
+	alert('hello');
+
+});
