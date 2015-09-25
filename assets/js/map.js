@@ -55,6 +55,7 @@
      
     var offsetL = element[0].offsetLeft + 40;
     var offsetT = element[0].offsetTop + 20;
+    console.log("Before D3 Binding", regions.features);
 
 
     map.selectAll("path")
