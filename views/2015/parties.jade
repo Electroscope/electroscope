@@ -1,10 +1,16 @@
 extends ../layout
 block content
 	.row
+		.col.s12
+			input(type="text" id="party_limit",placeholder="limit",value="50")
+			button(id="update_limit", class="btn waves-effect waves-light") Check
+	.row
 		.col.s8
 			h3 Regional
 			canvas#parties-region(style="width:400px;height:100px;")
-	
+		
+			
+
 	.row
 		.col.s8
 			h3 AMH
