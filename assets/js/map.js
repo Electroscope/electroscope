@@ -33,6 +33,7 @@
 
     var projection = d3.geo.mercator();
         projection.scale(1).translate([0,0]);
+    $(element).html('');
 
     var tooltip = d3.select(element).append("div").attr("class", "tooltip hidden");
     var svg = d3.select(element).append("svg")
