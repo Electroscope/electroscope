@@ -19,12 +19,13 @@
           .style("fill", defaultColor);
         d3.select(this)
           .style("fill", "red");
-        var updateList = function(data, currentPcode){
-          console.log("Updating", data, currentPcode);
+        var updateList = function(data, state){
+          regionalHouse = state.toUpperCase() + "-RGH";
+          console.log("Regional House", regionalHouse);
           var houses = [
-            {en: "upper_house", my: "အမျိုးသားလွှတ်တော်"},
-            {en: "lower_house", my: "ပြည်သူ့လွှတ်တော်"},
-            {en: "regional_house", my: "တိုင်းဒေသကြီး/ပြည်နယ် လွှတ်တော်"}
+            {en: "AMH", my: "အမျိုးသားလွှတ်တော်"},
+            {en: "PTH", my: "ပြည်သူ့လွှတ်တော်"},
+            {en: "RGH", my: "တိုင်းဒေသကြီး/ပြည်နယ် လွှတ်တော်"}
           ];
           var list = {};
           $.each(houses, function(index, house){
@@ -32,25 +33,28 @@
           });
 
           $.each(data, function(index, item){
-            if(item.st_pcode === currentPcode ){
+            if(item.parliament.match(/RGH/)){
+              item.parliament = item.parliament.split('-')[1];
+            }
+            if(item.state === state ){
               $.each(houses, function(index, house){
-                if(house.my === item.legislature){
+                if(house.en === item.parliament){
                   list[house.en] += ' <div class="col s6">\
                       <div class="card blue-grey darken-1"\
                         <div class="card-content white-text">\
-                          <span class="card-title">'+item.party_number +'</span>\
-                          <div class="candidate-count col s4 content-center">\
+                          <span class="card-title">'+item.party +'</span>\
+                          <div class="candidate-count col offset-s4 s4 content-center">\
                             <div class="stat-count circle red">\
                               <div class="circle_inner">\
                                 <div class="circle_wrapper">\
-                                  <div class="circle_content">'+ item.candidatesCount +'</div>\
+                                  <div class="circle_content">'+ item.count +'</div>\
                                 </div>\
                               </div>\
                             </div>\
                           </div>\
                         </div>\
                         <div class="card-action">\
-                          <a href="#">'+ item.legislature +'</a>\
+                          <a href="#">'+ item.parliament +'</a>\
                         </div>\
                       </div>\
                     </div>';
@@ -79,24 +83,26 @@
 
         if(!statePartyCountCache){
           console.log("Getting from Server");
-          $.getJSON("http://localhost:3000/api/temp/state/count", function(response){
+          $.getJSON("http://localhost:3000/api/candidates/count?group_by=state,party,parliament", function(response){
             statePartyCountCache = response.data;
-            updateList(statePartyCountCache, d.properties.ST_PCODE);
+            updateList(statePartyCountCache, d.properties.ST);
           });
         }else{
           console.log("Getting from Cache");
-          updateList(statePartyCountCache, d.properties.ST_PCODE);
-        } 
-      })
-      .on("mousemove", function(d,i) {
-        var mouse = d3.mouse(svg.node()).map( function(d) { return parseInt(d); } );
-        tooltip
-            .classed("hidden", false)
-            .attr("style", "left:"+(mouse[0]+offsetL)+"px;top:"+(mouse[1]+offsetT)+"px")
-            .html(d.properties[regionNameField]);
-      })
-      .on("mouseout",  function(d,i) {
-        tooltip.classed("hidden", true)
-      });
+          updateList(statePartyCountCache, d.properties.ST);
+        }
+        
+    })
+    .on("mousemove", function(d,i) {
+      var mouse = d3.mouse(svg.node()).map( function(d) { return parseInt(d); } );
+      tooltip
+          .classed("hidden", false)
+          .attr("style", "left:"+(mouse[0]+offsetL)+"px;top:"+(mouse[1]+offsetT)+"px")
+          .html(d.properties[regionNameField]);
+    })
+    .on("mouseout",  function(d,i) {
+      tooltip.classed("hidden", true)
+    });
+
   });
 })(window.electroscope);
