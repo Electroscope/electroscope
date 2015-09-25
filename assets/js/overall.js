@@ -115,7 +115,7 @@
       var ctx = canvas.getContext("2d");
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       var radarChart = new Chart(ctx).Doughnut(polarData, {
-          segmentStrokeColor: "#000000",
+          segmentStrokeColor: "#ffffff",
           scaleFontFamily: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
           scaleFontSize: 12,
           scaleFontStyle: "normal",
@@ -160,7 +160,7 @@
       var ctx = canvas.getContext("2d");
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       var radarChart = new Chart(ctx).Pie(polarData, {
-          segmentStrokeColor: "#000000",
+          segmentStrokeColor: "#ffffff",
           scaleFontFamily: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
           scaleFontSize: 12,
           scaleFontStyle: "normal",
