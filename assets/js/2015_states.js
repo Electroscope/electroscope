@@ -1,3 +1,4 @@
+
 (function(electroscope){
 
   var drawStateDetail = function(state){
@@ -33,21 +34,7 @@
           d3.selectAll(".map_region")
             .style("fill", defaultColor);
           d3.select(this)
-            .style("fill", "red");
-
-          $('.candidate-list').html(loadingIndicator);
-
-          if(!statePartyCountCache){
-            console.log("Getting from Server");
-            $.getJSON("http://localhost:3000/api/candidates/count?group_by=state,party,parliament", function(response){
-              statePartyCountCache = response.data;
-              updateList(statePartyCountCache, d.properties.ST);
-            });
-          }else{
-            console.log("Getting from Cache");
-            updateList(statePartyCountCache, d.properties.ST);
-          }
-          
+            .style("fill", "red");         
       })
       .on("mousemove", function(d,i) {
         var html = '<a class="waves-effect waves-light btn center">' + d.properties.constituency_name_en + "-" + d.properties.constituency_number +'</a>';
@@ -63,15 +50,15 @@
       $("#" + parliament + "total-count").html(preloader);
     });
 
-    $.getJSON("http://localhost:3000/api/candidates/count/by-parliament?state=" + state, function(response){
-      response.data[0].parliament_counts.map(function(item){
-        $("#" + item.parliament + "-total-count").text(item.count);
-      });
-    });
+    // $.getJSON("http://localhost:3000/api/candidates/count/by-parliament?state=" + state, function(response){
+    //   response.data[0].parliament_counts.map(function(item){
+    //     $("#" + item.parliament + "-total-count").text(item.count);
+    //   });
+    // });
   }
   var renderIndividualParliamentData = function(state){
 
-    $.getJSON("http://localhost:3000/api/candidates/count/by-party?group_by=parliament&state=" + state, function(response){
+    $.getJSON("http://localhost:3000/api/candidates/count/by-party?group_by=parliament&state_code=" + state, function(response){
 
       var drawPieChart = function(element, partyCounts){
 
@@ -126,8 +113,10 @@
           };
         });
         console.log("Element", element);
-        var canvas = document.getElementById(element);
+        $("#" + element).html("<canvas width='250' height='250'></canvas>");
+        var canvas = $("#" + element + " canvas")[0];
         var ctx = canvas.getContext("2d");
+        
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         var partyPieChart = new Chart(ctx).Pie(pieData, {
             animateScale: false
@@ -146,17 +135,19 @@
   $(document).ready(function(){
 
     drawStateDetail("Mandalay");
-    renderIndividualParliamentData("Mandalay");
+    renderIndividualParliamentData("MMR010");
     $('.state-list-item').on('click', function(){
       var state = $(this).text();
+      var st_code = $(this).data('st_code');
       $('.state-list-item').removeClass('active');
       $(this).addClass("active");
       drawStateDetail(state);
 
-      renderIndividualParliamentData(state);
+      renderIndividualParliamentData(st_code);
     });
 
 
   });
 
 })(window.electroscope);
+

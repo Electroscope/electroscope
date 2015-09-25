@@ -1,3 +1,16 @@
 extends ../layout
 block content
-	h1 Parties
+	.row
+		.col.s8
+			h1 Regional
+			canvas#parties-region(style="width:400px;height:100px;")
+	
+	.row
+		.col.s8
+			h1 AMH
+			canvas#parties-amh(style="width:400px;height:100px;")
+	
+	.row
+		.col.s8
+			h1 PTH
+			canvas#parties-pth(style="width:400px;height:100px;")
