@@ -69,16 +69,56 @@
       });
     });
   }
+  var renderIndividualParliamentData = function(state){
+
+    $.getJSON("http://localhost:3000/api/candidates/count/by-party?group_by=parliament&state=" + state, function(response){
+
+      var drawPieChart = function(element, partyCounts){
+
+        var colors = ["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd", "#8c564b", "#e377c2", "#7f7f7f", "#bcbd22", "#17becf"];
+        
+        var pieData = partyCounts.map(function(partyCount){
+          var base = colors[Math.floor(Math.random() * colors.length) ];
+          var highlight = colors[Math.floor(Math.random() * colors.length) ];
+          return {
+            value: partyCount["count"],
+            color: base,
+            highlight: highlight,
+            label: partyCount["party"]
+          };
+        });
+        console.log("Element", element);
+        var canvas = document.getElementById(element);
+        var ctx = canvas.getContext("2d");
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        var partyPieChart = new Chart(ctx).Pie(pieData, {
+            animateScale: false
+        });
+      };
+
+      var data = response.data.map(function(item){
+        var element = item.parliament + "-canvas";
+        drawPieChart(element, item.party_counts);
+      })
+
+    });
+
+  };
 
   $(document).ready(function(){
 
     drawStateDetail("Mandalay");
+    renderIndividualParliamentData("Mandalay");
     $('.state-list-item').on('click', function(){
       var state = $(this).text();
       $('.state-list-item').removeClass('active');
       $(this).addClass("active");
       drawStateDetail(state);
-    })
+
+      renderIndividualParliamentData(state);
+    });
+
+
   });
 
 })(window.electroscope);

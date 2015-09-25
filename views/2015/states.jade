@@ -43,28 +43,21 @@ block content
       .row
         .col.s6
           #state_map
-        .col.s4
+        .col.s6
+          .row
+            .btn ပါတီအလိုက်　အမတ်လောင်းအရေအတွက်
           #legislature_counts
             .row
               .candidate-count.col.s12.content-center
-                .stat-count.circle.red 
-                  .circle_inner
-                    .circle_wrapper
-                      .circle_content#AMH-total-count 129
-               p.content-center အမျိုးသားလွှတ်တော်
+                canvas#AMH-canvas(width="200px", height="200px")
+                p.content-center အမျိုးသားလွှတ်တော်
             .row
               .candidate-count.col.s12.content-center
-                .stat-count.circle.blue
-                  .circle_inner
-                    .circle_wrapper
-                      .circle_content#PTH-total-count 314
+                canvas#PTH-canvas(width="200px", height="200px")
                 p.content-center ပြည်သူ့လွှတ်တော်
             .row
               .candidate-count.col.s12.content-center
-                .stat-count.circle.green 
-                  .circle_inner
-                    .circle_wrapper
-                      .circle_content#RGH-total-count 642
+                canvas#RGH-canvas(width="200px", height="200px")
                 p.content-center တိုင်းဒေသကြီး/ပြည်နယ် လွှတ်တော်
 
       .row
