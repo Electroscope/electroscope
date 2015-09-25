@@ -75,11 +75,49 @@
 
       var drawPieChart = function(element, partyCounts){
 
-        var colors = ["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd", "#8c564b", "#e377c2", "#7f7f7f", "#bcbd22", "#17becf"];
+        var colors = {
+          USADP: "#1f77b4",
+          NLFD: "#aec7e8",
+          NUP: "#ff7f0e",
+          IC: "#ffbb78",
+          NDP: "#2ca02c",
+          MFDP: "#98df8a",
+          NDF: "#d62728",
+          SNDP: "#ff9896",
+          SNLFD: "#9467bd",
+          KPP: "#c5b0d5",
+          ANP: "#8c564b",
+          KSDP: "#c49c94",
+          CNDP: "#e377c2",
+          TNDP: "#f7b6d2",
+          MNP1: "#7f7f7f",
+          GDP: "#c7c7c7",
+          PDP: "#bcbd22",
+          UDP: "#dbdb8d",
+          FUP: "#17becf",
+          Other: "#9edae5"
+        }
         
-        var pieData = partyCounts.map(function(partyCount){
-          var base = colors[Math.floor(Math.random() * colors.length) ];
-          var highlight = colors[Math.floor(Math.random() * colors.length) ];
+        var other = {
+          count: 0,
+          party: 'Other'
+        };
+
+        partyCounts = partyCounts.sort(function(first, second){
+          return second.count - first.count;
+        });
+
+        var biggestFive = partyCounts.slice(0, 4);
+        partyCounts.slice(4, partyCounts.length).map(function(item){
+          other["count"] += item.count;
+        });
+
+        biggestFive.push(other);
+
+        var pieData = biggestFive.map(function(partyCount){
+          var base = colors[partyCount.party] ? colors[partyCount.party] : colors['Other'];
+          var baseRgb = hexToRgb(base);
+          var highlight = "rgba(" + baseRgb.r + "," + baseRgb.g + "," + baseRgb.b + "," + 0.5 + ")";
           return {
             value: partyCount["count"],
             color: base,
