@@ -18,14 +18,14 @@ block content
     .col.s12.m8
       ul.tabs.blue-grey.lighten-1.election-year
         li.tab.col.s4
-          a(href="#upper_house").active အမျိုးသားလွှတ်တော်
+          a(href="#AMH").active အမျိုးသားလွှတ်တော်
         li.tab.col.s4
-          a(href="#lower_house") ပြည်သူ့လွှတ်တော်
+          a(href="#PTH") ပြည်သူ့လွှတ်တော်
         li.tab.col.s4
-          a(href="#regional_house") တိုင်းဒေသကြီး/ပြည်နယ်လွှတ်တော်
+          a(href="#RGH") တိုင်းဒေသကြီး/ပြည်နယ်လွှတ်တော်
       .nav-wrapper
         h5.center ပါတီအလိုက်　ပါဝင်ယှဉ်ပြိုင်သော　အမတ်လောင်းဦးရေစာရင်း
-      #upper_house 
+      #AMH 
         .row.candidate-list
           h3.center Please Select a State/Division from the map.
           // Going to replace this loop with Vue Template
@@ -48,10 +48,10 @@ block content
           //-         quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
           //-         consequat.
           //-         a.waves-effect.waves-light.btn.blue-grey(href="candidates/details") More Details
-      #lower_house
+      #PTH
         .row
           h2 This is 2012 data
-      #regional_house
+      #RGH
         .row
           h2 This is 2010 data
 block script
