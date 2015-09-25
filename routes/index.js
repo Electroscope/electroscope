@@ -44,9 +44,9 @@ router.get('/2015/parties',function(req,res){
 
 	res.render("2015/parties",{title:"electroscope",page_name:"2015_parties"});
 });
-router.get('/2015/candidates',function(req,res){
+router.get('/2015/states',function(req,res){
 
-	res.render("2015/candidates",{title:"electroscope",page_name:"2015_candidates"});
+	res.render("2015/states",{title:"electroscope",page_name:"2015_states"});
 });
 
 
