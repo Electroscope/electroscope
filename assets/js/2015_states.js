@@ -33,21 +33,7 @@
           d3.selectAll(".map_region")
             .style("fill", defaultColor);
           d3.select(this)
-            .style("fill", "red");
-
-          $('.candidate-list').html(loadingIndicator);
-
-          if(!statePartyCountCache){
-            console.log("Getting from Server");
-            $.getJSON("http://localhost:3000/api/candidates/count?group_by=state,party,parliament", function(response){
-              statePartyCountCache = response.data;
-              updateList(statePartyCountCache, d.properties.ST);
-            });
-          }else{
-            console.log("Getting from Cache");
-            updateList(statePartyCountCache, d.properties.ST);
-          }
-          
+            .style("fill", "red");         
       })
       .on("mousemove", function(d,i) {
         var html = '<a class="waves-effect waves-light btn center">' + d.properties.constituency_name_en + "-" + d.properties.constituency_number +'</a>';
