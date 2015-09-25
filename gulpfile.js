@@ -41,7 +41,8 @@ var PAGES = {
   "candidates-detail": concatDefault(["candidates-detail.js"],[__LEAFLET]),
   "maptest": concatDefault(["map2.js", "maptest.js"], [__D3, __TOPOJSON]),
   "overall": concatDefault(["overall.js"], [__MATERIAL_LITE, __D3, __TOPOJSON, __CHARTJS ]),
-  "choropleth": concatDefault(["map.js", "choropleth.js"], [__MATERIAL_LITE, __D3, __TOPOJSON, __CHARTJS ])
+  "choropleth": concatDefault(["map.js", "choropleth.js"], [__MATERIAL_LITE, __D3, __TOPOJSON, __CHARTJS ]),
+  "state": concatDefault(["state.js"], [__MATERIAL_LITE, __D3, __TOPOJSON, __CHARTJS ])
 };
 
 // Watch task for gulp
