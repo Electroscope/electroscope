@@ -37,4 +37,23 @@ router.get('/choropleth', function(req, res){
   res.render("choropleth",{ title: "electroscope", page_name: "overall"});
 })
 
+
+
+// 2015 Route group
+router.get('/2015/parties',function(req,res){
+
+	res.render("2015/parties",{title:"electroscope",page_name:"2015_parties"});
+});
+router.get('/2015/candidates',function(req,res){
+
+	res.render("2015/candidates",{title:"electroscope",page_name:"2015_candidates"});
+});
+
+
+router.get('/2015/parliments',function(req,res){
+
+	res.render("2015/parliments",{title:"electroscope",page_name:"2015_parliments"});
+});
+
+
 module.exports = router;
