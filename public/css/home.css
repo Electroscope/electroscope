@@ -1,0 +1,21 @@
+section.section {
+  padding: 0px 20px;
+  min-height: 750px;
+}
+
+section.icon-section {
+  min-height: 250px;
+  background: #25B7D3;
+  z-index: 1;
+}
+
+.section-one {
+  background: #095078;
+  box-shadow: -5px 0 5px 5px rgba(0, 0, 0, 0.5);
+  z-index: 10;
+  position: relative;
+}
+
+.section-two {
+  background: #00695c;
+}

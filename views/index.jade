@@ -7,14 +7,20 @@ html
     link(rel='stylesheet', href='/css/#{page_name}.css')
   body
     main
-      .container
-        section.section
-          .row
-            .col.s4
-              center
-                #mandalay-map
-            .col.s8.white-text
-              center
-                h3#vs Some
+      section.section.section-one.white-text
+        br
+        .row
+          .col.s4
+            center
+              #mandalay-map
+          .col.s8
+            center#vs
+              h3.title Candidates percentage
+              h5.vs [Candidate one] | [Candidate 2]
+      section.icon-section.white-text
+      section.section.section-two.white-text
+        .row
+          .col.s12
+            h1 Section 2
 
     script(src="/js/#{page_name}/app.min.js")
