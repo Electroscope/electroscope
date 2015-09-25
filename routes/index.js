@@ -32,4 +32,9 @@ router.get('/partials/agegroup', function(req, res){
   res.render("partials/agegroup",{ title: "electroscope", page_name: "overall"});
 })
 
+router.get('/choropleth', function(req, res){
+
+  res.render("choropleth",{ title: "electroscope", page_name: "overall"});
+})
+
 module.exports = router;
