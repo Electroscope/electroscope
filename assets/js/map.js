@@ -63,10 +63,11 @@
               .enter()
               .append("path")
               .attr("d", path)
-              .attr("class", "map_region")
               .attr('id', function(d, i){
                 return d.properties[regionCodeField];
               })
+              .style("stroke", "#095078")
+              .style("stroke-width", "4px")
               .style("fill", function(d, i){
                 return defaultColor;
               });

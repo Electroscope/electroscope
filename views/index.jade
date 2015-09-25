@@ -4,10 +4,17 @@ html
     title= title
     link(rel='stylesheet', href='/Materialize/dist/css/materialize.min.css')
     link(rel='stylesheet' href='https://fonts.googleapis.com/icon?family=Material+Icons')
-    link(rel='stylesheet', href='/css/homepage.css')
+    link(rel='stylesheet', href='/css/#{page_name}.css')
   body
     main
-      .sectionp.teal
-        .row
-          .col.s12
-            #states-map
+      .container
+        section.section
+          .row
+            .col.s4
+              center
+                #mandalay-map
+            .col.s8.white-text
+              center
+                h3#vs Some
+
+    script(src="/js/#{page_name}/app.min.js")
