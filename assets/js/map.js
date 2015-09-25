@@ -58,7 +58,7 @@
     console.log("Before D3 Binding", regions.features);
 
 
-    map.selectAll("path")
+    return map.selectAll("path")
               .data(regions.features)
               .enter()
               .append("path")
@@ -69,18 +69,6 @@
               })
               .style("fill", function(d, i){
                 return defaultColor;
-              })
-              .on('click', options.onClickHandler)
-              .on("mousemove", function(d,i) {
-                var mouse = d3.mouse(svg.node()).map( function(d) { return parseInt(d); } );
-                tooltip
-                    .classed("hidden", false)
-                    .attr("style", "left:"+(mouse[0]+offsetL)+"px;top:"+(mouse[1]+offsetT)+"px")
-                    .html(d.properties[regionNameField]);
-              })
-              .on("mouseout",  function(d,i) {
-                tooltip.classed("hidden", true)
-              })
-              ;
-  };
+              });
+  }
 })();

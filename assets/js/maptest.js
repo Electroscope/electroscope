@@ -10,8 +10,10 @@
       defaultColor: defaultColor,
       metaKey: "output2",
       regionNameField: "name",
-      regionCodeField: "ST_PCODE",
-      onClickHandler: function(d){
+      regionCodeField: "ST_PCODE"
+    };
+    electroscope.drawD3Map(data, options)
+      .on('click', function(d){
         console.log("Clicking");
         d3.selectAll(".map_region")
           .style("fill", defaultColor);
@@ -90,8 +92,17 @@
           updateList(statePartyCountCache, d.properties.ST);
         }
         
-      }
-    };
-    electroscope.drawD3Map(data, options);
+    })
+    .on("mousemove", function(d,i) {
+      var mouse = d3.mouse(svg.node()).map( function(d) { return parseInt(d); } );
+      tooltip
+          .classed("hidden", false)
+          .attr("style", "left:"+(mouse[0]+offsetL)+"px;top:"+(mouse[1]+offsetT)+"px")
+          .html(d.properties[regionNameField]);
+    })
+    .on("mouseout",  function(d,i) {
+      tooltip.classed("hidden", true)
+    });
+
   });
 })(window.electroscope);
