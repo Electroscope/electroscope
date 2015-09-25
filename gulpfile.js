@@ -42,6 +42,9 @@ var PAGES = {
   "maptest": concatDefault(["map2.js", "maptest.js"], [__D3, __TOPOJSON]),
   "overall": concatDefault(["overall.js"], [__MATERIAL_LITE, __D3, __TOPOJSON, __CHARTJS ]),
   "choropleth": concatDefault(["map.js", "choropleth.js"], [__MATERIAL_LITE, __D3, __TOPOJSON, __CHARTJS ]),
+  "2015_parties": concatDefault([ "2015_parties.js"], [__MATERIAL_LITE, __D3, __TOPOJSON, __CHARTJS ]),
+  "2015_candidates": concatDefault([ "2015_candiates.js"], [__MATERIAL_LITE, __D3, __TOPOJSON, __CHARTJS ]),
+  "2015_parliments": concatDefault([ "2015_parliments.js"], [__MATERIAL_LITE, __D3, __TOPOJSON, __CHARTJS ])
   "state": concatDefault(["state.js"], [__MATERIAL_LITE, __D3, __TOPOJSON, __CHARTJS ])
 };
 
