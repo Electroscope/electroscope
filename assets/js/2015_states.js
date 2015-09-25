@@ -96,7 +96,7 @@
           UDP: "#dbdb8d",
           FUP: "#17becf",
           Other: "#9edae5"
-        }
+        };
         
         var other = {
           count: 0,
