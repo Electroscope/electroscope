@@ -18,12 +18,12 @@ block content
     .col.s12.m8
       ul.tabs.blue-grey.lighten-1.election-year
         li.tab.col.s4
-          a(href="#year-2015").active ၂၀၁၅
+          a(href="#upper_house").active အမျိုးသားလွှတ်တော်
         li.tab.col.s4
-          a(href="#year-2012") ၂၀၁၂
+          a(href="#lower_house") ပြည်သူ့လွှတ်တော်
         li.tab.col.s4
-          a(href="#year-2010") ၂၀၁၀
-      #year-2015 
+          a(href="#regional_house") တိုင်းဒေသကြီး/ပြည်နယ်လွှတ်တော်
+      #upper_house 
         .row.candidate-list
           // Going to replace this loop with Vue Template
           each a in [1]
@@ -45,10 +45,10 @@ block content
                   quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
                   consequat.
                   a.waves-effect.waves-light.btn.blue-grey(href="candidates/details") More Details
-      #year-2012
+      #lower_house
         .row
           h2 This is 2012 data
-      #year-2010
+      #regional_house
         .row
           h2 This is 2010 data
 block script
