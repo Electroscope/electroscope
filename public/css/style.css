@@ -1,5 +1,33 @@
 header, main, footer {
-    padding-left: 240px;
+    padding-left: 80px;
+}
+
+/* Menu */
+.menu-collapse {
+	width: 80px !important;
+}
+
+.nav-menu-title {
+	margin-left: 20px;
+	position: relative;
+	top: -8px;
+	font-size: 16px;
+}
+
+.menu-collapse .nav-menu-title {
+	display:none;
+}
+
+.menu-expand {
+	width: 240px;
+}
+
+.nav-menu .material-icons {
+	font-size: 30px;
+}
+
+.side-nav li {
+	padding:0px 10px;
 }
 
 .side-nav .logo {

@@ -13,6 +13,7 @@
     "tests"
   ],
   "dependencies": {
+    "Chart.js": "chartjs#~1.0.2",
     "d3": "~3.5.6",
     "font-awesome": "fontawesome#~4.4.0",
     "leaflet": "~0.7.5",
