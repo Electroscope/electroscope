@@ -60,7 +60,8 @@
 
     $.getJSON("http://localhost:3000/api/candidates/count/by-party?group_by=parliament&state_code=" + state, function(response){
 
-      var drawPieChart = function(element, partyCounts){
+      var drawPieChart = function(parliament, partyCounts){
+        var element = parliament + "-canvas";
 
         var colors = {
           USADP: "#1f77b4",
@@ -101,10 +102,16 @@
 
         biggestFive.push(other);
 
+        var legends = [];
+
         var pieData = biggestFive.map(function(partyCount){
           var base = colors[partyCount.party] ? colors[partyCount.party] : colors['Other'];
           var baseRgb = hexToRgb(base);
           var highlight = "rgba(" + baseRgb.r + "," + baseRgb.g + "," + baseRgb.b + "," + 0.5 + ")";
+          legends.push({
+            party: partyCount["party"],
+            color: base
+          });
           return {
             value: partyCount["count"],
             color: base,
@@ -113,7 +120,13 @@
           };
         });
         console.log("Element", element);
-        $("#" + element).html("<canvas width='250' height='250'></canvas>");
+        var legendsHtml = "<div class='row'>";
+        legends.map(function(legend){
+          legendsHtml += "<div class='col s12 content-center' style='background: " + legend.color + ";'>" + legend.party + "</div>";
+        });
+        legendsHtml += "</div>";
+        $("#" + parliament + '-legends').html(legendsHtml);
+        $("#" + element).html("<canvas width='150px' height='150px'></canvas>");
         var canvas = $("#" + element + " canvas")[0];
         var ctx = canvas.getContext("2d");
         
@@ -124,8 +137,7 @@
       };
 
       var data = response.data.map(function(item){
-        var element = item.parliament + "-canvas";
-        drawPieChart(element, item.party_counts);
+        drawPieChart(item.parliament, item.party_counts);
       })
 
     });
