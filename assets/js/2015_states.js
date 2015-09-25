@@ -58,11 +58,25 @@
       })
 
     });
+    var parliaments = ["AMH", "PTH", "RGH"];
+    parliaments.map(function(parliament){
+      $("#" + parliament + "total-count").html(preloader);
+    });
+
+    $.getJSON("http://localhost:3000/api/candidates/count/by-parliament?state=" + state, function(response){
+      response.data[0].parliament_counts.map(function(item){
+        $("#" + item.parliament + "-total-count").text(item.count);
+      });
+    });
   }
 
   $(document).ready(function(){
+
+    drawStateDetail("Mandalay");
     $('.state-list-item').on('click', function(){
       var state = $(this).text();
+      $('.state-list-item').removeClass('active');
+      $(this).addClass("active");
       drawStateDetail(state);
     })
   });

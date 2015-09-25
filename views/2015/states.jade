@@ -4,7 +4,7 @@ block content
   .row
     .col.s4
       .collection.state-list
-        a.collection-item.state-list-item.waves-effect.waves-teal.active
+        a.collection-item.state-list-item.waves-effect.waves-teal
           | Ayeyarwady
         a.collection-item.state-list-item.waves-effect.waves-teal
           | Bago
@@ -20,7 +20,7 @@ block content
           | Magway
         a.collection-item.state-list-item.waves-effect.waves-teal
           | Mandalay
-        a.collection-item.state-list-item.waves-effect.waves-teal
+        a.collection-item.state-list-item.waves-effect.waves-teal.active
           | Mon
         a.collection-item.state-list-item.waves-effect.waves-teal
           | Naypyitaw  Council
@@ -41,6 +41,34 @@ block content
           .col.offset-s4.s4#state_map_label
           
       .row
-        .col.s12
+        .col.s6
           #state_map
-      #state-details
+        .col.s4
+          #legislature_counts
+            .row
+              .candidate-count.col.s12.content-center
+                .stat-count.circle.red 
+                  .circle_inner
+                    .circle_wrapper
+                      .circle_content#AMH-total-count 129
+               p.content-center အမျိုးသားလွှတ်တော်
+            .row
+              .candidate-count.col.s12.content-center
+                .stat-count.circle.blue
+                  .circle_inner
+                    .circle_wrapper
+                      .circle_content#PTH-total-count 314
+                p.content-center ပြည်သူ့လွှတ်တော်
+            .row
+              .candidate-count.col.s12.content-center
+                .stat-count.circle.green 
+                  .circle_inner
+                    .circle_wrapper
+                      .circle_content#RGH-total-count 642
+                p.content-center တိုင်းဒေသကြီး/ပြည်နယ် လွှတ်တော်
+
+      .row
+        #state-details
+
+
+
