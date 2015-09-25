@@ -1,3 +1,67 @@
 extends ../layout
+
 block content
-	h1 States
+  .row
+    .col.s4
+      .collection.state-list
+        a.collection-item.state-list-item.waves-effect.waves-teal
+          | Ayeyarwady
+        a.collection-item.state-list-item.waves-effect.waves-teal
+          | Bago
+        a.collection-item.state-list-item.waves-effect.waves-teal
+          | Chin
+        a.collection-item.state-list-item.waves-effect.waves-teal
+          | Kachin
+        a.collection-item.state-list-item.waves-effect.waves-teal
+          | Kayah
+        a.collection-item.state-list-item.waves-effect.waves-teal
+          | Kayin
+        a.collection-item.state-list-item.waves-effect.waves-teal
+          | Magway
+        a.collection-item.state-list-item.waves-effect.waves-teal
+          | Mandalay
+        a.collection-item.state-list-item.waves-effect.waves-teal.active
+          | Mon
+        a.collection-item.state-list-item.waves-effect.waves-teal
+          | Naypyitaw  Council
+        a.collection-item.state-list-item.waves-effect.waves-teal
+          | Rakhine
+        a.collection-item.state-list-item.waves-effect.waves-teal
+          | Sagaing
+        a.collection-item.state-list-item.waves-effect.waves-teal
+          | Shan
+        a.collection-item.state-list-item.waves-effect.waves-teal
+          | Tanintharyi
+        a.collection-item.state-list-item.waves-effect.waves-teal
+          | Yangon
+
+    .col.s8
+      nav
+        .nav-wrapper
+          .col.offset-s4.s4#state_map_label
+          
+      .row
+        .col.s6
+          #state_map
+        .col.s6
+          .row
+            .btn ပါတီအလိုက်　အမတ်လောင်းအရေအတွက်
+          #legislature_counts
+            .row
+              .candidate-count.col.s12.content-center
+                canvas#AMH-canvas(width="200px", height="200px")
+                p.content-center အမျိုးသားလွှတ်တော်
+            .row
+              .candidate-count.col.s12.content-center
+                canvas#PTH-canvas(width="200px", height="200px")
+                p.content-center ပြည်သူ့လွှတ်တော်
+            .row
+              .candidate-count.col.s12.content-center
+                canvas#RGH-canvas(width="200px", height="200px")
+                p.content-center တိုင်းဒေသကြီး/ပြည်နယ် လွှတ်တော်
+
+      .row
+        #state-details
+
+
+

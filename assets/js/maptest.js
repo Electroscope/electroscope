@@ -33,9 +33,7 @@
           });
 
           $.each(data, function(index, item){
-            if(item.parliament.match(/RGH/)){
-              item.parliament = item.parliament.split('-')[1];
-            }
+            
             if(item.state === state ){
               $.each(houses, function(index, house){
                 if(house.en === item.parliament){
@@ -92,17 +90,8 @@
           updateList(statePartyCountCache, d.properties.ST);
         }
         
-    })
-    .on("mousemove", function(d,i) {
-      var mouse = d3.mouse(svg.node()).map( function(d) { return parseInt(d); } );
-      tooltip
-          .classed("hidden", false)
-          .attr("style", "left:"+(mouse[0]+offsetL)+"px;top:"+(mouse[1]+offsetT)+"px")
-          .html(d.properties[regionNameField]);
-    })
-    .on("mouseout",  function(d,i) {
-      tooltip.classed("hidden", true)
     });
+    
 
   });
 })(window.electroscope);
