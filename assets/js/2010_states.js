@@ -16,7 +16,7 @@
                         </div>';
 
     $('#state-map').html(preloader);
-    $.getJSON("http://localhost:3000/seperate_topo_upper/" + state + ".topojson", function(data){
+    $.getJSON("http://128.199.69.68:3000/seperate_topo_upper/" + state + ".topojson", function(data){
       var defaultColor = "steelblue";
       var statePartyCountCache = null;
       var options = {
@@ -50,7 +50,7 @@
       $("#" + parliament + "total-count").html(preloader);
     });
 
-    // $.getJSON("http://localhost:3000/api/candidates/count/by-parliament?state=" + state, function(response){
+    // $.getJSON("http://128.199.69.68:3000/api/candidates/count/by-parliament?state=" + state, function(response){
     //   response.data[0].parliament_counts.map(function(item){
     //     $("#" + item.parliament + "-total-count").text(item.count);
     //   });
@@ -58,7 +58,7 @@
   }
   var renderIndividualParliamentData = function(state){
 
-    $.getJSON("http://localhost:3000/api/candidates/count/by-party?group_by=parliament&state_code=" + state, function(response){
+    $.getJSON("http://128.199.69.68:3000/api/candidates/count/by-party?group_by=parliament&state_code=" + state, function(response){
       var drawPieChart = function(element, partyCounts){
         var colors = {
           USADP: "#1f77b4",
