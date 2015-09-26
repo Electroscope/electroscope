@@ -53,4 +53,9 @@ router.get('/choropleth',function(req,res){
   res.render("choropleth",{title:"choropleth",page_name:"choropleth"});
 });
 
+router.get('/2015/circle_test',function(req,res){
+  res.render("2015/circle_test",{title:"circle_test",page_name:"circle_test"});
+});
+
+
 module.exports = router;
