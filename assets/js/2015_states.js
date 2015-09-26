@@ -83,7 +83,7 @@
           PDP: "#bcbd22",
           UDP: "#dbdb8d",
           FUP: "#17becf",
-          Other: "#9edae5"
+          Other: "#455A64"
         };
         
         var other = {
@@ -122,7 +122,7 @@
         console.log("Element", element);
         var legendsHtml = "<div class='row'>";
         legends.map(function(legend){
-          legendsHtml += "<div class='col s12 content-center' style='background: " + legend.color + ";'>" + legend.party + "</div>";
+          legendsHtml += "<div class='col s12 content-center' style='background: " + legend.color + "; color: white;'>" + legend.party + "</div>";
         });
         legendsHtml += "</div>";
         $("#" + parliament + '-legends').html(legendsHtml);
