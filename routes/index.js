@@ -40,17 +40,27 @@ router.get('/2015/parties',function(req,res){
   res.render("2015/parties",{title:"electroscope",page_name:"2015_parties"});
 });
 
+router.get('/2015/parties/:id',function(req,res){
+  res.render("2015/parties_details",{title:"electroscope",page_name:"2015_parties_details"});
+});
+
+
 router.get('/2015/states',function(req,res){
   res.render("2015/states",{title:"electroscope",page_name:"2015_states"});
 });
 
 
-router.get('/2015/parliments',function(req,res){
-  res.render("2015/parliments",{title:"electroscope",page_name:"2015_parliments"});
+router.get('/2010/parliaments',function(req,res){
+  res.render("2010/parliaments",{title:"electroscope",page_name:"2010_parliaments"});
 });
 
 router.get('/choropleth',function(req,res){
   res.render("choropleth",{title:"choropleth",page_name:"choropleth"});
 });
+
+router.get('/2015/circle_test',function(req,res){
+  res.render("2015/circle_test",{title:"circle_test",page_name:"circle_test"});
+});
+
 
 module.exports = router;

@@ -21,8 +21,8 @@
       var statePartyCountCache = null;
       var options = {
         element: '#state_map',
-        width: 400,
-        height: 600,
+        width: 300,
+        height: 500,
         defaultColor: defaultColor,
         metaKey: state,
         regionNameField: "name",
@@ -126,7 +126,7 @@
         });
         legendsHtml += "</div>";
         $("#" + parliament + '-legends').html(legendsHtml);
-        $("#" + element).html("<canvas width='150px' height='150px'></canvas>");
+        $("#" + element).html("<canvas width='100px' height='100px'></canvas>");
         var canvas = $("#" + element + " canvas")[0];
         var ctx = canvas.getContext("2d");
         
@@ -152,7 +152,7 @@
       var state = $(this).val();
       var st_code = $(this).find(":selected").data('st_code');
       console.log(state, st_code);
-      $('.state-list-item').removeClass('active');
+      $('img.state-flag').attr('src', $(this).find(":selected").data('flag_link'));
       $(this).addClass("active");
       drawStateDetail(state);
 
