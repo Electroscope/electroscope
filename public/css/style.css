@@ -177,6 +177,16 @@ header, main, footer {
     margin-top: 3px;
 }
 
+/* Icon Class */
+.electroscope-icons {
+ 	height: 45px;
+ 	margin-top: 5px;
+}
+
+.electroscope-icons .regional-parliament {
+	background: url(../img/icons/parliament.svg) center no-repeat;
+}
+
 /* Media Query */
 @media only screen and (max-width: 992px) {
 	header, main, footer {

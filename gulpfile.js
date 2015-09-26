@@ -37,7 +37,7 @@ function concatDefault(assets, other){
 }
 
 var PAGES = {
-  "home": concatDefault(["map.js", "home.js",],[__D3, __TOPOJSON]),
+  "home": concatDefault(["map.js", "home.js",],[__D3, __TOPOJSON, __CHARTJS, __HO_CHARTJS]),
   "candidates": concatDefault(["map.js", "maptest.js", "candidates.js"],[__D3, __TOPOJSON]),
   "candidates-detail": concatDefault(["candidates-detail.js"],[__LEAFLET]),
   "maptest": concatDefault(["map2.js", "maptest.js"], [__D3, __TOPOJSON]),
