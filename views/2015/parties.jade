@@ -1,25 +1,38 @@
 extends ../layout
+
 block content
-	.row
-		.col.s11
-			p.range-field
-				input(type="range", id="party_limit",min=40,max=80 )
-	.row
-		.col.s8
-			.row
-				.col.s12
-					h3 တိုင်းဒေသကြီး/ပြည်နယ် လွှတ်တော်
-					canvas#parties-region(style="width:400px;height:100px;")
-			.row
-				.col.s12
-					h3 အမျိုးသားလွှတ်တော်
-					canvas#parties-amh(style="width:400px;height:100px;")
-			.row
-				.col.s12
-					h3 ပြည်သူ့လွှတ်တော်
-					canvas#parties-pth(style="width:400px;height:100px;")
-		.col.s3
-			div.collection#party_names
-				
-				
-			
+
+  .container
+    nav
+      .nav-wrapper
+        a.center You can see the analysis of candidates on various perspective.
+    .row
+      .col.s12
+        .card.blue-grey.darken-1
+          .card-content.center.white-text
+            span.card-title Candidates Counts By Parliament
+            canvas#candidatecount-canvas(height="300px", width="800px")
+
+      .col.s12
+        .card.blue-grey.darken-1
+          .card-content.center.white-text
+            span.card-title Candidate Counts By Gender
+            canvas#gendercount-canvas(height="300px", width="800px")
+
+      .col.s12
+        .card.blue-grey.darken-1
+          .card-content.center.white-text
+            span.card-title Candidate Counts By Burmese/Non-Burmese
+            canvas#ethnicitycount-canvas(height="300px", width="800px")
+
+      .col.s12
+        .card.blue-grey.darken-1
+          .card-content.center.white-text
+            span.card-title Candidate Counts By Agegroup Under/ Over 50
+            canvas#agegroupcount-canvas(height="300px", width="800px")
+
+      .col.s12
+        .card.blue-grey.darken-1
+          .card-content.center.white-text
+            span.card-title Candidate Counts With/Without Degree
+            canvas#bwaeya-canvas(height="300px", width="800px")
