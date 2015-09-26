@@ -24,6 +24,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'bower_components')));
 
 app.use(vhost("electroscope.kny.co", routes));
+app.use(vhost("test.kny.co", routes));
 app.use(vhost("localhost", routes));
 // app.use('/', routes);
 
