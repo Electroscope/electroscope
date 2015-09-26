@@ -72,6 +72,35 @@
       });
     },
 
+    educated: function(response){
+      var data = response.data[0];
+      var counts = data["educated_counts"];
+      var bwaeya = counts[0].educated == true ? counts[0].count : counts[1].count;
+      var not_bwaeya = counts[0].educated == false ? counts[0].count : counts[1].count;
+
+      var pieData = [
+        {
+            value: bwaeya,
+            color:"#F7464A",
+            highlight: "#FF5A5E",
+            label: "With Degree/Diploma"
+        },
+        {
+            value: not_bwaeya,
+            color: "#46BFBD",
+            highlight: "#5AD3D1",
+            label: "Without Degree/Diploma"
+        }
+      ];
+
+      var canvas = document.getElementById('bwaeya-canvas');
+      var ctx = canvas.getContext("2d");
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      var genderPieChart = new Chart(ctx).Pie(pieData, {
+          animateScale: false
+      });
+    },
+
     religion: function(response){
       var data = response.data[0];
       data["religion_counts"]= data["religion_counts"].sort(function(first, second){
@@ -109,6 +138,46 @@
           scaleFontColor: "#000"
       });
     },
+
+    parliament: function(response){
+      var data = response.data[0];
+      var labels = ['Amyothar Hluttaw', "Pyithu Hluttaw", "Regional Hluttaw"];
+
+      var polarData = [];
+      polarData.push({
+        value: data['parliament_counts'][0].count,
+        color: "#46BFBD",
+        highlight: "#2ca02c",
+        label: "Regional Parliament"
+      });
+
+      polarData.push({
+        value:data['parliament_counts'][1].count,
+        color: "#9467bd",
+        highlight: "#d62728",
+        label: "Pyithu Parliament"
+      });
+
+      polarData.push({
+        value:data['parliament_counts'][2].count,
+        color: "#e377c2",
+        highlight: "#8c564b",
+        label: "Amyothar Parliament"
+      });
+
+      console.log(polarData);
+      var canvas = document.getElementById('parliament-canvas');
+      var ctx = canvas.getContext("2d");
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      var radarChart = new Chart(ctx).Doughnut(polarData, {
+          segmentStrokeColor: "#ffffff",
+          scaleFontFamily: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
+          scaleFontSize: 12,
+          scaleFontStyle: "normal",
+          scaleFontColor: "#000"
+      });
+    },
+
     ethnicity: function(response){
       var data = response.data[0];
       data["ethnicity_counts"]= data["ethnicity_counts"].sort(function(first, second){
@@ -143,7 +212,7 @@
       var canvas = document.getElementById('ethnicity-canvas');
       var ctx = canvas.getContext("2d");
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      var radarChart = new Chart(ctx).Pie(polarData, {
+      var radarChart = new Chart(ctx).Doughnut(polarData, {
           segmentStrokeColor: "#ffffff",
           scaleFontFamily: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
           scaleFontSize: 12,
@@ -161,7 +230,8 @@
       "gender",
       "religion",
       "ethnicity",
-      "educated"
+      "educated",
+      "parliament"
     ];
 
     chartList.map(function(chartType){
