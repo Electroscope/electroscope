@@ -10,7 +10,7 @@ function jsPath(_path){
   return path.join(__dirname, "/assets/js", _path);
 }
 
-// External Library 
+// External Library
 var __BOWER = path.join(__dirname, "bower_components");
 var __JQUERY = path.join(__BOWER, "jquery/dist/jquery.min.js");
 var __MATERIAL_LITE = path.join(__BOWER, "Materialize/dist/js/materialize.js");
@@ -43,6 +43,7 @@ var PAGES = {
   "maptest": concatDefault(["map2.js", "maptest.js"], [__D3, __TOPOJSON]),
   "overall": concatDefault(["overall.js"], [__MATERIAL_LITE, __D3, __TOPOJSON, __CHARTJS ]),
   "choropleth": concatDefault(["map.js", "choropleth.js"], [__MATERIAL_LITE, __D3, __TOPOJSON, __CHARTJS ]),
+  "2010_parties": concatDefault([ "2010_parties.js"], [__MATERIAL_LITE, __D3, __TOPOJSON, __CHARTJS,__HO_CHARTJS ]),
   "2015_parties": concatDefault([ "2015_parties.js"], [__MATERIAL_LITE, __D3, __TOPOJSON, __CHARTJS,__HO_CHARTJS ]),
   "2015_states": concatDefault([ "map.js", "hex2rgba.js", "2015_states.js"], [__MATERIAL_LITE, __D3, __TOPOJSON, __CHARTJS ]),
   "2015_parliments": concatDefault([ "2015_parliments.js"], [__MATERIAL_LITE, __D3, __TOPOJSON, __CHARTJS ])

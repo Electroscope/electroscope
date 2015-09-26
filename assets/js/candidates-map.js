@@ -1,6 +1,9 @@
 (function(electroscope){
+  
+
 
   $.getJSON("http://localhost:3000/states_regions.topojson", function(data){
+    
     var defaultColor = "steelblue";
     var statePartyCountCache = null;
     var options = {

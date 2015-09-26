@@ -37,7 +37,10 @@ router.get('/choropleth', function(req, res){
   res.render("choropleth",{ title: "electroscope", page_name: "overall"});
 })
 
+router.get('/2010/parties',function(req,res){
 
+	res.render("2010/parties",{title:"electroscope",page_name:"2010_parties"});
+});
 
 // 2015 Route group
 router.get('/2015/parties',function(req,res){
