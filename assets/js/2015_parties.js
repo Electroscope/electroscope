@@ -155,6 +155,7 @@
       });
       document.getElementById('state-region-legend').innerHTML = myChart.generateLegend();
     },
+
     gender: function(response) {
       var limit = 7;
       var data = response.data;
@@ -216,6 +217,7 @@
       });
       document.getElementById('gendercount-legend').innerHTML = myChart.generateLegend();
     },
+
     educated: function(response) {
       var limit = 7;
       var data = response.data;
@@ -279,12 +281,14 @@
     },
     //Ethnicity Chart
     ethnicity: function(response) {
-      var limit = 7;
+      var limit = 7 + 2;
       var data = response.data;
       var labels = [];
       var burmese_counts = [];
       var nonburmese_counts = [];
       data.slice(0, limit).map(function(item) {
+	if(item.party == "MFDP") return;
+	if(item.party == "NDP") return;
         labels.push(item.party);
         item.ethnicity_counts.map(function(p) {
           if (p.ethnicity == "ဗမာ") {
@@ -299,12 +303,13 @@
       data.slice(limit, data.length).map(function(item) {
         item.ethnicity_counts.map(function(p) {
           if (p.ethnicity == "ဗမာ") {
-            burmese_counts[limit] += p.count;
+            burmese_counts[burmese_counts.length-1] += p.count;
           } else {
-            nonburmese_counts[limit] += p.count;
+            nonburmese_counts[nonburmese_counts.length-1] += p.count;
           }
         });
       });
+
       var chartData = {
         labels: labels,
         datasets: [{

@@ -72,7 +72,7 @@
     ctx.clearRect(0, 0, 0, 0);
     var myChart = new Chart(ctx).Bar(chartData, {
       label: "Party",
-      scaleLineColor: "#ffffff", 
+      scaleLineColor: "#ffffff",
       scaleGridLineColor: "#ffffff",
       scaleShowVerticalLines: false,
       responsive: true,
@@ -156,7 +156,7 @@
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     var myChart = new Chart(ctx).Bar(chartData, {
       label: "By Candidate Count",
-      scaleLineColor: "#ffffff", 
+      scaleLineColor: "#ffffff",
       scaleGridLineColor: "#ffffff",
       scaleShowVerticalLines: false,
       responsive: true,
@@ -227,7 +227,7 @@
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     var myChart = new Chart(ctx).Bar(chartData, {
       label: "By Candidate Count",
-      scaleLineColor: "#999", 
+      scaleLineColor: "#999",
       scaleGridLineColor: "#999",
       scaleShowVerticalLines: false,
       responsive: true,
@@ -382,7 +382,7 @@
       label: "Radar",
       fillColor: "#ffffff",
       highlightFill: "#ffffff",
-      scaleLineColor: "#666", 
+      scaleLineColor: "#666",
       scaleGridLineColor: "#666",
       highlightStroke: "#ffffff",
       pointLabelFontColor: "#ffffff",
@@ -399,7 +399,7 @@
       label: "Radar",
       fillColor: "#ffffff",
       highlightFill: "#ffffff",
-      scaleLineColor: "#66f", 
+      scaleLineColor: "#66f",
       scaleGridLineColor: "#66f",
       highlightStroke: "#ffffff",
       pointLabelFontColor: "#ffffff",
