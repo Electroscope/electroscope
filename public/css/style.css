@@ -55,7 +55,7 @@ header, main, footer {
 
 #logo-container .material-icons {
 	font-size: 60px !important;
-}	
+}
 
 .side-nav li a {
 	color: #fff !important;
@@ -179,8 +179,8 @@ header, main, footer {
 }
 
 .chart-legend {
-	float: left;
-    width: 30px;
+    float: left;
+    width: 20px;
     height: 15px;
     margin-right: 7px;
     margin-top: 3px;
@@ -233,19 +233,18 @@ header, main, footer {
 }
 
 .tooltip {
-  background: #eee;
-  box-shadow: 0 0 5px #999999;
-  color: #333;
+  background: #46BFBD;
+  box-shadow: 0 0 5px #eee;
+  color: fff;
   font-size: 12px;
-  left: 230px;
+  left: 30px;
+  width: 180px;
   padding: 10px;
   position: absolute;
-  text-align: center; 
+  text-align: center;
   z-index: 10;
 }
 
 .hidden{
 	display:none;
 }
-
-

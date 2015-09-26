@@ -42,7 +42,7 @@
 
     //Get Boundary from topoJSON and scale it to fit the svg size
     var path = d3.geo.path().projection(projection);
-    var regions = topojson.feature(topoJSON, topoJSON.objects[metaKey]);           
+    var regions = topojson.feature(topoJSON, topoJSON.objects[metaKey]);
 
     var bounds = path.bounds(regions);
     var originalScale = computeScaleFromBounds(bounds);
@@ -53,7 +53,7 @@
     path.projection(projection);
 
     var map = svg.append('g').attr('class', 'boundary');
-     
+
     var offsetL = element[0].offsetLeft + 40;
     var offsetT = element[0].offsetTop + 20;
     console.log("Before D3 Binding", regions.features);
@@ -89,7 +89,7 @@
               .attr('id', function(d, i){
                 return d.properties[regionCodeField];
               })
-              .style("fill", function(d, i){  
+              .style("fill", function(d, i){
 
                 return color(d.properties.count ? d.properties.count : 0);
               })
@@ -101,7 +101,7 @@
                 tooltip
                     .classed("hidden", false)
                     .attr("style", "left:"+(mouse[0]+offsetL)+"px;top:"+(mouse[1]+offsetT)+"px")
-                    .html(d.properties[regionNameField] + " : " + d.properties.count + " candidates");
+                    .html(d.properties[regionNameField] + " - " + d.properties.count + "");
               })
               .on("mouseout",  function(d,i) {
                 tooltip.classed("hidden", true)
@@ -109,8 +109,7 @@
               ;
   };
 
-  
 
- 
+
+
 })();
-
