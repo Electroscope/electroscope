@@ -96,6 +96,8 @@
               .on('click', options.onClickHandler)
               .on("mousemove", function(d,i) {
                 var mouse = d3.mouse(svg.node()).map( function(d) { return parseInt(d); } );
+                console.log(d.properties);
+
                 tooltip
                     .classed("hidden", false)
                     .attr("style", "left:"+(mouse[0]+offsetL)+"px;top:"+(mouse[1]+offsetT)+"px")
@@ -107,6 +109,7 @@
               ;
   };
 
+  
 
  
 })();

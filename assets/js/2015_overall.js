@@ -323,12 +323,16 @@
         console.log("Clicked", d);
       }
     };
+   
     $.getJSON("http://localhost:3000/api/candidates/count/by-state", function(data_response){
-      console.log(topo_response);
-      console.log(data_response);
+    
       window.electroscope.drawChoroplethMap(topo_response, data_response.data[0].state_counts, options);
+      
+
     });
-  })
+    
+  });
+
   });
 
 })();
