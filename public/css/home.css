@@ -1,3 +1,7 @@
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Quicksand";
+}
+
 .map-view {
   height: 556.25px;
 }
@@ -7,15 +11,23 @@ section.section {
   min-height: 750px;
 }
 
+section.title-section {
+  background: #084573;
+  min-height: 230px;
+  z-index: 20;
+  position: relative;
+}
+
 section.icon-section {
   min-height: 250px;
-  background: #25B7D3;
+  /*background: #25B7D3;*/
+  background: #EE6E73;
   z-index: 1;
 }
 
 .section-one {
   background: #095078;
-  box-shadow: -5px 0 5px 5px rgba(0, 0, 0, 0.5);
+  box-shadow: -5px 0px 5px 5px rgba(0, 0, 0, 0.5);
   z-index: 10;
   position: relative;
 }
@@ -24,6 +36,28 @@ section.icon-section {
   background: #00695c;
 }
 
+.section-three {
+  background: #3F51B5;
+}
+
+.section-three .head {
+  padding: 20px 0px;
+  margin: -20px -20px;
+  background: #00BCD4;
+  margin-bottom: 50px;
+}
+
 .btn.active {
-  background-color: #2bbbad
+  background-color: #2bbbad;
+}
+
+#statesListDropdown a {
+  margin: 5px;
+}
+
+.section-image .cover-image {
+  height: 500px;
+  background-image: url(../imgs/Myanmar-Lower-House-Parliament.jpg);
+  background-position: center;
+  background-size: cover;
 }
