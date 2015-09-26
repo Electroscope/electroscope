@@ -13,7 +13,7 @@
 		return party.count > party_limit;
 	};
 
-	var chart= {
+	var chart = {
 		region:function(responseData){
 
 			var arr = responseData.party_counts.filter(party_counting);
@@ -106,6 +106,12 @@
 
 	
 	$('document').ready(function(){
+
+		
+			for(key in party_names_ln){
+				$('#party_names').append("<a class='collection-item'>" + party_names_ln[key] + "(" + key +  ")</a>" );			
+			}
+		
 		var baseUrl = "http://localhost:3000";
 		$.getJSON(baseUrl + "/api/candidates/count/by-party?group_by=parliament", function(response){
 			parties = response.data;
@@ -115,14 +121,16 @@
     	});
 
 		
-    	$('#update_limit').click(function(){
-    		
-    		party_limit = parseInt($('#party_limit').val());
-			    		
-    		chart.region(parties[0]);
+		$('#party_limit').on('change',function(){
+			party_limit = parseInt($('#party_limit').val());
+			chart.region(parties[0]);
 			chart.pth(parties[1]);
 			chart.amh(parties[2]);
-    	});
+
+		});
+
+ 
+
 	});
 
 })();

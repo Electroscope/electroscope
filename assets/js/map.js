@@ -58,6 +58,7 @@
 
 
     return map.selectAll("path")
+              .attr('class', 'map_region')
               .data(regions.features)
               .enter()
               .append("path")

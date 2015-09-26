@@ -1,13 +1,15 @@
 (function(){
 
-  
+
   var chartCallbacks = {
     agegroup: function(response){
       var data = response.data[0];
-      console.log(data);
+
       data["agegroup_counts"]= data["agegroup_counts"].sort(function(first, second){
-        return second.count - first.count;
+	console.log(first.agegroup, second.agegroup);
+	return first.agegroup.localeCompare(second.agegroup);
       });
+
       var labels = data["agegroup_counts"].map(function(item){
         return item["agegroup"];
       });
@@ -15,13 +17,11 @@
         return item.count;
       });
 
-      console.log(labels, counts);
-
       var chartData = {
           labels: labels,
           datasets: [
               {
-                  label: "By Age Group",
+                  label: "Age Groups",
                   fillColor: "rgba(247, 50, 50, 0.75)",
                   strokeColor: "rgba(247, 50, 50, 0.8)",
                   highlightFill: "rgba(247, 50, 50, 0.5)",
@@ -30,6 +30,7 @@
               }
           ]
       };
+
       var canvas = document.getElementById("agegroup-canvas");
       var ctx = canvas.getContext("2d");
       ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -42,34 +43,13 @@
         scaleFontColor: "#fff"
       });
     },
+
     gender: function(response){
       var data = response.data[0];
       var counts = data["gender_counts"];
       var femaleCount = counts[0].gender == 'F' ? counts[0].count : counts[1].count;
       var maleCount = counts[0].gender == 'M' ? counts[0].count : counts[1].count;
-      var total = femaleCount + maleCount;
-      var malePercent = (maleCount / total) * 100;
-      var femalePercent = (femaleCount / total) * 100;
-      console.log("% ", malePercent, femalePercent, total);
-      var maleIcon = "<i class='material-icons' style='color: #FF8A7F'>android</i>";
-      var femaleIcon = "<i class='material-icons' style='color: #46BFBD'>android</i>";
 
-      var generateIconsByPercent = function(icon, percentage){
-        var i;
-        var base = "";
-        console.log("%", percentage);
-        for(i = 0; i < percentage; i += 10){
-          console.log(i);
-          base += icon;
-        }
-        return base;
-      };
-      var html = "Male ";
-      html += generateIconsByPercent(maleIcon, malePercent);
-      html += generateIconsByPercent(femaleIcon, femalePercent);
-      html += "Female";
-      // html += "<canvas id='gender-canvas' width='400px' height='400px'></canvas>";
-      $("#gender-bar").html(html);
       var pieData = [
         {
             value: maleCount,
@@ -91,16 +71,44 @@
           animateScale: false
       });
     },
+
+    educated: function(response){
+      var data = response.data[0];
+      var counts = data["educated_counts"];
+      var bwaeya = counts[0].educated == true ? counts[0].count : counts[1].count;
+      var not_bwaeya = counts[0].educated == false ? counts[0].count : counts[1].count;
+
+      var pieData = [
+        {
+            value: bwaeya,
+            color:"#F7464A",
+            highlight: "#FF5A5E",
+            label: "With Degree/Diploma"
+        },
+        {
+            value: not_bwaeya,
+            color: "#46BFBD",
+            highlight: "#5AD3D1",
+            label: "Without Degree/Diploma"
+        }
+      ];
+
+      var canvas = document.getElementById('bwaeya-canvas');
+      var ctx = canvas.getContext("2d");
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      var genderPieChart = new Chart(ctx).Pie(pieData, {
+          animateScale: false
+      });
+    },
+
     religion: function(response){
       var data = response.data[0];
       data["religion_counts"]= data["religion_counts"].sort(function(first, second){
         return second.count - first.count;
       });
 
-      console.log(data["religion_counts"]);
-
-      var colors = ["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd", "#8c564b", "#e377c2", "#7f7f7f", "#bcbd22", "#17becf"];
-      var polarData = data["religion_counts"].map(function(item, index){
+      var colors = ["#46BFBD", "#2ca02c", "#d62728", "#9467bd", "#8c564b", "#e377c2", "#7f7f7f", "#bcbd22", "#17becf"];
+      var polarData = data["religion_counts"].slice(0,2).map(function(item, index){
         var base = colors[Math.floor(Math.random() * colors.length) ];
         var highlight = colors[Math.floor(Math.random() * colors.length) ];
         return {
@@ -110,7 +118,15 @@
           label: item["religion"]
         };
       });
-      
+
+      var others = { value: 0, label: "Others"};
+      others.base = colors[Math.floor(Math.random() * colors.length) ];
+      others.highlight = colors[Math.floor(Math.random() * colors.length) ];
+      data["religion_counts"].slice(2,data["religion_counts"].length).map(function(item, index){
+	others.value += item["count"];
+      });
+      polarData.push(others);
+
       var canvas = document.getElementById('religion-canvas');
       var ctx = canvas.getContext("2d");
       ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -122,30 +138,54 @@
           scaleFontColor: "#000"
       });
     },
+
+    parliament: function(response){
+      var data = response.data[0];
+      var labels = ['Amyothar Hluttaw', "Pyithu Hluttaw", "Regional Hluttaw"];
+
+      var polarData = [];
+      polarData.push({
+        value: data['parliament_counts'][0].count,
+        color: "#46BFBD",
+        highlight: "#2ca02c",
+        label: "Regional Parliament"
+      });
+
+      polarData.push({
+        value:data['parliament_counts'][1].count,
+        color: "#9467bd",
+        highlight: "#d62728",
+        label: "Pyithu Parliament"
+      });
+
+      polarData.push({
+        value:data['parliament_counts'][2].count,
+        color: "#e377c2",
+        highlight: "#8c564b",
+        label: "Amyothar Parliament"
+      });
+
+      console.log(polarData);
+      var canvas = document.getElementById('parliament-canvas');
+      var ctx = canvas.getContext("2d");
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      var radarChart = new Chart(ctx).Doughnut(polarData, {
+          segmentStrokeColor: "#ffffff",
+          scaleFontFamily: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
+          scaleFontSize: 12,
+          scaleFontStyle: "normal",
+          scaleFontColor: "#000"
+      });
+    },
+
     ethnicity: function(response){
       var data = response.data[0];
       data["ethnicity_counts"]= data["ethnicity_counts"].sort(function(first, second){
         return second.count - first.count;
       });
 
-      var other = {
-        ethnicity: other,
-        count: 0
-      };
-
-      data["ethnicity_counts"] = data["ethnicity_counts"].filter(function(item){
-        if(item.count < 20){
-          other.count += 1;
-          console.log("other found");
-          return false;
-        }else{
-          return true;
-        }
-      });
-      data["ethnicity_counts"].push(other);
-
       var colors = ["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd", "#8c564b", "#e377c2", "#7f7f7f", "#bcbd22", "#17becf"];
-      var polarData = data["ethnicity_counts"].map(function(item, index){
+      var polarData = data["ethnicity_counts"].slice(0,8).map(function(item, index){
         var base = colors[Math.floor(Math.random() * colors.length) ];
         var highlight = colors[Math.floor(Math.random() * colors.length) ];
         return {
@@ -155,11 +195,24 @@
           label: item["ethnicity"]
         };
       });
-      
+
+            var other = {
+        ethnicity: other,
+        count: 0
+      };
+
+      var others = { value: 0, label: "Others"};
+      others.base = colors[Math.floor(Math.random() * colors.length) ];
+      others.highlight = colors[Math.floor(Math.random() * colors.length) ];
+      data["ethnicity_counts"].slice(8,data["ethnicity_counts"].length).map(function(item, index){
+	others.value += item["count"];
+      });
+      polarData.push(others);
+
       var canvas = document.getElementById('ethnicity-canvas');
       var ctx = canvas.getContext("2d");
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      var radarChart = new Chart(ctx).Pie(polarData, {
+      var radarChart = new Chart(ctx).Doughnut(polarData, {
           segmentStrokeColor: "#ffffff",
           scaleFontFamily: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
           scaleFontSize: 12,
@@ -176,14 +229,13 @@
       "agegroup",
       "gender",
       "religion",
-      "ethnicity"
+      "ethnicity",
+      "educated",
+      "parliament"
     ];
+
     chartList.map(function(chartType){
       $.getJSON(baseUrl + "/api/candidates/count/by-"+chartType, chartCallbacks[chartType]);
-    });
-
-    $.getJSON(baseUrl + "/api/candidates/count/by-gender?group_by=party", function(response){
-      console.log(response.data);
     });
   });
 

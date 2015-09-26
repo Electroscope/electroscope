@@ -31,18 +31,18 @@
       electroscope.drawD3Map(data, options)
         .on('click', function(d){
           console.log("Clicking");
-          d3.selectAll("path")
+          d3.selectAll(".map_region")
             .style("fill", defaultColor);
           d3.select(this)
-            .style("fill", "red");         
-        })
-        .on("mousemove", function(d,i) {
-          var html = '<a class="waves-effect waves-light btn center">' + d.properties.constituency_name_en + "-" + d.properties.constituency_number +'</a>';
-          $('#state_map_label').html(html);
-        })
-        .on("mouseout",  function(d,i) {
-          $('#state_map_label').html('');
-        })
+            .style("fill", "red");
+      })
+      .on("mousemove", function(d,i) {
+        var html = '<a class="waves-effect waves-light btn center">' + d.properties.constituency_name_en + "-" + d.properties.constituency_number +'</a>';
+        $('#state_map_label').html(html);
+      })
+      .on("mouseout",  function(d,i) {
+        $('#state_map_label').html('');
+      })
 
     });
     var parliaments = ["AMH", "PTH", "RGH"];
@@ -59,16 +59,13 @@
   var renderIndividualParliamentData = function(state){
 
     $.getJSON("http://localhost:3000/api/candidates/count/by-party?group_by=parliament&state_code=" + state, function(response){
-
-      var drawPieChart = function(parliament, partyCounts){
-        var element = parliament + "-canvas";
-
+      var drawPieChart = function(element, partyCounts){
         var colors = {
-          USADP: "#00796B",
-          NLFD: "#FF5252",
-          NUP: "#536DFE",
-          IC: "#FFA000",
-          NDP: "#FFA000",
+          USADP: "#1f77b4",
+          NLFD: "#aec7e8",
+          NUP: "#ff7f0e",
+          IC: "#ffbb78",
+          NDP: "#2ca02c",
           MFDP: "#98df8a",
           NDF: "#d62728",
           SNDP: "#ff9896",
@@ -83,9 +80,9 @@
           PDP: "#bcbd22",
           UDP: "#dbdb8d",
           FUP: "#17becf",
-          Other: "#455A64"
+          Other: "#9edae5"
         };
-        
+
         var other = {
           count: 0,
           party: 'Other'
@@ -102,16 +99,10 @@
 
         biggestFive.push(other);
 
-        var legends = [];
-
         var pieData = biggestFive.map(function(partyCount){
           var base = colors[partyCount.party] ? colors[partyCount.party] : colors['Other'];
           var baseRgb = hexToRgb(base);
           var highlight = "rgba(" + baseRgb.r + "," + baseRgb.g + "," + baseRgb.b + "," + 0.5 + ")";
-          legends.push({
-            party: partyCount["party"],
-            color: base
-          });
           return {
             value: partyCount["count"],
             color: base,
@@ -120,16 +111,10 @@
           };
         });
         console.log("Element", element);
-        var legendsHtml = "<div class='row'>";
-        legends.map(function(legend){
-          legendsHtml += "<div class='col s12 content-center' style='background: " + legend.color + "; color: white;'>" + legend.party + "</div>";
-        });
-        legendsHtml += "</div>";
-        $("#" + parliament + '-legends').html(legendsHtml);
-        $("#" + element).html("<canvas width='150px' height='150px'></canvas>");
+        $("#" + element).html("<canvas width='250' height='250'></canvas>");
         var canvas = $("#" + element + " canvas")[0];
         var ctx = canvas.getContext("2d");
-        
+
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         var partyPieChart = new Chart(ctx).Pie(pieData, {
             animateScale: false
@@ -137,7 +122,8 @@
       };
 
       var data = response.data.map(function(item){
-        drawPieChart(item.parliament, item.party_counts);
+        var element = item.parliament + "-canvas";
+        drawPieChart(element, item.party_counts);
       })
 
     });
@@ -148,10 +134,9 @@
 
     drawStateDetail("Mandalay");
     renderIndividualParliamentData("MMR010");
-    $('select.state-list-select').on('change', function(){
-      var state = $(this).val();
-      var st_code = $(this).find(":selected").data('st_code');
-      console.log(state, st_code);
+    $('.state-list-item').on('click', function(){
+      var state = $(this).text();
+      var st_code = $(this).data('st_code');
       $('.state-list-item').removeClass('active');
       $(this).addClass("active");
       drawStateDetail(state);
@@ -163,4 +148,3 @@
   });
 
 })(window.electroscope);
-

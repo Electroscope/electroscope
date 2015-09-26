@@ -1,22 +1,25 @@
 extends ../layout
 block content
 	.row
-		.col.s12
-			input(type="text" id="party_limit",placeholder="limit",value="50")
-			button(id="update_limit", class="btn waves-effect waves-light") Check
+		.col.s11
+			p.range-field
+				input(type="range", id="party_limit",min=40,max=80 )
 	.row
 		.col.s8
-			h3 Regional
-			canvas#parties-region(style="width:400px;height:100px;")
-		
+			.row
+				.col.s12
+					h3 တိုင်းဒေသကြီး/ပြည်နယ် လွှတ်တော်
+					canvas#parties-region(style="width:400px;height:100px;")
+			.row
+				.col.s12
+					h3 အမျိုးသားလွှတ်တော်
+					canvas#parties-amh(style="width:400px;height:100px;")
+			.row
+				.col.s12
+					h3 ပြည်သူ့လွှတ်တော်
+					canvas#parties-pth(style="width:400px;height:100px;")
+		.col.s3
+			div.collection#party_names
+				
+				
 			
-
-	.row
-		.col.s8
-			h3 AMH
-			canvas#parties-amh(style="width:400px;height:100px;")
-	
-	.row
-		.col.s8
-			h3 PTH
-			canvas#parties-pth(style="width:400px;height:100px;")

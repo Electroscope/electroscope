@@ -15,6 +15,7 @@ jQuery(function(){
 		$(this).toggleClass('menu-collapse');
 		$(this).toggleClass('menu-expand');
 	});
+
 	
 	$.ajax({url:"http://localhost:3000/api/parties",async:false,success:function(response){
         window.party_names_ln = response.data;

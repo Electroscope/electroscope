@@ -23,39 +23,30 @@ router.get('/maptest', function(req, res){
   res.render("maptest",{ title: "electroscope", page_name: "maptest"});
 });
 
-router.get('/overall', function(req, res){
-  res.render("overall", { title: "electroscope", page_name: "overall"});
+router.get('/2015/overall', function(req, res){
+  res.render("2015/overall", { title: "electroscope", page_name: "2015_overall"});
 });
 
 router.get('/partials/agegroup', function(req, res){
-
-  res.render("partials/agegroup",{ title: "electroscope", page_name: "overall"});
-})
-
-router.get('/choropleth', function(req, res){
-
-  res.render("choropleth",{ title: "electroscope", page_name: "overall"});
-})
+  res.render("partials/agegroup",{ title: "electroscope", page_name: "2015_overall"});
+});
 
 router.get('/2010/parties',function(req,res){
-
-	res.render("2010/parties",{title:"electroscope",page_name:"2010_parties"});
+  res.render("2010/parties",{title:"electroscope",page_name:"2010_parties"});
 });
 
 // 2015 Route group
 router.get('/2015/parties',function(req,res){
-
-	res.render("2015/parties",{title:"electroscope",page_name:"2015_parties"});
+  res.render("2015/parties",{title:"electroscope",page_name:"2015_parties"});
 });
-router.get('/2015/states',function(req,res){
 
-	res.render("2015/states",{title:"electroscope",page_name:"2015_states"});
+router.get('/2015/states',function(req,res){
+  res.render("2015/states",{title:"electroscope",page_name:"2015_states"});
 });
 
 
 router.get('/2015/parliments',function(req,res){
-
-	res.render("2015/parliments",{title:"electroscope",page_name:"2015_parliments"});
+  res.render("2015/parliments",{title:"electroscope",page_name:"2015_parliments"});
 });
 
 
