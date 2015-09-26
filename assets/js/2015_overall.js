@@ -89,13 +89,13 @@
             value: bwaeya,
             color:"#F7464A",
             highlight: "#FF5A5E",
-            label: "With Degree/Diploma"
+            label: "with degree"
         },
         {
             value: not_bwaeya,
             color: "#46BFBD",
             highlight: "#5AD3D1",
-            label: "Without Degree/Diploma"
+            label: "w/o degree"
         }
       ];
 
@@ -268,17 +268,17 @@
     $('.party_list').select2({
         placeholder : 'Please select the party'
     }).on('select2:select',function(e){
-        $('#agegroup-canvas').remove(); 
+        $('#agegroup-canvas').remove();
         $('.agegroup-canvas').append("<canvas id='agegroup-canvas' width='300px' height='300px'></canvas>");
-        $('#gender-canvas').remove(); 
+        $('#gender-canvas').remove();
         $('.gender-canvas').append("<canvas id='gender-canvas' width='300px' height='300px'></canvas>");
-        $('#religion-canvas').remove(); 
+        $('#religion-canvas').remove();
         $('.religion-canvas').append("<canvas id='religion-canvas' width='300px' height='300px'></canvas>");
-         $('#ethnicity-canvas').remove(); 
+         $('#ethnicity-canvas').remove();
         $('.ethnicity-canvas').append("<canvas id='ethnicity-canvas' width='300px' height='300px'></canvas>");
-        $('#bwaeya-canvas').remove(); 
+        $('#bwaeya-canvas').remove();
         $('.bwaeya-canvas').append("<canvas id='bwaeya-canvas' width='300px' height='300px'></canvas>");
-         $('#parliament-canvas').remove(); 
+         $('#parliament-canvas').remove();
         $('.parliament-canvas').append("<canvas id='parliament-canvas' width='300px' height='300px'></canvas>");
         $('#states_choropleth').remove();
        $('.cho_map').append("<div id='states_choropleth'></div>");
@@ -298,7 +298,7 @@
           }
         };
     $.getJSON("http://localhost:3000/api/candidates/count/by-state?party="+e.params.data.id, function(data_response){
-    
+
       window.electroscope.drawChoroplethMap(topo_response, data_response.data[0].state_counts, options);
     });
 
@@ -309,7 +309,7 @@
       $('#state_region_count').text(data[0].count);
     });
   })
-       
+
         chartList.map(function(chartType){
           $.getJSON(baseUrl + "/api/candidates/count/by-"+chartType+"?party="+e.params.data.id, chartCallbacks[chartType]);
         });
@@ -318,9 +318,9 @@
     $.getJSON(baseUrl + "/api/parties",function(response){
 
       var party = response.data;
-      
+
       for(var key  in party){
-        $('.party_list').append('<option value="' + key + '">' + party[key] + ' ( '+  key+')</option>')  
+        $('.party_list').append('<option value="' + key + '">' + party[key] + ' ( '+  key+')</option>')
       }
 
     });
@@ -338,13 +338,11 @@
         //console.log("Clicked", d);
       }
     };
-   
+
     $.getJSON("http://localhost:3000/api/candidates/count/by-state", function(data_response){
       window.electroscope.drawChoroplethMap(topo_response, data_response.data[0].state_counts, options);
-      
-
     });
-    
+
   });
 
   });
