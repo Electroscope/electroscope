@@ -16,7 +16,7 @@
                         </div>';
 
     $('#state-map').html(preloader);
-    $.getJSON("http://localhost:3000/seperate_topo_upper/" + state + ".topojson", function(data){
+    $.getJSON("http://localhost:3000/states_regions.topojson", function(data){
       var defaultColor = "steelblue";
       var statePartyCountCache = null;
       var options = {
@@ -24,7 +24,7 @@
         width: 300,
         height: 500,
         defaultColor: defaultColor,
-        metaKey: state,
+        metaKey: "output2",
         regionNameField: "name",
         regionCodeField: "ST_PCODE"
       };
