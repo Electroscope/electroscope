@@ -14,6 +14,12 @@ html
     link(rel='stylesheet', href='/css/style.css')
   body
     header
+      nav.hide-on-large-only
+        .nav-wrapper.blue-grey.darken-1.white-text
+          a.button-collapse.top-nav.waves-effect.waves-light.circle.hide-on-large-only(href='#', data-activates='collapse-sidenav')
+            i.mdi-navigation-menu
+          .brand-logo.center
+            #{title}
       aside
         ul#collapse-sidenav.side-nav.fixed.blue-grey.darken-1.white-text.menu-collapse.enable-collapse
           li.logo
