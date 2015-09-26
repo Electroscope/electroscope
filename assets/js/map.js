@@ -9,7 +9,6 @@
     var metaKey = options.metaKey || "districts";
     var regionCodeField = options.regionCodeField || "DT_PCODE";
     var regionNameField = options.regionNameField || "name";
-    console.log(defaultColor);
     // helper functions
     var computeScaleFromBounds = function (bounds){
       var left = bounds[0][0];
@@ -56,7 +55,6 @@
      
     var offsetL = element[0].offsetLeft + 40;
     var offsetT = element[0].offsetTop + 20;
-    console.log("Before D3 Binding", regions.features);
 
 
     return map.selectAll("path")
