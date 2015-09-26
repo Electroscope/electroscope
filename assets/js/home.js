@@ -223,10 +223,7 @@ var $amhStates;
           {
             label: "Under 50",
             fillColor: "#ffffff",
-            scaleShowGridLines: false,
-            scaleLineColor: "#ffffff",
-            scaleShowHorizontalLines: false,
-            scaleShowVerticalLines: false,
+            strokeColor: "#ffffff",
             highlightFill: "#ffffff",
             highlightStroke: "#ffffff",
             data: under_50_counts
@@ -234,10 +231,7 @@ var $amhStates;
           {
             label: "Over 50",
             fillColor: "#ffeb3b",
-            scaleShowGridLines: false,
-            scaleLineColor: "#ffffff",
-            scaleShowHorizontalLines: false,
-            scaleShowVerticalLines: false,
+            strokeColor: "#ffeb3b",
             highlightFill: "#ffeb3b",
             highlightStroke: "#ffeb3b",
             data: over_50_counts
@@ -271,6 +265,130 @@ var $amhStates;
   });
 })();
 
+(function() {
+
+    var votersCountByPopulation = function(response) {
+    var census18PopData = {
+      "Kachin": 1051258,
+      "Kayah": 170503,
+      "Kayin": 884110,
+      "Chin": 257686,
+      "Sagaing": 3506301,
+      "Tanintharyi": 851675,
+      "Bago": 3224090,
+      "Magway": 2667883,
+      "Mandalay": 4230345,
+      "Mon": 1300367,
+      "Rakhine": 1328392,
+      "Yangon": 5228050,
+      "Shan": 3611343,
+      "Ayeyarwady": 4040022
+    };
+
+    var data = response.data;
+    var states = ['Bago', 'Sagaing', 'Tanintharyi', "Magway", 'Mandalay', "Yangon", "Ayeyarwady"];
+    var state_labels = [];
+    var region_labels = [];
+    var state_parliament_votes = {
+      "RGH": [],
+      "AMH": [],
+      "PTH": []
+    };
+    var region_parliament_votes = {
+      "RGH": [],
+      "AMH": [],
+      "PTH": []
+    };
+
+    var state_populations = [];
+    var region_populations = [];
+
+    data.map(function(item) {
+      var parliament = item.parliament;
+      item.state_counts.map(function(s) {
+        if (s.state == "") {} else if (states.indexOf(s.state) == -1) {
+          if (region_labels.indexOf(s.state) == -1) {
+            region_labels.push(s.state);
+            region_populations.push(census18PopData[s.state]);
+          }
+          region_parliament_votes[parliament].push(s.votes);
+        } else {
+          if (state_labels.indexOf(s.state) == -1) {
+            state_labels.push(s.state);
+            state_populations.push(census18PopData[s.state]);
+          }
+          state_parliament_votes[parliament].push(s.votes);
+        }
+      });
+    });
+
+    var statechartData = {
+      labels: state_labels,
+      datasets: [{
+        label: "Regional Hluttaw",
+        fillColor: "rgba(151,187,205,0.2)",
+        strokeColor: "rgba(151,187,205,1)",
+        pointColor: "rgba(151,187,205,1)",
+        pointStrokeColor: "#fff",
+        pointHighlightFill: "#fff",
+        pointHighlightStroke: "rgba(151,187,205,1)",
+        data: state_parliament_votes['RGH']
+      }, {
+        label: "Pyithu Hluttaw",
+        fillColor: "rgba(220,220,220,0.2)",
+        strokeColor: "rgba(220,220,220,1)",
+        pointColor: "rgba(220,220,220,1)",
+        pointStrokeColor: "#fff",
+        pointHighlightFill: "#fff",
+        pointHighlightStroke: "rgba(220,220,220,1)",
+        data: state_parliament_votes['PTH']
+      }, {
+        label: "Amyothar Hluttaw",
+        fillColor: "rgba(205,151,187,0.2)",
+        strokeColor: "rgba(205,151,187,1)",
+        pointColor: "rgba(205,151,187,1)",
+        pointStrokeColor: "#fff",
+        pointHighlightFill: "#fff",
+        pointHighlightStroke: "rgba(205,151,187,1)",
+        data: state_parliament_votes['AMH']
+      }, {
+        label: "Population",
+        fillColor: "rgba(255,235,59,0.2)",
+        strokeColor: "rgba(255,235,59,1)",
+        pointColor: "rgba(255,235,59,1)",
+        pointStrokeColor: "#fff",
+        pointHighlightFill: "#fff",
+        pointHighlightStroke: "rgba(255,235,59,1)",
+        data: state_populations
+      }]
+    };
+
+    var canvas = document.getElementById("statevoterscount-canvas");
+    var ctx = canvas.getContext("2d");
+    ctx.clearRect(0, 0, 0, 0);
+    var myChart = new Chart(ctx).Radar(statechartData, {
+      label: "Radar",
+      fillColor: "#ffffff",
+      highlightFill: "#ffffff",
+      scaleLineColor: "#66f", 
+      scaleGridLineColor: "#66f",
+      angleLineColor: "#66f",
+      highlightStroke: "#ffffff",
+      pointLabelFontColor: "#ffffff",
+      pointLabelFontSize: 24,
+      pointLabelFontFamily: "Quicksand",
+      scaleFontColor: "#ffffff",
+      responsive: true,
+      multiTooltipTemplate: "<%= datasetLabel %> - <%= value %>"
+    });
+  };
+
+  $(document).ready(function() {
+    var baseUrl = "http://localhost:3000";
+    $.getJSON(baseUrl + "/api/votes/count/by-state?group_by=parliament", votersCountByPopulation);
+  });
+
+})();
 
   
 })(window.electroscope);
