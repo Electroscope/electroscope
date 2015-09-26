@@ -152,6 +152,10 @@
       var state = $(this).val();
       var st_code = $(this).find(":selected").data('st_code');
       console.log(state, st_code);
+      $('.eligible-pop').text($(this).find(":selected").data('eligible-pop'));
+      $('.state-name').text($(this).find(":selected").text());
+      $('.dt-count').text($(this).find(":selected").data('dt-count'));
+      $('.tsp-count').text($(this).find(":selected").data('tsp-count'));
       $('img.state-flag').attr('src', $(this).find(":selected").data('flag_link'));
       $(this).addClass("active");
       drawStateDetail(state);
