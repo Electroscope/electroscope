@@ -3,22 +3,22 @@ block content
   .container
     nav
       .nav-wrapper
-        a.center You can see the analysis of candidates on various perspective.
+        p.center.white-text The current data are 2010 Election results from myanmarelections.org.
     .row
       .col.s12
         .card.blue-grey.darken-1
           .card-content.center.white-text
-            span.card-title Winners By Party / Parliament
+            span.card-title Seats Won — Party / Parliament
             canvas#winnerpartycount-canvas(height="300px", width="800px")
 
       .col.s12
         .card.blue-grey.darken-1
           .card-content.center.white-text
-            span.card-title Votes By Party / Parliament
+            span.card-title Accrued Votes — Party / Parliament
             canvas#votespartycount-canvas(height="300px", width="800px")
 
       .col.s12
         .card.blue-grey.darken-1
           .card-content.center.white-text
-            span.card-title Winners Counts By State / Region
+            span.card-title Seats Won — State / Region
             canvas#winnerstatecount-canvas(height="300px", width="800px")
