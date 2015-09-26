@@ -5,7 +5,8 @@ html
     link(rel='stylesheet', href='/Materialize/dist/css/materialize.min.css')
     link(rel='stylesheet' href='https://fonts.googleapis.com/icon?family=Material+Icons')
     link(rel="stylesheet", href="http://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css")
-
+    link(rel="stylesheet", href="/select2/dist/css/select2.min.css")
+      
     block style
 
     link(rel='stylesheet', href='/css/style.css')
@@ -19,11 +20,7 @@ html
           li.bold
             a.waves-effect.waves-teal.nav-menu(href='/2015/overall')
               i.material-icons equalizer
-              span.nav-menu-title Overall
-          li.bold
-            a.waves-effect.waves-teal.nav-menu(href='/candidates')
-              i.material-icons perm_identity
-              span.nav-menu-title Candidates
+              span.nav-menu-title Overall          
           li.bold
             a.waves-effect.waves-teal.nav-menu(href='/2015/parties')
               i.material-icons android
@@ -41,3 +38,5 @@ html
 
     block script
     script(src="/js/#{page_name}/app.min.js")
+    script.
+      $("select").select2();
