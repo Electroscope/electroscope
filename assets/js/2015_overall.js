@@ -6,7 +6,7 @@
       var data = response.data[0];
 
       data["agegroup_counts"]= data["agegroup_counts"].sort(function(first, second){
-	console.log(first.agegroup, second.agegroup);
+	//console.log(first.agegroup, second.agegroup);
 	return first.agegroup.localeCompare(second.agegroup);
       });
 
@@ -57,14 +57,14 @@
       var pieData = [
         {
             value: maleCount,
-            color:"#F7464A",
-            highlight: "#FF5A5E",
+            color:"#2196f3",
+            highlight: "#42a5f5",
             label: "Male"
         },
         {
             value: femaleCount,
-            color: "#46BFBD",
-            highlight: "#5AD3D1",
+            color: "#e91e63",
+            highlight: "#f06292",
             label: "Female"
         }
       ];
@@ -151,6 +151,7 @@
 
     parliament: function(response){
       var data = response.data[0];
+
       var labels = ['Amyothar Hluttaw', "Pyithu Hluttaw", "Regional Hluttaw"];
 
       var polarData = [];
@@ -175,7 +176,7 @@
         label: "Amyothar Parliament"
       });
 
-      console.log(polarData);
+      //console.log(polarData);
       var canvas = document.getElementById('parliament-canvas');
       var ctx = canvas.getContext("2d");
       ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -196,8 +197,8 @@
         return second.count - first.count;
       });
 
-      var colors = ["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd", "#8c564b", "#e377c2", "#7f7f7f", "#bcbd22", "#17becf"];
-      var polarData = data["ethnicity_counts"].slice(0,8).map(function(item, index){
+        var colors = ["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd", "#8c564b", "#e377c2", "#7f7f7f", "#bcbd22", "#17becf"];
+        var polarData = data["ethnicity_counts"].slice(0,8).map(function(item, index){
         var base = colors[Math.floor(Math.random() * colors.length) ];
         var highlight = colors[Math.floor(Math.random() * colors.length) ];
         return {
@@ -208,7 +209,7 @@
         };
       });
 
-            var other = {
+      var other = {
         ethnicity: other,
         count: 0
       };
@@ -253,6 +254,13 @@
       "parliament"
     ];
 
+    $.getJSON(baseUrl + "/api/candidates/count/by-parliament", function(response){
+      var data = response.data[0].parliament_counts;
+      $('#upper_house_count').text(data[2].count);
+      $('#lower_house_count').text(data[1].count);
+      $('#state_region_count').text(data[0].count);
+    });
+
     chartList.map(function(chartType){
       $.getJSON(baseUrl + "/api/candidates/count/by-"+chartType, chartCallbacks[chartType]);
     });
@@ -286,12 +294,19 @@
             regionNameField: "name",
             regionCodeField: "ST_PCODE",
             onClickHandler: function(d){
-              console.log("Clicked", d);
+              //console.log("Clicked", d);
           }
         };
     $.getJSON("http://localhost:3000/api/candidates/count/by-state?party="+e.params.data.id, function(data_response){
     
       window.electroscope.drawChoroplethMap(topo_response, data_response.data[0].state_counts, options);
+    });
+
+    $.getJSON(baseUrl + "/api/candidates/count/by-parliament?party="+e.params.data.id, function(response){
+      var data = response.data[0].parliament_counts;
+      $('#upper_house_count').text(data[2].count);
+      $('#lower_house_count').text(data[1].count);
+      $('#state_region_count').text(data[0].count);
     });
   })
        
@@ -320,12 +335,12 @@
       regionNameField: "name",
       regionCodeField: "ST_PCODE",
       onClickHandler: function(d){
-        console.log("Clicked", d);
+        //console.log("Clicked", d);
       }
     };
     $.getJSON("http://localhost:3000/api/candidates/count/by-state", function(data_response){
-      console.log(topo_response);
-      console.log(data_response);
+      //console.log(topo_response);
+      //console.log(data_response);
       window.electroscope.drawChoroplethMap(topo_response, data_response.data[0].state_counts, options);
     });
   })

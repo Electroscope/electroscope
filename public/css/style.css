@@ -189,6 +189,11 @@ header, main, footer {
 	margin-right: 15px;
 }
 
+.candidate-count {
+	font-size: 30px;
+	font-weight: bold;
+}
+
 /* Icon Class */
 .electroscope-icons {
  	height: 45px;

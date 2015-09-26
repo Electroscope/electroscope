@@ -244,8 +244,8 @@
       highlightStroke: "rgba(247, 50, 50, 1)",
       scaleFontColor: "#757575",
       multiTooltipTemplate: "<%= datasetLabel %> - <%= value %>",
-      legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span class=\"chart-legend\" style=\"background-color:<%=datasets[i].strokeColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>"
       scaleFontColor: "#fff",
+      legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span class=\"chart-legend\" style=\"background-color:<%=datasets[i].strokeColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>"
     });
     document.getElementById('winnerstate-legend').innerHTML = myChart.generateLegend();
   };

@@ -2,11 +2,8 @@ extends ../layout
 
 block content
 
-  .container
-    .row
-      .col.s10
-  .container
-    nav
+  .main
+    nav.blue-grey.darken-1
       .nav-wrapper.content-center
         a Analysis of candidates on various perspective.
     .row
@@ -14,61 +11,72 @@ block content
         div.input-field.col.s11
           select.party_list
     .row
-      .col.s12
-        .card-panel
-          h2.panel-title Age Groups
-          .row
-            .chart-wrapper.col.s6.agegroup-canvas
-              canvas#agegroup-canvas(width="300px", height="300px")
-            .col.s6
-              #agegroup-legend
-
-      .col.s12
+      .col.s4
+        .card-panel.count-card.content-center.blue.white-text
+          h2.panel-title Upper House
+          p#upper_house_count.candidate-count 0
+      .col.s4
+        .card-panel.count-card.content-center.green.white-text
+          h2.panel-title Lower House
+          p#lower_house_count.candidate-count 0
+      .col.s4
+        .card-panel.count-card.content-center.orange.white-text
+          h2.panel-title States/Region Parliament
+          p#state_region_count.candidate-count 0
+    .row 
+      //FIRST COLUMN
+      .col.s12.m6
+        //Region Cholomap
+        .card-panel.cho_map
+          h2.panel-title Candidates by Region
+          #states_choropleth
+        //Gender
         .card-panel
           h2.panel-title Gender Ratio
           .row
-            .chart-wrapper.col.s6.gender-canvas
+            .chart-wrapper.col.s9.gender-canvas
               canvas#gender-canvas(width="300px", height="300px")
-            .col.s6
+            .col.s3
               #gender-legend
-
-    .row
-
-      .col.s12
-        .card-panel
-          h2.panel-title Religion Ratio
-          .row
-            .chart-wrapper.col.s6.religion-canvas
-              canvas#religion-canvas(width="300px", height="300px")
-            .col.s6
-              #religion-legend
-
-      .col.s12
         .card-panel
           h2.panel-title Ethnicity Ratio
           .row
-            .chart-wrapper.col.s6.ethnicity-canvas
+            .chart-wrapper.col.s9.ethnicity-canvas
               canvas#ethnicity-canvas(width="300px", height="300px")
-            .col.s6
+            .col.s3
               #ethnicity-legend
-    .row
-      .col.s12
+      //SECOND COLUMN
+      .col.s12.m6
+        //Graduated
         .card-panel
           h2.panel-title Graduated Ratio
           .row
-            .chart-wrapper.col.s6.bwaeya-canvas
+            .chart-wrapper.col.s9.bwaeya-canvas
               canvas#bwaeya-canvas(width="300px", height="300px")
-            .col.s6
+            .col.s3
               #bwaeya-legend
-
-      .col.s12
+        //Age
         .card-panel
-          h2.panel-title By Parliament
+          h2.panel-title Age Groups
           .row
-            .chart-wrapper.col.s6.parliament-canvas
-              canvas#parliament-canvas(width="300px", height="300px")
-            .col.s6
-              #parliament-legend
-      .col.s12
-        .card-panel.cho_map
-          #states_choropleth
+            .chart-wrapper.col.s9.agegroup-canvas
+              canvas#agegroup-canvas(width="300px", height="300px")
+        //Religion
+        .card-panel
+          h2.panel-title Religion Ratio
+          .row
+            .chart-wrapper.col.s9.religion-canvas
+              canvas#religion-canvas(width="300px", height="300px")
+            .col.s3
+              #religion-legend
+        //.card-panel
+          //h2.panel-title By Parliament
+          //.row
+            //.chart-wrapper.col.s9.parliament-canvas
+              //canvas#parliament-canvas(width="300px", height="300px")
+            //.col.s12
+              //#parliament-legend
+        
+        
+
+      
