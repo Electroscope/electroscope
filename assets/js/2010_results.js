@@ -181,7 +181,7 @@
       region_counts.push(0);
 
       item.state_counts.map(function(p) {
-        if (states.indexOf(p.state) == -1) {
+        if (states.indexOf(p.state) != -1) {
           region_counts[region_counts.length - 1] += p.count;
         } else {
           state_counts[state_counts.length - 1] += p.count;
@@ -195,7 +195,7 @@
 
     data.slice(limit, data.length).map(function(item) {
       item.state_counts.map(function(p) {
-        if (states.indexOf(p.state) == -1) {
+        if (states.indexOf(p.state) != -1) {
           region_counts[region_counts.length - 1] += p.count;
         } else {
           state_counts[state_counts.length - 1] += p.count;
