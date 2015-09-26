@@ -8,58 +8,57 @@ block style
     }
 
 block content
-  main
-    .row
-      .col.s3
-        .card
-          .card-action
-            h5 The current data are 2010 Election results from myanmarelections.org.
-          .card-content
-            p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-            | tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-            | quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-            | consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-            | cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-            | proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-      .col.s9
-        .card
-          .card-action
-            h5 Winners Counts By State / Region
-          .card-content
-            .content-center
-              canvas#winnerstatecount-canvas(height="300px", width="800px")
-              #winnerstate-legend.horizontal-legend
-    .row
-      .col.s7
-        .card.cyan.white-text
-          .card-action.cyan.darken-2
-            h5 Winners By Party / Parliament
-          .card-content
-            .content-center
-              canvas#winnerpartycount-canvas
-              #winnerparty-legend.horizontal-legend
+  .row
+    .col.s3
+      .card
+        .card-action
+          h5 The current data are 2010 Election results from myanmarelections.org.
+        .card-content
+          p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+          | tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+          | quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          | consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+          | cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+          | proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    .col.s9
+      .card
+        .card-action
+          h5 Winners Counts By State / Region
+        .card-content
+          .content-center
+            canvas#winnerstatecount-canvas(height="300px", width="800px")
+            #winnerstate-legend.horizontal-legend
+  .row
+    .col.s7
+      .card.cyan.white-text
+        .card-action.cyan.darken-2
+          h5 Winners By Party / Parliament
+        .card-content
+          .content-center
+            canvas#winnerpartycount-canvas
+            #winnerparty-legend.horizontal-legend
 
-      .col.s5
-        .card.blue-grey.darken-2.white-text
-          .card-action.blue-grey.darken-4
-            h5 Voters Count — State
-          .card-content
-            .content-center
-              canvas#statevoterscount-canvas(height="300px", width="400px")
-    .row
-      .col.s7
-        .card.green.white-text
-          .card-action.green.darken-2
-            h5 Votes By Party / Parliament
-          .card-content
-            .content-center
-              canvas#votespartycount-canvas(height="300px", width="800px")
-              #votesparty-legend.horizontal-legend
+    .col.s5
+      .card.blue-grey.darken-2.white-text
+        .card-action.blue-grey.darken-4
+          h5 Voters Count — State
+        .card-content
+          .content-center
+            canvas#statevoterscount-canvas(height="300px", width="400px")
+  .row
+    .col.s7
+      .card.green.white-text
+        .card-action.green.darken-2
+          h5 Votes By Party / Parliament
+        .card-content
+          .content-center
+            canvas#votespartycount-canvas(height="300px", width="800px")
+            #votesparty-legend.horizontal-legend
 
-      .col.s5
-        .card.indigo.white-text
-          .card-action.indigo.darken-2
-            h5 Voters Count – Region
-          .card-content
-            .content-center
-              canvas#regionvoterscount-canvas(height="300px", width="400px")
+    .col.s5
+      .card.indigo.white-text
+        .card-action.indigo.darken-2
+          h5 Voters Count – Region
+        .card-content
+          .content-center
+            canvas#regionvoterscount-canvas(height="300px", width="400px")
