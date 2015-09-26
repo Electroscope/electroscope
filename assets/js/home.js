@@ -159,5 +159,105 @@ var $amhStates;
     }
   });
 
+(function(){
+  var callbacks = {
+    agegroup: function (response) {
+      var limit = 7;
+      var data = response.data;
+      var labels = [];
+      var under_50_counts = [];
+      var over_50_counts = [];
+
+      data.slice(0, limit).map(function(item) {
+        labels.push(item.party);
+        under_50_counts.push(0);
+        over_50_counts.push(0);
+        item.agegroup_counts.map(function (p) {
+          switch(p.agegroup) {
+          case "20-30":
+            under_50_counts[under_50_counts.length-1] += p.count;
+            break;
+          case "30-40":
+            under_50_counts[under_50_counts.length-1] += p.count;
+            break;
+          case "40-50":
+            under_50_counts[under_50_counts.length-1] += p.count;
+            break;
+          default:
+            over_50_counts[over_50_counts.length-1] += p.count;
+          }
+        });
+      });
+
+      labels.push("Others");
+      under_50_counts.push(0);
+      over_50_counts.push(0);
+
+      data.slice(limit, data.length).map(function(item) {
+        item.agegroup_counts.map(function (p) {
+          switch(p.agegroup) {
+          case "20-30":
+            under_50_counts[under_50_counts.length-1] += p.count;
+            break;
+          case "30-40":
+            under_50_counts[under_50_counts.length-1] += p.count;
+            break;
+          case "40-50":
+            under_50_counts[under_50_counts.length-1] += p.count;
+            break;
+          default:
+            over_50_counts[over_50_counts.length-1] += p.count;
+          }
+        });
+      });
+
+      var chartData = {
+        labels: labels,
+        datasets: [
+          {
+                  label: "Under 50",
+                  fillColor: "#ffffff",
+                  strokeColor: "#ffffff",
+                  highlightFill: "#ffffff",
+                  highlightStroke: "#ffffff",
+                  data: under_50_counts
+          },
+          {
+                  label: "Over 50",
+                  fillColor: "#ffffff",
+                  strokeColor: "#ffffff",
+                  highlightFill: "#ffffff",
+                  highlightStroke: "#ffffff",
+                  data: over_50_counts
+          },
+        ]
+      };
+
+      var canvas = document.getElementById("agegroupcount-canvas");
+      var ctx = canvas.getContext("2d");
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      var myChart = new Chart(ctx).Bar(chartData, {
+        label: "By Ethnicity Ratio",
+        fillColor: "#ffffff",
+        strokeColor: "#ffffff",
+        highlightFill: "#ffffff",
+        highlightStroke: "#ffffff",
+        scaleFontColor: "#fff"
+      });
+    }
+  };
+
+  $(document).ready(function(){
+    var chartList = [
+      "agegroup"
+    ];
+    var baseUrl = "http://localhost:3000";
+    chartList.map(function(chartType){
+      $.getJSON(baseUrl + "/api/candidates/count/by-" + chartType +"?year=2015&group_by=party", callbacks[chartType]);
+    });
+  });
+})();
+
+
   
 })(window.electroscope);

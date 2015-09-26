@@ -43,7 +43,7 @@
 	});
       });
 
-      var chartData = {
+  var chartData = {
 	labels: labels,
 	datasets: [
 	  {
