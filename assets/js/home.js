@@ -1,33 +1,3 @@
-(function(electroscope){
-
-  function templateReplace(template, data) {
-    template = template.replace(/\{[\w-_]+\}/g, function (match) {
-      match = match.match(/[\w-_]+/)[0];
-      if (match in data) {
-        return data[match];
-      } else {
-        return "";
-      }
-    });
-  }
-
-  var $$maps = $("#maps");
-  var $$vs = $("#vs");
-  var $$statesListDropdown = $("#statesListDropdown");
-
-  var vsTemplate = "<h1>{title}</h1>"
-    + "<h3>{team1} {team1Percentage} | {team2} {team1Percentage}";
-
-  statesListDropdown.click(function (event){
-    var id = event.target.getAttribute("data-value");
-    event.preventDefault();
-    if (id) {
-      console.log(id);
-      $$maps.find(".state-map").hide(300);
-      $("#" + id).show(300)
-    }
-  });
-
   var stateMaps = [
     {name: "Ayeyarwady", path: "Ayeyarwady.topojson"},
     {name: "Bago_East", path: "Bago_East.topojson"},
@@ -49,8 +19,80 @@
     {name: "Yangon", path: "Yangon.topojson"}
   ];
 
-  var $pthStates;
-  var $amhStates;
+var $states = {};
+
+var $pthStates;
+var $amhStates;
+
+(function(electroscope){
+
+  function templateReplace(template, state, ll) {
+    var stateData;
+
+    if (ll === "pth") {
+      for (var k = 0; k < $pthStates.length; k++) {
+        if ($pthStates[k].state_code === state.code) {
+          stateData = $pthStates[k];
+          break; 
+        } 
+      };
+    } else {
+      for (var k = 0; k < $amhStates.length; k++) {
+        if ($amhStates[k].state_code === state.code) {
+          stateData = $amhStates[k];
+          break;
+        } 
+      };
+    }
+
+    var slice5_total = 0;
+    var sorted = stateData.party_counts.sort(function (a,b) {
+      return a.count < b.count;
+    });
+
+    sorted.slice(5).forEach(function (e){
+      slice5_total += e.count;
+    });
+
+
+    var total = stateData.total_count;
+    var data = {
+      title: state.name,
+      team1: sorted[0].party,
+      team1Percentage: ((sorted[0].count / total) * 100 ).toFixed(2),
+      team2: sorted[1].party,
+      team2Percentage: ((sorted[1].count / total) * 100 ).toFixed(2),
+      team3: sorted[2].party,
+      team3Percentage: ((sorted[2].count / total) * 100 ).toFixed(2),
+      team4: sorted[3].party,
+      team4Percentage: ((sorted[3].count / total) * 100 ).toFixed(2),
+      team5: sorted[4].party,
+      team5Percentage: ((sorted[4].count / total) * 100 ).toFixed(2),
+      other: ((slice5_total / total) * 100 ).toFixed(2)
+    };
+
+    console.log(data);
+
+    return template.replace(/\{[\w-_]+\}/g, function (match) {
+      match = match.match(/[\w-_]+/)[0];
+      if (match in data) {
+        return data[match];
+      } else {
+        return "";
+      }
+    });
+  }
+
+  var $$maps = $("#maps");
+  var $$vs = $("#vs");
+  var $$statesListDropdown = $("#statesListDropdown");
+
+  var vsTemplate = "<h1>{title}</h1>"
+    + "<h3>{team1} {team1Percentage}% | {team2} {team2Percentage}%"
+    + "<h5>{team3} {team3Percentage}%"
+    + "<h5>{team4} {team4Percentage}%"
+    + "<h5>{team5} {team5Percentage}%"
+    + "<h5>Other {other}%"
 
   $.getJSON("http://localhost:3000/api/candidates/count/by-party?group_by=state_code&parliament=PTH", function (data) {
     $pthStates = data.data;
@@ -65,10 +107,10 @@
     if (i === 0) {
       $$maps.append("<div id='" + state.id + "' class='state-map'></div>");
     } else {
-      $$maps.append("<div id='" + state.id + "' class='state-map hide'></div>");
+      $$maps.append("<div id='" + state.id + "' class='state-map'></div>");
     }
     
-    $$statesListDropdown.append("<li><a href='#!' data-value='" + state.id + "'>" + state.name.replace("_", " ") + "</a></li>");
+    $$statesListDropdown.append("<li data-value='" + state.id + "'><a href='#!'>" + state.name.replace("_", " ") + "</a></li>");
 
     $.getJSON("http://localhost:3000/seperate_topo_lower/" + state.path, function(data){
       var defaultColor = "#ffffff";
@@ -82,10 +124,40 @@
         regionNameField: "name",
         regionCodeField: "ST_PCODE"
       };
-      electroscope.drawD3Map(data, options)
+      var map = electroscope.drawD3Map(data, options)
         .style("stroke", "#ffffff")
-        .style("stroke-width", "1px")
+        .style("stroke-width", "1px");
+
+      $states[state.id] = {
+        name: state.name.replace(/_/g, " "),
+        data: data,
+        map: map,
+        code: data.objects[state.name].geometries[0].properties.ST_PCODE
+      }
+
+      if (i === 0) {
+        setTimeout(function () {
+          $$vs.html(templateReplace(vsTemplate, $states[state.id], "pth"))
+        }, 1000)
+      }
     });
   });
+
+  $$maps.find(".state-map").hide();
+  $$maps.find(".state-map").first().show();
+
+  $$statesListDropdown.find("li").click(function (event){
+    var id = this.getAttribute("data-value");
+    event.preventDefault();
+    if (id) {
+      $$maps.find(".state-map").hide(300);
+      setTimeout(function () {
+        $("#" + id).show(300);
+      });
+      $("#dropdown-button").text( $states[id].name );
+      $$vs.html(templateReplace(vsTemplate, $states[id], "pth"));
+    }
+  });
+
   
 })(window.electroscope);

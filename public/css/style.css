@@ -169,6 +169,14 @@ header, main, footer {
 	margin-top: 4px;
 }
 
+.chart-legend {
+	float: left;
+    width: 30px;
+    height: 15px;
+    margin-right: 7px;
+    margin-top: 3px;
+}
+
 /* Media Query */
 @media only screen and (max-width: 992px) {
 	header, main, footer {

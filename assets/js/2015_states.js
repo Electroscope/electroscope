@@ -122,7 +122,7 @@
         console.log("Element", element);
         var legendsHtml = "<div class='row'>";
         legends.map(function(legend){
-          legendsHtml += "<div class='col s12 content-center' style='background: " + legend.color + "; color: white;'>" + legend.party + "</div>";
+          legendsHtml += "<div class='col s12'><span class='chart-legend' style='background: " + legend.color + ";'></span>" + legend.party + "</div>";
         });
         legendsHtml += "</div>";
         $("#" + parliament + '-legends').html(legendsHtml);

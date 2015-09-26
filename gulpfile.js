@@ -20,13 +20,14 @@ var __D3 = path.join(__BOWER, "d3/d3.js");
 var __TOPOJSON = path.join(__BOWER, "topojson/topojson.js");
 var __CHARTJS = path.join(__BOWER, "Chart.js/Chart.js");
 var __HO_CHARTJS = path.join(__BOWER,"Chart.HorizontalBar.js/Chart.HorizontalBar.js");
+var __SELECT2 = path.join(__BOWER, "select2/dist/js/select2.full.min.js")
 // Internal Library
 var __LIBS = path.join(__dirname, "app/assets/js/libs");
 
 var __MAEPAYSOH = jsPath("api.js");
 var __COMMONJS = jsPath("main.js");
 
-var __DEFAULT = [__JQUERY, __MATERIAL_LITE, __MOMENT, __MAEPAYSOH, __COMMONJS];
+var __DEFAULT = [__JQUERY, __MATERIAL_LITE, __MOMENT, __MAEPAYSOH, __COMMONJS, __SELECT2];
 
 function concatDefault(assets, other){
   var paths = [];
