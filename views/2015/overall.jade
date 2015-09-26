@@ -3,77 +3,87 @@ extends ../layout
 block content
 
   .main
-    nav.blue-grey.darken-1
-      .nav-wrapper.content-center
-        a Analysis of candidates on various perspective.
     .row
       .col.s12
         div.input-field.col.s11
           select.party_list
     .row
       .col.s4
-        .card-panel.count-card.content-center.blue.white-text
+        .card-panel.count-card.content-center.blue.lighten-1.white-text
           h2.panel-title Upper House
           p#upper_house_count.candidate-count 0
       .col.s4
-        .card-panel.count-card.content-center.green.white-text
+        .card-panel.count-card.content-center.green.lighten-1.white-text
           h2.panel-title Lower House
           p#lower_house_count.candidate-count 0
       .col.s4
-        .card-panel.count-card.content-center.orange.white-text
+        .card-panel.count-card.content-center.orange.lighten-1.white-text
           h2.panel-title States/Region Parliament
           p#state_region_count.candidate-count 0
     .row 
       //FIRST COLUMN
       .col.s12.m6
         //Region Cholomap
-        .card-panel.cho_map
-          h2.panel-title Candidates by Region
-          #states_choropleth
+        .card.cho_map
+          .card-action.red.lighten-2.white-text
+            h5 Candidates by Region
+          .card-content.red.lighten-5
+            .content-center
+              #states_choropleth
         //Gender
-        .card-panel
-          h2.panel-title Gender Ratio
-          .row
-            .chart-wrapper.col.s9.gender-canvas
-              canvas#gender-canvas(width="300px", height="300px")
-            .col.s3
-              #gender-legend
-        .card-panel
-          h2.panel-title Ethnicity Ratio
-          .row
-            .chart-wrapper.col.s9.ethnicity-canvas
-              canvas#ethnicity-canvas(width="300px", height="300px")
-            .col.s3
-              #ethnicity-legend
+        .card
+          .card-action.light-blue.lighten-2.white-text
+            h5 Gender Ratio
+          .card-content.light-blue.lighten-5
+            .row
+              .chart-wrapper.col.s9.gender-canvas.content-center
+                canvas#gender-canvas(width="300px", height="300px")
+              .col.s3
+                #gender-legend
+        .card
+          .card-action.blue-grey.lighten-2.white-text
+            h5 Ethnicity Ratio
+          .card-content.blue-grey.lighten-5
+            .row
+              .chart-wrapper.col.s9.ethnicity-canvas.content-center
+                canvas#ethnicity-canvas(width="300px", height="300px")
+              .col.s3
+                #ethnicity-legend
       //SECOND COLUMN
       .col.s12.m6
         //Graduated
-        .card-panel
-          h2.panel-title Graduated Ratio
-          .row
-            .chart-wrapper.col.s9.bwaeya-canvas
-              canvas#bwaeya-canvas(width="300px", height="300px")
-            .col.s3
-              #bwaeya-legend
+        .card
+          .card-action.teal.lighten-2.white-text
+            h5 Graduated Ratio
+          .card-content.teal.lighten-5
+            .row
+              .chart-wrapper.col.s9.bwaeya-canvas.content-center
+                canvas#bwaeya-canvas(width="300px", height="300px")
+              .col.s3
+                #bwaeya-legend
         //Age
-        .card-panel
-          h2.panel-title Age Groups
-          .row
-            .chart-wrapper.col.s9.agegroup-canvas
-              canvas#agegroup-canvas(width="300px", height="300px")
+        .card
+          .card-action.deep-orange.lighten-2.white-text
+            h5 Age Groups
+          .card-content.deep-orange.lighten-5
+            .row
+              .chart-wrapper.col.s12.agegroup-canvas.content-center
+                canvas#agegroup-canvas(width="300px", height="300px")
         //Religion
-        .card-panel
-          h2.panel-title Religion Ratio
-          .row
-            .chart-wrapper.col.s9.religion-canvas
-              canvas#religion-canvas(width="300px", height="300px")
-            .col.s3
-              #religion-legend
-        //.card-panel
+        .card
+          .card-action.grey.lighten-2
+            h5 Religion Ratio
+          .card-content.grey.lighten-5
+            .row
+              .chart-wrapper.col.s9.religion-canvas.content-center
+                canvas#religion-canvas(width="300px", height="300px")
+              .col.s3
+                #religion-legend
+        //.card
           //h2.panel-title By Parliament
           //.row
             //.chart-wrapper.col.s9.parliament-canvas
               //canvas#parliament-canvas(width="300px", height="300px")
             //.col.s12
               //#parliament-legend
-              
+
