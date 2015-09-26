@@ -15,7 +15,7 @@
 	rgh_counts.push(0);
 
 	item.parliament_counts.map(function (p) {
-	  console.log(p);
+	  
 	  if (p.parliament == "RGH") {
 	    rgh_counts[rgh_counts.length-1] = p.count;
 	  } else if (p.parliament == "AMH") {
@@ -373,6 +373,17 @@
   };
 
   $(document).ready(function(){
+    var baseUrl = "http://localhost:3000";
+
+    
+    $('.party_list').select2({
+      placeholder:'Select a party'
+    }).on('select2:select',function(e){
+      
+      window.location =  "http://localhost:9000/2015/parties/" + e.params.data.id;
+    });
+
+    ;
     var chartList = [
       "parliament",
       "gender",
@@ -380,9 +391,15 @@
       "educated",
       "agegroup"
     ];
-    var baseUrl = "http://localhost:3000";
     chartList.map(function(chartType){
       $.getJSON(baseUrl + "/api/candidates/count/by-" + chartType +"?year=2015&group_by=party", callbacks[chartType]);
+    });
+    $.getJSON(baseUrl + "/api/parties",function(response){
+      var party = response.data;
+      for(var key  in party){
+        $('.party_list').append('<option value="' + key + '">' + party[key] + ' ( '+  key+')</option>')  
+      }
+
     });
   });
 })();
