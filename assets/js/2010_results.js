@@ -335,7 +335,7 @@
     };
 
     var regionchartData = {
-      labels: state_labels,
+      labels: region_labels,
       datasets: [{
         label: "Regional Hluttaw",
         fillColor: "rgba(151,187,205,0.2)",
