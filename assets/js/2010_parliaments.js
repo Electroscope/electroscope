@@ -169,6 +169,7 @@
       highlightFill: "rgba(247, 50, 50, 0.5)",
       highlightStroke: "rgba(247, 50, 50, 1)",
       scaleFontColor: "#757575",
+      multiTooltipTemplate: "<%= datasetLabel %> - <%= value %>",
       legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span class=\"chart-legend\" style=\"background-color:<%=datasets[i].strokeColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>"
     });
     document.getElementById('votesparty-legend').innerHTML = myChart.generateLegend();
@@ -214,7 +215,7 @@
       labels: labels,
       datasets: [
 	{
-          label: "State Winners",
+          label: "State",
           fillColor: "rgba(220,220,220,0.5)",
           strokeColor: "rgba(220,220,220,0.8)",
           highlightFill: "rgba(220,220,220,0.75)",
@@ -222,7 +223,7 @@
           data: state_counts
 	},
 	{
-          label: "Region Winners",
+          label: "Region",
           fillColor: "rgba(151,187,205,0.5)",
           strokeColor: "rgba(151,187,205,0.8)",
           highlightFill: "rgba(151,187,205,0.75)",
@@ -242,7 +243,9 @@
       highlightFill: "rgba(247, 50, 50, 0.5)",
       highlightStroke: "rgba(247, 50, 50, 1)",
       scaleFontColor: "#757575",
+      multiTooltipTemplate: "<%= datasetLabel %> - <%= value %>",
       legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span class=\"chart-legend\" style=\"background-color:<%=datasets[i].strokeColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>"
+      scaleFontColor: "#fff",
     });
     document.getElementById('winnerstate-legend').innerHTML = myChart.generateLegend();
   };
