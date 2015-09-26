@@ -445,16 +445,11 @@
 
   $(document).ready(function(){
     var baseUrl = "http://localhost:3000";
+    
+    
+    
 
     
-    $('.party_list').select2({
-      placeholder:'Select a party'
-    }).on('select2:select',function(e){
-      
-      window.location =  "http://localhost:9000/2015/parties/" + e.params.data.id;
-    });
-
-    ;
     var chartList = [
       "parliament",
       "state",
@@ -466,12 +461,7 @@
     chartList.map(function(chartType){
       $.getJSON(baseUrl + "/api/candidates/count/by-" + chartType +"?year=2015&group_by=party", callbacks[chartType]);
     });
-    $.getJSON(baseUrl + "/api/parties",function(response){
-      var party = response.data;
-      for(var key  in party){
-        $('.party_list').append('<option value="' + key + '">' + party[key] + ' ( '+  key+')</option>')  
-      }
 
-    });
+    
   });
 })();

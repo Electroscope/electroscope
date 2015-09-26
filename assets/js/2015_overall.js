@@ -237,7 +237,12 @@
   };
 
   $(document).ready(function(){
+
+
     var baseUrl = "http://localhost:3000";
+
+
+
     $('ul.tabs').tabs();
     var chartList = [
       "agegroup",
@@ -250,6 +255,24 @@
 
     chartList.map(function(chartType){
       $.getJSON(baseUrl + "/api/candidates/count/by-"+chartType, chartCallbacks[chartType]);
+    });
+
+    $('.party_list').select2({
+        placeholder : 'Please select the party'
+    }).on('select2:select',function(e){
+        chartList.map(function(chartType){
+          $.getJSON(baseUrl + "/api/candidates/count/by-"+chartType+"?party="+e.params.data.id, chartCallbacks[chartType]);
+        });
+    });
+
+    $.getJSON(baseUrl + "/api/parties",function(response){
+
+      var party = response.data;
+      
+      for(var key  in party){
+        $('.party_list').append('<option value="' + key + '">' + party[key] + ' ( '+  key+')</option>')  
+      }
+
     });
   });
 
