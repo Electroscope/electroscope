@@ -4,10 +4,29 @@ html
     title= title
     link(rel='stylesheet', href='/Materialize/dist/css/materialize.min.css')
     link(rel='stylesheet' href='https://fonts.googleapis.com/icon?family=Material+Icons')
-    link(rel='stylesheet', href='/css/homepage.css')
+    link(rel='stylesheet', href='/css/#{page_name}.css')
+    link(rel="stylesheet", href="http://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css")
   body
     main
-      .sectionp.teal
+      section.section.section-one.white-text
+        br
+        .row
+          .col.s4
+            center
+              #maps
+              div
+                a(href="#" data-activates='statesListDropdown').dropdown-button.btn Ayeyarwaddy
+                ul#statesListDropdown.dropdown-content
+                 
+
+          .col.s8
+            center#vs
+              h3.title Candidates percentage
+              h5.vs [Candidate one] | [Candidate 2]
+      section.icon-section.white-text
+      section.section.section-two.white-text
         .row
           .col.s12
-            #states-map
+            h1 Section 2
+
+    script(src="/js/#{page_name}/app.min.js").
