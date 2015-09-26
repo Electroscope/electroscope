@@ -1,13 +1,16 @@
 (function() {
   var callbacks = {
     parliament: function(response) {
-      var limit = 7;
+      var limit = 7 + 2;
       var data = response.data;
       var labels = [];
       var amh_counts = [];
       var pth_counts = [];
       var rgh_counts = [];
       data.slice(0, limit).map(function(item) {
+	if(item.party == "NUP") return;
+	if(item.party == "NDP") return;
+
         labels.push(item.party);
         pth_counts.push(0);
         amh_counts.push(0);
@@ -22,21 +25,24 @@
           }
         });
       });
+
       labels.push("Others");
       pth_counts.push(0);
       amh_counts.push(0);
       rgh_counts.push(0);
+
       data.slice(limit, data.length).map(function(item) {
         item.parliament_counts.map(function(p) {
           if (p.parliament == "RGH") {
-            rgh_counts[limit] += p.count;
+            rgh_counts[rgh_counts.length-1] += p.count;
           } else if (p.parliament == "AMH") {
-            amh_counts[limit] += p.count;
+            amh_counts[amh_counts.length-1] += p.count;
           } else {
-            pth_counts[limit] += p.count;
+            pth_counts[pth_counts.length-1] += p.count;
           }
         });
       });
+
       var chartData = {
         labels: labels,
         datasets: [{
@@ -62,6 +68,7 @@
           data: rgh_counts
         }]
       };
+
       //Parliament Chart
       var canvas = document.getElementById("candidatecount-canvas");
       var ctx = canvas.getContext("2d");
