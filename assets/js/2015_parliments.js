@@ -116,7 +116,6 @@
     rgh_votes.push(0);
 
     data.slice(limit, data.length).map(function(item) {
-      console.log(item.parliament_counts);
       item.parliament_counts.map(function (p) {
 	if (p.parliament == "RGH") {
 	  rgh_votes[limit] += p.votes;
@@ -242,14 +241,11 @@
     });
   };
 
-
-
   $(document).ready(function(){
     var baseUrl = "http://localhost:3000";
     $.getJSON(baseUrl + "/api/winners/count/by-parliament?group_by=party", winnersChartByParty);
     $.getJSON(baseUrl + "/api/votes/count/by-parliament?group_by=party", votesChartByParty);
     $.getJSON(baseUrl + "/api/winners/count/by-state?group_by=party", winnersChartByStateRegion);
-
   });
 
 })();
