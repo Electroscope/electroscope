@@ -2,27 +2,6 @@ extends ../layout
 
 block content
   .row
-    .col.s12
-      .input-field
-          .btn.state-btn(id='Ayeyarwady', data-st_code="MMR017", data-dt-count="6", data-tsp-count="26", data-eligible-pop="4040022", data-flag_link="https://upload.wikimedia.org/wikipedia/commons/e/ec/Flag_of_Ayeyarwaddy_Division.svg", data-rgh-seats="54") Ayeyarwady
-          .btn.state-btn(id='Bago', data-st_code="MMR007", data-dt-count="4 (total of Bago)", data-tsp-count="28 (total of Bago)", data-eligible-pop="3224090(total of Bago)", data-flag_link="https://upload.wikimedia.org/wikipedia/commons/1/1c/Flag_of_Bago_Division.svg", data-rgh-seats="57") Bago
-          //- .btn.state-btn(id='Bago_West', data-st_code="MMR008", data-dt-count="4 (total of Bago)", data-tsp-count="28 (total of Bago)", data-eligible-pop="3224090(total of Bago)", data-flag_link="https://upload.wikimedia.org/wikipedia/commons/1/1c/Flag_of_Bago_Division.svg", data-rgh-seats="57") Bago West
-          .btn.state-btn(id='Chin', data-st_code="MMR004", data-dt-count="3", data-tsp-count="9", data-eligible-pop="257686", data-flag_link="https://upload.wikimedia.org/wikipedia/commons/1/16/Flag_of_Chin_State.svg", data-rgh-seats="18") Chin
-          .btn.state-btn(id='Kachin', data-st_code="MMR001", data-dt-count="4", data-tsp-count="18", data-eligible-pop="1051258", data-flag_link="https://upload.wikimedia.org/wikipedia/commons/e/ee/Flag_of_Kachin_State.svg", data-rgh-seats="38") Kachin
-          .btn.state-btn(id='Kayah', data-st_code="MMR002", data-dt-count="2", data-tsp-count="7", data-eligible-pop="170503", data-flag_link="https://upload.wikimedia.org/wikipedia/commons/d/d0/Flag_of_Kayah_State.svg", data-rgh-seats="15" ) Kayah
-          .btn.state-btn(id='Kayin', data-st_code="MMR003", data-dt-count="3", data-tsp-count="7", data-eligible-pop="884110", data-flag_link="https://upload.wikimedia.org/wikipedia/commons/9/9e/Flag_of_Kayin_State.svg", data-rgh-seats="17") Kayin
-          .btn.state-btn(id='Magway', data-st_code="MMR009", data-dt-count="5", data-tsp-count="25", data-eligible-pop="2667883", data-flag_link="https://upload.wikimedia.org/wikipedia/commons/1/13/Flag_of_Magway_Division.svg", data-rgh-seats="51") Magway
-          .btn.state-btn.disabled(id='Mandalay', data-st_code="MMR010", data-dt-count="7", data-tsp-count="29", data-eligible-pop="4230345", data-flag_link="https://upload.wikimedia.org/wikipedia/commons/0/02/Flag_of_Mandalay_Division.svg", selected="", data-rgh-seats="57") Mandalay
-          .btn.state-btn(id='Mon', data-st_code="MMR011", data-dt-count="2", data-tsp-count="10", data-eligible-pop="1300367", data-flag_link="https://upload.wikimedia.org/wikipedia/commons/2/26/Flag_of_Mon_State.svg", data-rgh-seats="23") Mon
-          .btn.state-btn(id='Naypyitaw', data-st_code="MMR018", data-dt-count="2", data-tsp-count="8", data-eligible-pop="1,158,367", data-flag_link="https://upload.wikimedia.org/wikipedia/commons/8/8c/Flag_of_Myanmar.svg", data-rgh-seats="-") Naypyitaw Council
-          .btn.state-btn(id='Rakhine', data-st_code="MMR012", data-dt-count="4", data-tsp-count="17", data-eligible-pop="1328392", data-flag_link="https://upload.wikimedia.org/wikipedia/commons/f/fd/Flag_of_Rakhine.svg", data-rgh-seats="35") Rakhine
-          .btn.state-btn(id='Sagaing', data-st_code="MMR005", data-dt-count="8", data-tsp-count="34", data-eligible-pop="3506301", data-flag_link="https://upload.wikimedia.org/wikipedia/commons/1/12/Flag_of_Sagaing_Division.svg", data-rgh-seats="76") Sagaing
-          .btn.state-btn(id='Shan', data-st_code="MMR016", data-dt-count="12 (total of Shan)", data-tsp-count="40 (total of Shan)", data-eligible-pop="3611343( total of Shan)", data-flag_link="https://upload.wikimedia.org/wikipedia/commons/b/b3/Flag_of_the_Shan_State.svg", data-rgh-seats="107") Shan
-          //- .btn.state-btn(id='Shan_North', data-st_code="MMR015", data-dt-count="12 (total of Shan)", data-tsp-count="40 (total of Shan)", data-eligible-pop="3611343( total of Shan)", data-flag_link="https://upload.wikimedia.org/wikipedia/commons/b/b3/Flag_of_the_Shan_State.svg", data-rgh-seats="107") Shan North
-          //- .btn.state-btn(id='Shan_South', data-st_code="MMR014", data-dt-count="12 (total of Shan)", data-tsp-count="40 (total of Shan)", data-eligible-pop="3611343( total of Shan)", data-flag_link="https://upload.wikimedia.org/wikipedia/commons/b/b3/Flag_of_the_Shan_State.svg", data-rgh-seats="107") Shan South
-          .btn.state-btn(id='Yangon', data-st_code="MMR013", data-dt-count="4", data-tsp-count="45", data-eligible-pop="5228050", data-flag_link="https://upload.wikimedia.org/wikipedia/commons/2/29/Flag_of_Yangon_Division.svg", data-rgh-seats="31") Yangon
-
-  .row
     .col.s12.m4
       .card-panel.content-center
         #state_map
@@ -74,3 +53,24 @@ block content
             tr
               th Seats for House of Representatives
               td.pth-seats  29
+
+  .row
+    .col.s12
+      .input-field
+          .btn.state-btn(id='Ayeyarwady', data-st_code="MMR017", data-dt-count="6", data-tsp-count="26", data-eligible-pop="4040022", data-flag_link="https://upload.wikimedia.org/wikipedia/commons/e/ec/Flag_of_Ayeyarwaddy_Division.svg", data-rgh-seats="54") Ayeyarwady
+          .btn.state-btn(id='Bago', data-st_code="MMR007", data-dt-count="4 (total of Bago)", data-tsp-count="28 (total of Bago)", data-eligible-pop="3224090(total of Bago)", data-flag_link="https://upload.wikimedia.org/wikipedia/commons/1/1c/Flag_of_Bago_Division.svg", data-rgh-seats="57") Bago
+          //- .btn.state-btn(id='Bago_West', data-st_code="MMR008", data-dt-count="4 (total of Bago)", data-tsp-count="28 (total of Bago)", data-eligible-pop="3224090(total of Bago)", data-flag_link="https://upload.wikimedia.org/wikipedia/commons/1/1c/Flag_of_Bago_Division.svg", data-rgh-seats="57") Bago West
+          .btn.state-btn(id='Chin', data-st_code="MMR004", data-dt-count="3", data-tsp-count="9", data-eligible-pop="257686", data-flag_link="https://upload.wikimedia.org/wikipedia/commons/1/16/Flag_of_Chin_State.svg", data-rgh-seats="18") Chin
+          .btn.state-btn(id='Kachin', data-st_code="MMR001", data-dt-count="4", data-tsp-count="18", data-eligible-pop="1051258", data-flag_link="https://upload.wikimedia.org/wikipedia/commons/e/ee/Flag_of_Kachin_State.svg", data-rgh-seats="38") Kachin
+          .btn.state-btn(id='Kayah', data-st_code="MMR002", data-dt-count="2", data-tsp-count="7", data-eligible-pop="170503", data-flag_link="https://upload.wikimedia.org/wikipedia/commons/d/d0/Flag_of_Kayah_State.svg", data-rgh-seats="15" ) Kayah
+          .btn.state-btn(id='Kayin', data-st_code="MMR003", data-dt-count="3", data-tsp-count="7", data-eligible-pop="884110", data-flag_link="https://upload.wikimedia.org/wikipedia/commons/9/9e/Flag_of_Kayin_State.svg", data-rgh-seats="17") Kayin
+          .btn.state-btn(id='Magway', data-st_code="MMR009", data-dt-count="5", data-tsp-count="25", data-eligible-pop="2667883", data-flag_link="https://upload.wikimedia.org/wikipedia/commons/1/13/Flag_of_Magway_Division.svg", data-rgh-seats="51") Magway
+          .btn.state-btn.disabled(id='Mandalay', data-st_code="MMR010", data-dt-count="7", data-tsp-count="29", data-eligible-pop="4230345", data-flag_link="https://upload.wikimedia.org/wikipedia/commons/0/02/Flag_of_Mandalay_Division.svg", selected="", data-rgh-seats="57") Mandalay
+          .btn.state-btn(id='Mon', data-st_code="MMR011", data-dt-count="2", data-tsp-count="10", data-eligible-pop="1300367", data-flag_link="https://upload.wikimedia.org/wikipedia/commons/2/26/Flag_of_Mon_State.svg", data-rgh-seats="23") Mon
+          .btn.state-btn(id='Naypyitaw', data-st_code="MMR018", data-dt-count="2", data-tsp-count="8", data-eligible-pop="1,158,367", data-flag_link="https://upload.wikimedia.org/wikipedia/commons/8/8c/Flag_of_Myanmar.svg", data-rgh-seats="-") Naypyitaw Council
+          .btn.state-btn(id='Rakhine', data-st_code="MMR012", data-dt-count="4", data-tsp-count="17", data-eligible-pop="1328392", data-flag_link="https://upload.wikimedia.org/wikipedia/commons/f/fd/Flag_of_Rakhine.svg", data-rgh-seats="35") Rakhine
+          .btn.state-btn(id='Sagaing', data-st_code="MMR005", data-dt-count="8", data-tsp-count="34", data-eligible-pop="3506301", data-flag_link="https://upload.wikimedia.org/wikipedia/commons/1/12/Flag_of_Sagaing_Division.svg", data-rgh-seats="76") Sagaing
+          .btn.state-btn(id='Shan', data-st_code="MMR016", data-dt-count="12 (total of Shan)", data-tsp-count="40 (total of Shan)", data-eligible-pop="3611343( total of Shan)", data-flag_link="https://upload.wikimedia.org/wikipedia/commons/b/b3/Flag_of_the_Shan_State.svg", data-rgh-seats="107") Shan
+          //- .btn.state-btn(id='Shan_North', data-st_code="MMR015", data-dt-count="12 (total of Shan)", data-tsp-count="40 (total of Shan)", data-eligible-pop="3611343( total of Shan)", data-flag_link="https://upload.wikimedia.org/wikipedia/commons/b/b3/Flag_of_the_Shan_State.svg", data-rgh-seats="107") Shan North
+          //- .btn.state-btn(id='Shan_South', data-st_code="MMR014", data-dt-count="12 (total of Shan)", data-tsp-count="40 (total of Shan)", data-eligible-pop="3611343( total of Shan)", data-flag_link="https://upload.wikimedia.org/wikipedia/commons/b/b3/Flag_of_the_Shan_State.svg", data-rgh-seats="107") Shan South
+          .btn.state-btn(id='Yangon', data-st_code="MMR013", data-dt-count="4", data-tsp-count="45", data-eligible-pop="5228050", data-flag_link="https://upload.wikimedia.org/wikipedia/commons/2/29/Flag_of_Yangon_Division.svg", data-rgh-seats="31") Yangon
