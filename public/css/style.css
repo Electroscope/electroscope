@@ -95,6 +95,10 @@ header, main, footer {
 	margin-top: 0px;
 }
 
+.card-panel.overflow {
+	overflow:hidden;
+}
+
 .candidate-list .card-reveal .card-title {
 	font-size: 16px;
 }
