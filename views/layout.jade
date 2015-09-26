@@ -4,6 +4,8 @@ html
     title= title
     link(rel='stylesheet', href='/Materialize/dist/css/materialize.min.css')
     link(rel='stylesheet' href='https://fonts.googleapis.com/icon?family=Material+Icons')
+    link(rel="stylesheet", href="https://fonts.googleapis.com/css?family=Quicksand")
+    link(rel='stylesheet', href='/font-awesome/css/font-awesome.min.css')
     link(rel="stylesheet", href="http://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css")
     link(rel="stylesheet", href="/select2/dist/css/select2.min.css")
 
@@ -12,7 +14,7 @@ html
     link(rel='stylesheet', href='/css/style.css')
   body
     header
-      div(class="container")
+      aside
         ul#collapse-sidenav.side-nav.fixed.blue-grey.darken-1.white-text.menu-collapse.enable-collapse
           li.logo
             a#logo-container.brand-logo(href='/')
@@ -20,19 +22,19 @@ html
           li.bold
             a.waves-effect.waves-teal.nav-menu(href='/2015/overall')
               i.material-icons polymer
-              span.nav-menu-title Overall
+              | Overall
           li.bold
             a.waves-effect.waves-teal.nav-menu(href='/2015/parties')
               i.material-icons turned_in_not
-              span.nav-menu-title Parties
+              | Parties
           li.bold
             a.waves-effect.waves-teal.nav-menu(href='/2015/states')
               i.material-icons location_on
-              span.nav-menu-title States
+              | States
           li.bold
             a.waves-effect.waves-teal.nav-menu(href='/2010/parliaments')
               i.material-icons stars
-              span.nav-menu-title Parliament
+              | Parliament
     main
       block content
 

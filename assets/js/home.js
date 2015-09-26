@@ -87,8 +87,10 @@ var $amhStates;
   var $$vs = $("#vs");
   var $$statesListDropdown = $("#statesListDropdown");
 
-  var vsTemplate = "<h1>{title}</h1>"
-    + "<h3>{team1} {team1Percentage}% | {team2} {team2Percentage}%"
+  var vsTemplate = "<h1 class='bold'>{title}</h1>"
+    + "<h3>"
+    + "{team1} <strong class='yellow-text'>{team1Percentage}%</strong> | "
+    + "{team2} <strong class='yellow-text'>{team2Percentage}%</strong>"
     + "<h5>{team3} {team3Percentage}%"
     + "<h5>{team4} {team4Percentage}%"
     + "<h5>{team5} {team5Percentage}%"
@@ -222,6 +224,7 @@ var $amhStates;
             label: "Under 50",
             fillColor: "#ffffff",
             scaleShowGridLines: false,
+            scaleLineColor: "#ffffff",
             scaleShowHorizontalLines: false,
             scaleShowVerticalLines: false,
             highlightFill: "#ffffff",
@@ -232,6 +235,7 @@ var $amhStates;
             label: "Over 50",
             fillColor: "#ffeb3b",
             scaleShowGridLines: false,
+            scaleLineColor: "#ffffff",
             scaleShowHorizontalLines: false,
             scaleShowVerticalLines: false,
             highlightFill: "#ffeb3b",
@@ -248,6 +252,7 @@ var $amhStates;
         label: "By Ethnicity Ratio",
         fillColor: "#ffffff",
         scaleShowGridLines: false,
+        scaleLineColor: "#ffffff",
         scaleShowHorizontalLines: false,
         scaleShowVerticalLines: false,
         scaleFontColor: "#fff"

@@ -1,3 +1,8 @@
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Quicksand";
+}
+
+
 header, main, footer {
   padding-left: 60px;
   padding-right: 10px;
@@ -29,13 +34,13 @@ header, main, footer {
 }
 
 .nav-menu .material-icons {
-	font-size: 30px;
+	/*font-size: 30px;*/
 }
 
-.side-nav li {
-	padding:0px 10px;
+/*.side-nav li {
+  line-height: 60px;
 }
-
+*/
 .side-nav .logo {
 	text-align: center;
 	padding: 20px 0px;
