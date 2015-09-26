@@ -67,7 +67,7 @@
                 return d.properties[regionCodeField];
               })
               .style("fill", function(d, i){
-                return defaultColor;
+                return d.properties.ST === "Mandalay" ? "red" : defaultColor;
               });
   }
 })();
