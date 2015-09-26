@@ -1,17 +1,9 @@
 extends ../layout
 
 block content
-
-  main
-    .row
-      .col.s10
-  main
-    nav
-      .nav-wrapper.content-center
-        a Analysis of candidates composition of parties by state.
-    .row
-      .col.s6
-        .input-field
+  .row
+    .col.s12
+      .input-field
         select.browser-default.state-list-select
           option(value='Ayeyarwady', data-st_code="MMR017", data-dt-count="6", data-tsp-count="26", data-eligible-pop="4040022", data-flag_link="https://upload.wikimedia.org/wikipedia/commons/e/ec/Flag_of_Ayeyarwaddy_Division.svg", data-rgh-seats="54") Ayeyarwady
           option(value='Bago_East', data-st_code="MMR007", data-dt-count="4 (total of Bago)", data-tsp-count="28 (total of Bago)", data-eligible-pop="3224090(total of Bago)", data-flag_link="https://upload.wikimedia.org/wikipedia/commons/1/1c/Flag_of_Bago_Division.svg", data-rgh-seats="57") Bago East
@@ -31,62 +23,54 @@ block content
           option(value='Shan_South', data-st_code="MMR014", data-dt-count="12 (total of Shan)", data-tsp-count="40 (total of Shan)", data-eligible-pop="3611343( total of Shan)", data-flag_link="https://upload.wikimedia.org/wikipedia/commons/b/b3/Flag_of_the_Shan_State.svg", data-rgh-seats="107") Shan South
           option(value='Yangon', data-st_code="MMR013", data-dt-count="4", data-tsp-count="45", data-eligible-pop="5228050", data-flag_link="https://upload.wikimedia.org/wikipedia/commons/2/29/Flag_of_Yangon_Division.svg", data-rgh-seats="31") Yangon
 
-      .col.s6
-
-
-    .row
-      .col.s4
-        #state_map
-      .col.s6
-        .row
-          .card.blue-grey.darken-1
-            .card-content.white-text
-              .card-image
-                    img.state-flag(src='https://upload.wikimedia.org/wikipedia/commons/0/02/Flag_of_Mandalay_Division.svg', heigth="150px")
-                    span.card-title.state-name Mandalay
-              br
-              .row
-                .col.s6
-                  | Population (Above Age 18)
-                .col.s6
-                  span.eligible-pop 4230345
-              .row
-                .col.s6
-                  | Districts
-                .col.s6
-                  span.dt-count 7
-              .row
-                .col.s6
-                  | Townships
-                .col.s6
-                  span.tsp-count 29
-              .row
-                .col.s6
-                  | Seats for State and Region Assemblies
-                .col.s6
-                  span.rgh-seats  57
-              .row
-                .col.s6
-                  | Seats for House of Nationalities
-                .col.s6
-                  span.amh-seats  12
-              .row
-                .col.s6
-                  | Seats for House of Representatives
-                .col.s6
-                  span.pth-seats  29
-
-    .row
+  .row
+    .col.s12.m4
+      #state_map
+    .col.s12.m4
       #legislature_counts
-        .col.s4
-          .candidate-count.col.s6.content-center#AMH-canvas
-          .candidate-count.col.s6.content-right#AMH-legends
-          p.content-center House of Nationalities
-        .col.s4
-          .candidate-count.col.s6.content-center#PTH-canvas
-          .candidate-count.col.s6.content-right#PTH-legends
-          p.content-center House of Representatives
-        .col.s4
-          .candidate-count.col.s6.content-center#RGH-canvas
-          .candidate-count.col.s6.content-right#RGH-legends
-          p.content-center State and Region Assemblies
+        .card-panel
+          h2.panel-title House of Nationalities
+          .row
+            .col.s6.content-center
+              #AMH-canvas
+            .col.s6
+              #AMH-legends
+        .card-panel
+          h2.panel-title House of Representatives
+          .row
+            .col.s6.content-center
+              #PTH-canvas
+            .col.s6
+              #PTH-legends
+        .card-panel
+          h2.panel-title State and Region Assemblies
+          .row
+            .col.s6.content-center
+              #RGH-canvas
+            .col.s6
+              #RGH-legends
+    .col.s12.m4
+      .card
+        .card-image
+          img.state-flag(src='https://upload.wikimedia.org/wikipedia/commons/0/02/Flag_of_Mandalay_Division.svg', heigth="150px")
+          span.card-title.state-name Mandalay
+        .card-content
+          table.striped
+            tr
+              th Population (Above Age 18)
+              td.eligible-pop 4230345
+            tr
+              th Districts
+              td.dt-count 7
+            tr
+              th Townships
+              td.tsp-count 29
+            tr
+              th Seats for State and Region Assemblies
+              td.rgh-seats  57
+            tr
+              th Seats for House of Nationalities
+              td.amh-seats  12
+            tr
+              th Seats for House of Representatives
+              td.pth-seats  29
