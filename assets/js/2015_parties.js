@@ -62,13 +62,15 @@
       var ctx = canvas.getContext("2d");
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       var myChart = new Chart(ctx).Bar(chartData, {
-	label: "By Candidate Count",
-	fillColor: "rgba(247, 50, 50, 0.75)",
-	strokeColor: "rgba(247, 50, 50, 0.8)",
-	highlightFill: "rgba(247, 50, 50, 0.5)",
-	highlightStroke: "rgba(247, 50, 50, 1)",
-	scaleFontColor: "#fff"
+      	label: "By Candidate Count",
+      	fillColor: "rgba(247, 50, 50, 0.75)",
+      	strokeColor: "rgba(247, 50, 50, 0.8)",
+      	highlightFill: "rgba(247, 50, 50, 0.5)",
+      	highlightStroke: "rgba(247, 50, 50, 1)",
+      	scaleFontColor: "#757575",
+            legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span class=\"chart-legend\" style=\"background-color:<%=datasets[i].strokeColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>"
       });
+      document.getElementById('state-region-legend').innerHTML = myChart.generateLegend();
     },
 
     parliament: function (response) {
@@ -135,7 +137,7 @@
 	  },
 	  {
             label: "Regional Hluttaw",
-            fillColor: "rgba(151,187,205,0.5)",
+            fillColor: "RGBA(83, 133, 199, 0.5)",
             strokeColor: "rgba(151,187,205,0.8)",
             highlightFill: "rgba(151,187,205,0.75)",
             highlightStroke: "rgba(151,187,205,1)",
@@ -144,17 +146,22 @@
 	]
       };
 
+      //Parliament Chart 
       var canvas = document.getElementById("candidatecount-canvas");
       var ctx = canvas.getContext("2d");
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       var myChart = new Chart(ctx).Bar(chartData, {
-	label: "By Candidate Count",
-	fillColor: "rgba(247, 50, 50, 0.75)",
-	strokeColor: "rgba(247, 50, 50, 0.8)",
-	highlightFill: "rgba(247, 50, 50, 0.5)",
-	highlightStroke: "rgba(247, 50, 50, 1)",
-	scaleFontColor: "#fff"
+      	label: "By Candidate Count",
+      	fillColor: "rgba(247, 50, 50, 0.75)",
+      	strokeColor: "rgba(247, 50, 50, 0.8)",
+      	highlightFill: "rgba(247, 50, 50, 0.5)",
+      	highlightStroke: "rgba(247, 50, 50, 1)",
+      	scaleFontColor: "#757575",
+            legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span class=\"chart-legend\" style=\"background-color:<%=datasets[i].strokeColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>"
       });
+
+      document.getElementById('candidatecount-legend').innerHTML = myChart.generateLegend();
+
     },
 
     gender: function (response) {
@@ -201,7 +208,7 @@
             data: male_counts
 	  },
 	  {
-            label: "Pyithu Hluttaw",
+            label: "Female",
             fillColor: "rgba(151,187,205,0.5)",
             strokeColor: "rgba(151,187,205,0.8)",
             highlightFill: "rgba(151,187,205,0.75)",
@@ -215,13 +222,16 @@
       var ctx = canvas.getContext("2d");
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       var myChart = new Chart(ctx).Bar(chartData, {
-	label: "By Gender Ratio",
-	fillColor: "rgba(247, 50, 50, 0.75)",
-	strokeColor: "rgba(247, 50, 50, 0.8)",
-	highlightFill: "rgba(247, 50, 50, 0.5)",
-	highlightStroke: "rgba(247, 50, 50, 1)",
-	scaleFontColor: "#fff"
+      	label: "By Gender Ratio",
+      	fillColor: "rgba(247, 50, 50, 0.75)",
+      	strokeColor: "rgba(247, 50, 50, 0.8)",
+      	highlightFill: "rgba(247, 50, 50, 0.5)",
+      	highlightStroke: "rgba(247, 50, 50, 1)",
+      	scaleFontColor: "#757575",
+            legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span class=\"chart-legend\" style=\"background-color:<%=datasets[i].strokeColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>"
       });
+
+      document.getElementById('gendercount-legend').innerHTML = myChart.generateLegend();
     },
 
     educated: function (response) {
@@ -260,7 +270,7 @@
 	labels: labels,
 	datasets: [
 	  {
-            label: "Male",
+            label: "Graduated",
             fillColor: "rgba(220,220,220,0.5)",
             strokeColor: "rgba(220,220,220,0.8)",
             highlightFill: "rgba(220,220,220,0.75)",
@@ -268,7 +278,7 @@
             data: bwaeya_counts
 	  },
 	  {
-            label: "Pyithu Hluttaw",
+            label: "Non-graduated",
             fillColor: "rgba(151,187,205,0.5)",
             strokeColor: "rgba(151,187,205,0.8)",
             highlightFill: "rgba(151,187,205,0.75)",
@@ -282,15 +292,18 @@
       var ctx = canvas.getContext("2d");
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       var myChart = new Chart(ctx).Bar(chartData, {
-	label: "With or Without Degree",
-	fillColor: "rgba(247, 50, 50, 0.75)",
-	strokeColor: "rgba(247, 50, 50, 0.8)",
-	highlightFill: "rgba(247, 50, 50, 0.5)",
-	highlightStroke: "rgba(247, 50, 50, 1)",
-	scaleFontColor: "#fff"
+      	label: "With or Without Degree",
+      	fillColor: "rgba(247, 50, 50, 0.75)",
+      	strokeColor: "rgba(247, 50, 50, 0.8)",
+      	highlightFill: "rgba(247, 50, 50, 0.5)",
+      	highlightStroke: "rgba(247, 50, 50, 1)",
+      	scaleFontColor: "#757575",
+            legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span class=\"chart-legend\" style=\"background-color:<%=datasets[i].strokeColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>"
       });
+      document.getElementById('education-legend').innerHTML = myChart.generateLegend();
     },
 
+    //Ethnicity Chart
     ethnicity: function (response) {
       var limit = 7;
       var data = response.data;
@@ -348,15 +361,18 @@
       var ctx = canvas.getContext("2d");
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       var myChart = new Chart(ctx).Bar(chartData, {
-	label: "By Ethnicity Ratio",
-	fillColor: "rgba(247, 50, 50, 0.75)",
-	strokeColor: "rgba(247, 50, 50, 0.8)",
-	highlightFill: "rgba(247, 50, 50, 0.5)",
-	highlightStroke: "rgba(247, 50, 50, 1)",
-	scaleFontColor: "#fff"
+      	label: "By Ethnicity Ratio",
+      	fillColor: "rgba(247, 50, 50, 0.75)",
+      	strokeColor: "rgba(247, 50, 50, 0.8)",
+      	highlightFill: "rgba(247, 50, 50, 0.5)",
+      	highlightStroke: "rgba(247, 50, 50, 1)",
+      	scaleFontColor: "#757575",
+            legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span class=\"chart-legend\" style=\"background-color:<%=datasets[i].strokeColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>"
       });
+      document.getElementById('burmese-none-legend').innerHTML = myChart.generateLegend();
     },
 
+    // Age Group Chart 
     agegroup: function (response) {
       var limit = 7;
       var data = response.data;
@@ -433,13 +449,15 @@
       var ctx = canvas.getContext("2d");
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       var myChart = new Chart(ctx).Bar(chartData, {
-	label: "By Ethnicity Ratio",
-	fillColor: "rgba(247, 50, 50, 0.75)",
-	strokeColor: "rgba(247, 50, 50, 0.8)",
-	highlightFill: "rgba(247, 50, 50, 0.5)",
-	highlightStroke: "rgba(247, 50, 50, 1)",
-	scaleFontColor: "#fff"
+      	label: "By Ethnicity Ratio",
+      	fillColor: "rgba(247, 50, 50, 0.75)",
+      	strokeColor: "rgba(247, 50, 50, 0.8)",
+      	highlightFill: "rgba(247, 50, 50, 0.5)",
+      	highlightStroke: "rgba(247, 50, 50, 1)",
+      	scaleFontColor: "#757575",
+            legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span class=\"chart-legend\" style=\"background-color:<%=datasets[i].strokeColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>"
       });
+      document.getElementById('candidate-count-legend').innerHTML = myChart.generateLegend();
     }
   };
 
