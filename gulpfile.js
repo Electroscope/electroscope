@@ -24,7 +24,6 @@ var __HO_CHARTJS = path.join(__BOWER,"Chart.HorizontalBar.js/Chart.HorizontalBar
 var __LIBS = path.join(__dirname, "app/assets/js/libs");
 
 var __MAEPAYSOH = jsPath("api.js");
-
 var __COMMONJS = jsPath("main.js");
 
 var __DEFAULT = [__JQUERY, __MATERIAL_LITE, __MOMENT, __MAEPAYSOH, __COMMONJS];
@@ -41,13 +40,12 @@ var PAGES = {
   "candidates": concatDefault(["map.js", "maptest.js", "candidates.js"],[__D3, __TOPOJSON]),
   "candidates-detail": concatDefault(["candidates-detail.js"],[__LEAFLET]),
   "maptest": concatDefault(["map2.js", "maptest.js"], [__D3, __TOPOJSON]),
-  "overall": concatDefault(["overall.js"], [__MATERIAL_LITE, __D3, __TOPOJSON, __CHARTJS ]),
+  "2015_overall": concatDefault(["2015_overall.js"], [__MATERIAL_LITE, __D3, __TOPOJSON, __CHARTJS ]),
   "choropleth": concatDefault(["map.js", "choropleth.js"], [__MATERIAL_LITE, __D3, __TOPOJSON, __CHARTJS ]),
   "2010_parties": concatDefault([ "2010_parties.js"], [__MATERIAL_LITE, __D3, __TOPOJSON, __CHARTJS,__HO_CHARTJS ]),
   "2015_parties": concatDefault([ "2015_parties.js"], [__MATERIAL_LITE, __D3, __TOPOJSON, __CHARTJS,__HO_CHARTJS ]),
   "2015_states": concatDefault([ "map.js", "hex2rgba.js", "2015_states.js"], [__MATERIAL_LITE, __D3, __TOPOJSON, __CHARTJS ]),
   "2015_parliments": concatDefault([ "2015_parliments.js"], [__MATERIAL_LITE, __D3, __TOPOJSON, __CHARTJS ])
-
 };
 
 // Watch task for gulp
