@@ -106,11 +106,13 @@ var $amhStates;
     state.id = state.name.toLowerCase();
     if (i === 0) {
       $$maps.append("<div id='" + state.id + "' class='state-map'></div>");
+      $$statesListDropdown.append("<a href='#!' class='btn white-text btn-flat active waves-effect waves-light' data-value='" + state.id + "'>" 
+        + state.name.replace("_", " ", "g") + "</a>");
     } else {
       $$maps.append("<div id='" + state.id + "' class='state-map'></div>");
+      $$statesListDropdown.append("<a href='#!' class='btn white-text btn-flat waves-effect waves-light' data-value='" + state.id + "'>" 
+        + state.name.replace("_", " ", "g") + "</a>");
     }
-    
-    $$statesListDropdown.append("<li data-value='" + state.id + "'><a href='#!'>" + state.name.replace("_", " ") + "</a></li>");
 
     $.getJSON("http://localhost:3000/seperate_topo_lower/" + state.path, function(data){
       var defaultColor = "#ffffff";
@@ -118,7 +120,7 @@ var $amhStates;
       var options = {
         element: "#" + state.id,
         width: 400,
-        height: 600,
+        height: 500,
         defaultColor: defaultColor,
         metaKey: state.name,
         regionNameField: "name",
@@ -146,7 +148,9 @@ var $amhStates;
   $$maps.find(".state-map").hide();
   $$maps.find(".state-map").first().show();
 
-  $$statesListDropdown.find("li").click(function (event){
+  $$statesListDropdown.find("a").click(function (event){
+    $$statesListDropdown.find("a").removeClass("active");
+    $(this).addClass("active");
     var id = this.getAttribute("data-value");
     event.preventDefault();
     if (id) {
@@ -215,20 +219,24 @@ var $amhStates;
         labels: labels,
         datasets: [
           {
-                  label: "Under 50",
-                  fillColor: "#ffffff",
-                  strokeColor: "#ffffff",
-                  highlightFill: "#ffffff",
-                  highlightStroke: "#ffffff",
-                  data: under_50_counts
+            label: "Under 50",
+            fillColor: "#ffffff",
+            scaleShowGridLines: false,
+            scaleShowHorizontalLines: false,
+            scaleShowVerticalLines: false,
+            highlightFill: "#ffffff",
+            highlightStroke: "#ffffff",
+            data: under_50_counts
           },
           {
-                  label: "Over 50",
-                  fillColor: "#ffffff",
-                  strokeColor: "#ffffff",
-                  highlightFill: "#ffffff",
-                  highlightStroke: "#ffffff",
-                  data: over_50_counts
+            label: "Over 50",
+            fillColor: "#ffeb3b",
+            scaleShowGridLines: false,
+            scaleShowHorizontalLines: false,
+            scaleShowVerticalLines: false,
+            highlightFill: "#ffeb3b",
+            highlightStroke: "#ffeb3b",
+            data: over_50_counts
           },
         ]
       };
@@ -239,9 +247,9 @@ var $amhStates;
       var myChart = new Chart(ctx).Bar(chartData, {
         label: "By Ethnicity Ratio",
         fillColor: "#ffffff",
-        strokeColor: "#ffffff",
-        highlightFill: "#ffffff",
-        highlightStroke: "#ffffff",
+        scaleShowGridLines: false,
+        scaleShowHorizontalLines: false,
+        scaleShowVerticalLines: false,
         scaleFontColor: "#fff"
       });
     }

@@ -1,27 +1,37 @@
 extends ../layout
+
 block content
   .container
-    nav
-      .nav-wrapper
-        p.center.white-text The current data are 2010 Election results from myanmarelections.org.
+    nav.blue-grey.darken-2
+      .nav-wrapper.content-center
+        a.center The current data are 2010 Election results from myanmarelections.org.
     .row
       .col.s12
-        .card.blue-grey.darken-1
-          .card-content.center.white-text
-            span.card-title Seats Won — Party / Parliament
-            canvas#winnerpartycount-canvas(height="300px", width="800px")
+        .card-panel
+          h2.panel-title Winners By Party / Parliament
+          .row
+            .col.s12.content-center
+              canvas#winnerpartycount-canvas(height="300px", width="800px")
+            .col.s12
+              #winnerparty-legend.horizontal-legend
 
       .col.s12
-        .card.blue-grey.darken-1
-          .card-content.center.white-text
-            span.card-title Accrued Votes — Party / Parliament
-            canvas#votespartycount-canvas(height="300px", width="800px")
+        .card-panel
+          h2.panel-title Votes By Party / Parliament
+          .row
+            .col.s12.content-center
+              canvas#votespartycount-canvas(height="300px", width="800px")
+            .col.s12
+              #votesparty-legend.horizontal-legend
 
       .col.s12
-        .card.blue-grey.darken-1
-          .card-content.center.white-text
-            span.card-title Seats Won — State / Region
-            canvas#winnerstatecount-canvas(height="300px", width="800px")
+        .card-panel
+          h2.panel-title Winners Counts By State / Region
+          .row
+            .col.s12.content-center
+              canvas#winnerstatecount-canvas(height="300px", width="800px")
+            .col.s12
+              #winnerstate-legend.horizontal-legend
 
       .col.s6
         .card.blue-grey.darken-1

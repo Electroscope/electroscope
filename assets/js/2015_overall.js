@@ -272,6 +272,28 @@
         $('.bwaeya-canvas').append("<canvas id='bwaeya-canvas' width='300px' height='300px'></canvas>");
          $('#parliament-canvas').remove(); 
         $('.parliament-canvas').append("<canvas id='parliament-canvas' width='300px' height='300px'></canvas>");
+        $('#states_choropleth').remove();
+       $('.cho_map').append("<div id='states_choropleth'></div>");
+
+        //draw map again
+        $.getJSON("http://localhost:3000/states_regions.topojson", function(topo_response){
+          var options = {
+            element: '#states_choropleth',
+            width: 400,
+            height: 600,
+            defaultColor: "red",
+            metaKey: "output2",
+            regionNameField: "name",
+            regionCodeField: "ST_PCODE",
+            onClickHandler: function(d){
+              console.log("Clicked", d);
+          }
+        };
+    $.getJSON("http://localhost:3000/api/candidates/count/by-state?party="+e.params.data.id, function(data_response){
+    
+      window.electroscope.drawChoroplethMap(topo_response, data_response.data[0].state_counts, options);
+    });
+  })
        
         chartList.map(function(chartType){
           $.getJSON(baseUrl + "/api/candidates/count/by-"+chartType+"?party="+e.params.data.id, chartCallbacks[chartType]);
@@ -287,6 +309,26 @@
       }
 
     });
+
+     $.getJSON("http://localhost:3000/states_regions.topojson", function(topo_response){
+    var options = {
+      element: '#states_choropleth',
+      width: 400,
+      height: 600,
+      defaultColor: "red",
+      metaKey: "output2",
+      regionNameField: "name",
+      regionCodeField: "ST_PCODE",
+      onClickHandler: function(d){
+        console.log("Clicked", d);
+      }
+    };
+    $.getJSON("http://localhost:3000/api/candidates/count/by-state", function(data_response){
+      console.log(topo_response);
+      console.log(data_response);
+      window.electroscope.drawChoroplethMap(topo_response, data_response.data[0].state_counts, options);
+    });
+  })
   });
 
 })();
