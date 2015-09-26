@@ -62,7 +62,7 @@
 	},
 	{
           label: "Regional Hluttaw",
-          fillColor: "rgba(151,187,205,0.5)",
+          fillColor: "RGBA(83, 133, 199, 0.5)",
           strokeColor: "rgba(151,187,205,0.8)",
           highlightFill: "rgba(151,187,205,0.75)",
           highlightStroke: "rgba(151,187,205,1)",
@@ -80,9 +80,11 @@
       strokeColor: "rgba(247, 50, 50, 0.8)",
       highlightFill: "rgba(247, 50, 50, 0.5)",
       highlightStroke: "rgba(247, 50, 50, 1)",
-      scaleFontColor: "#fff",
-      multiTooltipTemplate: "<%= datasetLabel %> - <%= value %>"
+      scaleFontColor: "#757575",
+      multiTooltipTemplate: "<%= datasetLabel %> - <%= value %>",
+      legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span class=\"chart-legend\" style=\"background-color:<%=datasets[i].strokeColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>"
     });
+    document.getElementById('winnerparty-legend').innerHTML = myChart.generateLegend();
   };
 
   var votesChartByParty = function (response) {
@@ -166,9 +168,11 @@
       strokeColor: "rgba(247, 50, 50, 0.8)",
       highlightFill: "rgba(247, 50, 50, 0.5)",
       highlightStroke: "rgba(247, 50, 50, 1)",
-      scaleFontColor: "#fff",
-      multiTooltipTemplate: "<%= datasetLabel %> - <%= value %>"
+      scaleFontColor: "#757575",
+      multiTooltipTemplate: "<%= datasetLabel %> - <%= value %>",
+      legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span class=\"chart-legend\" style=\"background-color:<%=datasets[i].strokeColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>"
     });
+    document.getElementById('votesparty-legend').innerHTML = myChart.generateLegend();
   };
 
   var winnersChartByStateRegion = function (response) {
@@ -238,9 +242,12 @@
       strokeColor: "rgba(247, 50, 50, 0.8)",
       highlightFill: "rgba(247, 50, 50, 0.5)",
       highlightStroke: "rgba(247, 50, 50, 1)",
+      scaleFontColor: "#757575",
+      multiTooltipTemplate: "<%= datasetLabel %> - <%= value %>",
+      legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span class=\"chart-legend\" style=\"background-color:<%=datasets[i].strokeColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>"
       scaleFontColor: "#fff",
-      multiTooltipTemplate: "<%= datasetLabel %> - <%= value %>"
     });
+    document.getElementById('winnerstate-legend').innerHTML = myChart.generateLegend();
   };
 
   $(document).ready(function(){
