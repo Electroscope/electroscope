@@ -42,7 +42,7 @@ router.get('/2015/parties',function(req,res){
 
 router.get('/2015/parties/:id',function(req,res){
   res.render("2015/parties_details",{title:"electroscope",page_name:"2015_parties_details"});
-}); 
+});
 
 
 router.get('/2015/states',function(req,res){
@@ -50,8 +50,8 @@ router.get('/2015/states',function(req,res){
 });
 
 
-router.get('/2015/parliments',function(req,res){
-  res.render("2015/parliments",{title:"electroscope",page_name:"2015_parliments"});
+router.get('/2010/parliaments',function(req,res){
+  res.render("2010/parliaments",{title:"electroscope",page_name:"2010_parliaments"});
 });
 
 router.get('/choropleth',function(req,res){
