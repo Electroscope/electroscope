@@ -1,4 +1,5 @@
 extends ../layout
+
 block content
   .container
     nav.blue-grey.darken-2
@@ -31,3 +32,15 @@ block content
               canvas#winnerstatecount-canvas(height="300px", width="800px")
             .col.s12
               #winnerstate-legend.horizontal-legend
+
+      .col.s6
+        .card.blue-grey.darken-1
+          .card-content.center.white-text
+            span.card-title Voters Count — State
+          canvas#statevoterscount-canvas(height="300px", width="400px")
+
+      .col.s6
+        .card.blue-grey.darken-1
+          .card-content.center.white-text
+            span.card-title Voters Count – Region
+            canvas#regionvoterscount-canvas(height="300px", width="400px")
