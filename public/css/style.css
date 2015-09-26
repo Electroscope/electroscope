@@ -18,6 +18,11 @@ header, main, footer {
 	display:none;
 }
 
+.enable-collapse {
+	-webkit-transition: width 0.6s; /* For Safari 3.1 to 6.0 */
+	transition: width 0.6s;
+}
+
 .menu-expand {
 	width: 240px;
 }
