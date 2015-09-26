@@ -19,22 +19,22 @@ html
           li.logo
             a#logo-container.brand-logo(href='/')
               i.material-icons assessment
-          li.bold
+          li.bold(class="#{ page_name === '2015_overall' ? 'active' : ''}")
             a.waves-effect.waves-teal.nav-menu(href='/2015/overall')
               i.material-icons polymer
               | Overall
-          li.bold
+          li.bold(class="#{ page_name === '2015_parties' ? 'active' : ''}")
             a.waves-effect.waves-teal.nav-menu(href='/2015/parties')
               i.material-icons turned_in_not
               | Parties
-          li.bold
+          li.bold(class="#{ page_name === '2015_states' ? 'active' : ''}")
             a.waves-effect.waves-teal.nav-menu(href='/2015/states')
               i.material-icons location_on
               | States
-          li.bold
-            a.waves-effect.waves-teal.nav-menu(href='/2010/parliaments')
+          li.bold(class="#{ page_name === '2010_results' ? 'active' : ''}")
+            a.waves-effect.waves-teal.nav-menu(href='/2010/results')
               i.material-icons stars
-              | Parliament
+              | Results
     main
       block content
 

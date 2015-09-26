@@ -50,8 +50,8 @@ router.get('/2015/states',function(req,res){
 });
 
 
-router.get('/2010/parliaments',function(req,res){
-  res.render("2010/parliaments",{title:"electroscope",page_name:"2010_parliaments"});
+router.get('/2010/results',function(req,res){
+  res.render("2010/results",{title:"electroscope",page_name:"2010_results"});
 });
 
 router.get('/choropleth',function(req,res){

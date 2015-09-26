@@ -33,15 +33,15 @@ var $amhStates;
       for (var k = 0; k < $pthStates.length; k++) {
         if ($pthStates[k].state_code === state.code) {
           stateData = $pthStates[k];
-          break; 
-        } 
+          break;
+        }
       };
     } else {
       for (var k = 0; k < $amhStates.length; k++) {
         if ($amhStates[k].state_code === state.code) {
           stateData = $amhStates[k];
           break;
-        } 
+        }
       };
     }
 
@@ -108,11 +108,11 @@ var $amhStates;
     state.id = state.name.toLowerCase();
     if (i === 0) {
       $$maps.append("<div id='" + state.id + "' class='state-map'></div>");
-      $$statesListDropdown.append("<a href='#!' class='btn white-text btn-flat active waves-effect waves-light' data-value='" + state.id + "'>" 
+      $$statesListDropdown.append("<a href='#!' class='btn white-text btn-flat active waves-effect waves-light' data-value='" + state.id + "'>"
         + state.name.replace("_", " ", "g") + "</a>");
     } else {
       $$maps.append("<div id='" + state.id + "' class='state-map'></div>");
-      $$statesListDropdown.append("<a href='#!' class='btn white-text btn-flat waves-effect waves-light' data-value='" + state.id + "'>" 
+      $$statesListDropdown.append("<a href='#!' class='btn white-text btn-flat waves-effect waves-light' data-value='" + state.id + "'>"
         + state.name.replace("_", " ", "g") + "</a>");
     }
 
@@ -249,7 +249,8 @@ var $amhStates;
         scaleLineColor: "#ffffff",
         scaleShowHorizontalLines: false,
         scaleShowVerticalLines: false,
-        scaleFontColor: "#fff"
+        scaleFontColor: "#fff",
+	multiTooltipTemplate: "<%= datasetLabel %> - <%= value %>"
       });
     }
   };
@@ -370,7 +371,7 @@ var $amhStates;
       label: "Radar",
       fillColor: "#ffffff",
       highlightFill: "#ffffff",
-      scaleLineColor: "#66f", 
+      scaleLineColor: "#66f",
       scaleGridLineColor: "#66f",
       angleLineColor: "#66f",
       highlightStroke: "#ffffff",
@@ -390,5 +391,4 @@ var $amhStates;
 
 })();
 
-  
 })(window.electroscope);

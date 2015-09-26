@@ -1,13 +1,16 @@
 (function() {
   var callbacks = {
     parliament: function(response) {
-      var limit = 7;
+      var limit = 7 + 2;
       var data = response.data;
       var labels = [];
       var amh_counts = [];
       var pth_counts = [];
       var rgh_counts = [];
       data.slice(0, limit).map(function(item) {
+	if(item.party == "NUP") return;
+	if(item.party == "NDP") return;
+
         labels.push(item.party);
         pth_counts.push(0);
         amh_counts.push(0);
@@ -22,21 +25,24 @@
           }
         });
       });
+
       labels.push("Others");
       pth_counts.push(0);
       amh_counts.push(0);
       rgh_counts.push(0);
+
       data.slice(limit, data.length).map(function(item) {
         item.parliament_counts.map(function(p) {
           if (p.parliament == "RGH") {
-            rgh_counts[limit] += p.count;
+            rgh_counts[rgh_counts.length-1] += p.count;
           } else if (p.parliament == "AMH") {
-            amh_counts[limit] += p.count;
+            amh_counts[amh_counts.length-1] += p.count;
           } else {
-            pth_counts[limit] += p.count;
+            pth_counts[pth_counts.length-1] += p.count;
           }
         });
       });
+
       var chartData = {
         labels: labels,
         datasets: [{
@@ -62,29 +68,35 @@
           data: rgh_counts
         }]
       };
-      //Parliament Chart 
+
+      //Parliament Chart
       var canvas = document.getElementById("candidatecount-canvas");
       var ctx = canvas.getContext("2d");
       ctx.clearRect(0, 0, 0, 0);
       var myChart = new Chart(ctx).Bar(chartData, {
         label: "By Candidate Count",
-        scaleLineColor: "#999", 
+        scaleLineColor: "#999",
         scaleGridLineColor: "#999",
         scaleShowVerticalLines: false,
         responsive: true,
         scaleFontColor: "#999",
+	multiTooltipTemplate: "<%= datasetLabel %> - <%= value %>",
         legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span class=\"chart-legend\" style=\"background-color:<%=datasets[i].strokeColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>"
       });
       document.getElementById('candidatecount-legend').innerHTML = myChart.generateLegend();
     },
+
     state: function(response) {
-      var limit = 7;
+      var limit = 7 + 2;
       var data = response.data;
       var labels = [];
       var state_counts = [];
       var region_counts = [];
       var states = ["Bago", "Mandalay", "Magway", "Yangon", "Ayeyarwady", "Sagaing", "Tanintharyi"];
+
       data.slice(0, limit).map(function(item) {
+	if (item.party == "NUP") return;
+	if (item.party == "NDP") return;
         labels.push(item.party);
         state_counts.push(0);
         region_counts.push(0);
@@ -96,6 +108,7 @@
           }
         });
       });
+
       labels.push("Others");
       state_counts.push(0);
       region_counts.push(0);
@@ -108,17 +121,18 @@
           }
         });
       });
+
       var chartData = {
         labels: labels,
         datasets: [{
-          label: "State Winners",
+          label: "State",
           fillColor: "#ffffff",
           strokeColor: "#ffffff",
           highlightFill: "#ffffff",
           highlightStroke: "#ffffff",
           data: state_counts
         }, {
-          label: "Region Winners",
+          label: "Region",
           fillColor: "#009688",
           strokeColor: "#009688",
           highlightFill: "#009688",
@@ -131,15 +145,17 @@
       ctx.clearRect(0, 0, 0, 0);
       var myChart = new Chart(ctx).Bar(chartData, {
         label: "By Candidate Count",
-        scaleLineColor: "#ffffff", 
+        scaleLineColor: "#ffffff",
         scaleGridLineColor: "#ffffff",
         scaleShowVerticalLines: false,
         responsive: true,
         scaleFontColor: "#ffffff",
+	multiTooltipTemplate: "<%= datasetLabel %> - <%= value %>",
         legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span class=\"chart-legend\" style=\"background-color:<%=datasets[i].strokeColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>"
       });
       document.getElementById('state-region-legend').innerHTML = myChart.generateLegend();
     },
+
     gender: function(response) {
       var limit = 7;
       var data = response.data;
@@ -191,15 +207,17 @@
       ctx.clearRect(0, 0, 0, 0);
       var myChart = new Chart(ctx).Bar(chartData, {
         label: "By Gender Ratio",
-        scaleLineColor: "#ffffff", 
+        scaleLineColor: "#ffffff",
         scaleGridLineColor: "#ffffff",
         scaleShowVerticalLines: false,
         responsive: true,
         scaleFontColor: "#ffffff",
+	multiTooltipTemplate: "<%= datasetLabel %> - <%= value %>",
         legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span class=\"chart-legend\" style=\"background-color:<%=datasets[i].strokeColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>"
       });
       document.getElementById('gendercount-legend').innerHTML = myChart.generateLegend();
     },
+
     educated: function(response) {
       var limit = 7;
       var data = response.data;
@@ -251,23 +269,26 @@
       ctx.clearRect(0, 0, 0, 0);
       var myChart = new Chart(ctx).Bar(chartData, {
         label: "With or Without Degree",
-        scaleLineColor: "#ffffff", 
+        scaleLineColor: "#ffffff",
         scaleGridLineColor: "#ffffff",
         scaleShowVerticalLines: false,
         responsive: true,
         scaleFontColor: "#ffffff",
+	multiTooltipTemplate: "<%= datasetLabel %> - <%= value %>",
         legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span class=\"chart-legend\" style=\"background-color:<%=datasets[i].strokeColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>"
       });
       document.getElementById('education-legend').innerHTML = myChart.generateLegend();
     },
     //Ethnicity Chart
     ethnicity: function(response) {
-      var limit = 7;
+      var limit = 7 + 2;
       var data = response.data;
       var labels = [];
       var burmese_counts = [];
       var nonburmese_counts = [];
       data.slice(0, limit).map(function(item) {
+	if(item.party == "MFDP") return;
+	if(item.party == "NDP") return;
         labels.push(item.party);
         item.ethnicity_counts.map(function(p) {
           if (p.ethnicity == "ဗမာ") {
@@ -282,12 +303,13 @@
       data.slice(limit, data.length).map(function(item) {
         item.ethnicity_counts.map(function(p) {
           if (p.ethnicity == "ဗမာ") {
-            burmese_counts[limit] += p.count;
+            burmese_counts[burmese_counts.length-1] += p.count;
           } else {
-            nonburmese_counts[limit] += p.count;
+            nonburmese_counts[nonburmese_counts.length-1] += p.count;
           }
         });
       });
+
       var chartData = {
         labels: labels,
         datasets: [{
@@ -311,16 +333,17 @@
       ctx.clearRect(0, 0, 0, 0);
       var myChart = new Chart(ctx).Bar(chartData, {
         label: "By Ethnicity Ratio",
-        scaleLineColor: "#ffffff", 
+        scaleLineColor: "#ffffff",
         scaleGridLineColor: "#ffffff",
         scaleShowVerticalLines: false,
         responsive: true,
         scaleFontColor: "#ffffff",
+	multiTooltipTemplate: "<%= datasetLabel %> - <%= value %>",
         legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span class=\"chart-legend\" style=\"background-color:<%=datasets[i].strokeColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>"
       });
       document.getElementById('burmese-none-legend').innerHTML = myChart.generateLegend();
     },
-    // Age Group Chart 
+    // Age Group Chart
     agegroup: function(response) {
       var limit = 7;
       var data = response.data;
@@ -390,11 +413,12 @@
       ctx.clearRect(0, 0, 0, 0);
       var myChart = new Chart(ctx).Bar(chartData, {
         label: "By Ethnicity Ratio",
-        scaleLineColor: "#ffffff", 
+        scaleLineColor: "#ffffff",
         scaleGridLineColor: "#ffffff",
         scaleShowVerticalLines: false,
         responsive: true,
         scaleFontColor: "#ffffff",
+	multiTooltipTemplate: "<%= datasetLabel %> - <%= value %>",
         legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span class=\"chart-legend\" style=\"background-color:<%=datasets[i].strokeColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>"
       });
       document.getElementById('candidate-count-legend').innerHTML = myChart.generateLegend();
