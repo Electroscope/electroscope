@@ -233,7 +233,6 @@
       responsive: true,
       scaleFontColor: "#999",
       multiTooltipTemplate: "<%= datasetLabel %> - <%= value %>",
-      scaleFontColor: "#999",
       legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span class=\"chart-legend\" style=\"background-color:<%=datasets[i].strokeColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>"
     });
     document.getElementById('winnerstate-legend').innerHTML = myChart.generateLegend();
