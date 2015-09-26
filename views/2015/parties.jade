@@ -4,41 +4,47 @@ block content
 
   .container
     nav
-      .nav-wrapper
-        a.center You can see the analysis of candidates on various perspective.
+      .nav-wrapper.content-center
+        a Analysis of candidates on various perspective.
     .row
       .col.s12
-        .card.blue-grey.darken-1
-          .card-content.center.white-text
-            span.card-title Candidates Counts By Parliament
-            canvas#candidatecount-canvas(height="300px", width="800px")
+        .card-panel
+          h2.panel-title Candidates Counts By Parliament
+          .row
+            .col.s12.content-center
+              canvas#candidatecount-canvas(height="300px", width="800px")
 
       .col.s12
-        .card.blue-grey.darken-1
-          .card-content.center.white-text
-            span.card-title Candidate Counts By Gender
-            canvas#gendercount-canvas(height="300px", width="800px")
+        .card-panel
+          h2.panel-title Candidate Counts By Gender
+          .row
+            .col.s12.content-center
+              canvas#gendercount-canvas(height="300px", width="800px")
 
       .col.s12
-        .card.blue-grey.darken-1
-          .card-content.center.white-text
-            span.card-title Candidate Counts By State / Region
-            canvas#stateregioncount-canvas(height="300px", width="800px")
+        .card-panel
+          h2.panel-title Candidate Counts By State / Region
+          .row
+            .col.s12.content-center
+              canvas#stateregioncount-canvas(height="300px", width="800px")
 
       .col.s12
-        .card.blue-grey.darken-1
-          .card-content.center.white-text
-            span.card-title Candidate Counts By Burmese/Non-Burmese
-            canvas#ethnicitycount-canvas(height="300px", width="800px")
+        .card-panel
+          h2.panel-title Candidate Counts By Burmese/Non-Burmese
+          .row
+            .col.s12.content-center
+              canvas#ethnicitycount-canvas(height="300px", width="800px")
 
       .col.s12
-        .card.blue-grey.darken-1
-          .card-content.center.white-text
-            span.card-title Candidate Counts By Agegroup Under/ Over 50
-            canvas#agegroupcount-canvas(height="300px", width="800px")
+        .card-panel
+          h2.panel-title Candidate Counts By Agegroup Under/ Over 50
+          .row
+            .col.s12.content-center
+              canvas#agegroupcount-canvas(height="300px", width="800px")
 
       .col.s12
-        .card.blue-grey.darken-1
-          .card-content.center.white-text
-            span.card-title Candidate Counts With/Without Degree
-            canvas#bwaeya-canvas(height="300px", width="800px")
+        .card-panel
+          h2.panel-title Candidate Counts With/Without Degree
+          .row
+            .col.s12.content-center
+              canvas#bwaeya-canvas(height="300px", width="800px")
