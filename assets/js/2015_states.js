@@ -156,6 +156,8 @@
       $('.state-name').text($(this).find(":selected").text());
       $('.dt-count').text($(this).find(":selected").data('dt-count'));
       $('.tsp-count').text($(this).find(":selected").data('tsp-count'));
+      $('.pth-seats').text($(this).find(":selected").data('tsp-count'));
+      $('.rgh-seats').text($(this).find(":selected").data('rgh-seats'));
       $('img.state-flag').attr('src', $(this).find(":selected").data('flag_link'));
       $(this).addClass("active");
       drawStateDetail(state);
