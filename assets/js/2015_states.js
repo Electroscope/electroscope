@@ -64,8 +64,8 @@
         var element = parliament + "-canvas";
 
         var colors = {
-          USADP: "#00796B",
-          NLFD: "#FF5252",
+          USDP: "#00796B",
+          NLD: "#FF5252",
           NUP: "#536DFE",
           IC: "#FFA000",
           NDP: "#FFA000",

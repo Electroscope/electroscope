@@ -199,6 +199,19 @@ header, main, footer {
 	font-weight: bold;
 }
 
+/* Select2 Redesign */
+.select.party_list {
+	border:0px 0px 1px 0px;
+	border-color: #9e9e9e;
+	padding: 5px;
+	width: 100%;
+}
+
+.select2-search__field {
+	border:0px;
+	border-bottom: 1px solid #9e9e9e;
+}
+
 /* Icon Class */
 .electroscope-icons {
  	height: 45px;
