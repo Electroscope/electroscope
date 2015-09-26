@@ -3,50 +3,58 @@ html
   head
     title= title
     link(rel='stylesheet', href='/Materialize/dist/css/materialize.min.css')
+    link(rel='stylesheet', href='/font-awesome/css/font-awesome.min.css')
     link(rel='stylesheet' href='https://fonts.googleapis.com/icon?family=Material+Icons')
-    link(rel='stylesheet', href='/css/#{page_name}.css')
     link(rel="stylesheet", href="http://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css")
+    link(rel="stylesheet", href="https://fonts.googleapis.com/css?family=Quicksand")
+    link(rel='stylesheet', href='/css/#{page_name}.css')
   body
     main
       section.section.section-one.white-text
         br
         .row
-          .col.s4
+          .map-view
             center
-              #maps
-              div
-                a(href="#" data-activates='statesListDropdown')#dropdown-button.dropdown-button.btn Ayeyarwaddy
-                ul#statesListDropdown.dropdown-content
-          .col.s8
+              h4 The Candidates Counts of Lower House On Each Reagion
+            .col.s4.offset-s1
+              center
+                #maps
+            .col.s6
+              center
+                #vs
+                br
+                br
+                a(href="/2015/states").waves-effect.waves-light.btn-large Lean more
+          .col.s10.offset-s1
             center
-              #vs
-              br
-              br
-              br
-              br
-              br
-              br
-              br
-              br
-              br
-              br
-              br
-              a(href="/2015/states").btn Lean more
+              div#statesListDropdown
       section.icon-section.white-text
+        .row
+          .col.s10.offset-s1
+            .row
+              center.col.s4
+                h1 38
+                  small M
+                h3 Peoples
+              center.col.s4
+                h1 6
+                  small K
+                h3 Candidates
+              center.col.s4
+                h1 480+
+                h3 Seats
       section.section.section-two.white-text
         .row
           .col.s12
             center
-              h1 Candidate Counts By Agegroup Under/ Over 50
-              br
-              br
-              br
-              br
-              br
-              canvas#agegroupcount-canvas(height="300px", width="800px")
-              br
-              br
-              br
-              a(href="/2015/parties").btn Lean more
+              h1 The Awesome Analytics Data
+              h5 Candidates count group by age-group 
+                br
+                | under/over 50
+              .row
+                .col.s12
+                  center
+                    canvas#agegroupcount-canvas(height="400px", width="800px")
+              a(href="/2015/parties").waves-effect.waves-light.btn-large Lean more
 
     script(src="/js/#{page_name}/app.min.js").
