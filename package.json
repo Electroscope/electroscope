@@ -18,9 +18,9 @@
     "gulp-watch": "^4.3.5",
     "jade": "~1.11.0",
     "morgan": "~1.6.1",
+    "nodemon": "^1.6.0",
     "serve-favicon": "~2.3.0",
-    "nodemon": "^1.6.0"
+    "vhost": "^3.0.1"
   },
-  "devDependencies": {
-  }
+  "devDependencies": {}
 }
