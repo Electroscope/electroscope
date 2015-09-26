@@ -12,6 +12,12 @@ header, main, footer {
 	width: 80px !important;
 }
 
+.nav-menu .material-icons {
+	position: relative;
+	top: 5px;
+	margin-right: 5px;
+}
+
 .nav-menu-title {
 	margin-left: 20px;
 	position: relative;
@@ -19,7 +25,13 @@ header, main, footer {
 	font-size: 16px;
 }
 
-.menu-collapse .nav-menu-title {
+.logo-title {
+	position: relative;
+	top : -40px;
+	font-size: 16px;
+}
+
+.menu-collapse .nav-menu-title, .menu-collapse .logo-title {
 	display:none;
 }
 

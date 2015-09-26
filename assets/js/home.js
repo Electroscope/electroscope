@@ -47,7 +47,7 @@ var $amhStates;
 
     var slice5_total = 0;
     var sorted = stateData.party_counts.sort(function (a,b) {
-      return a.count < b.count;
+      return b.count - a.count;
     });
 
     sorted.slice(5).forEach(function (e){
