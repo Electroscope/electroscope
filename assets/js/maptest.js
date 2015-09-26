@@ -1,6 +1,9 @@
 (function(electroscope){
 
   $.getJSON("http://localhost:3000/states_regions.topojson", function(data){
+
+    
+
     var defaultColor = "steelblue";
     var statePartyCountCache = null;
     var options = {
@@ -40,7 +43,7 @@
                   list[house.en] += ' <div class="col s6">\
                       <div class="card blue-grey darken-1"\
                         <div class="card-content white-text">\
-                          <span class="card-title">'+item.party +'</span>\
+                          <span class="card-title">'+ party_names_ln[item.party] +'</span>\
                           <div class="candidate-count col offset-s4 s4 content-center">\
                             <div class="stat-count circle red">\
                               <div class="circle_inner">\
