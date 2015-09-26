@@ -46,7 +46,7 @@ var PAGES = {
   "choropleth": concatDefault(["choropleth.js"], [__MATERIAL_LITE, __D3, __TOPOJSON, __CHARTJS ]),
   "2010_results": concatDefault([ "2010_results.js"], [__MATERIAL_LITE, __D3, __TOPOJSON, __CHARTJS,__HO_CHARTJS ]),
   "2015_parties": concatDefault([ "2015_parties.js"], [__MATERIAL_LITE, __D3, __TOPOJSON, __CHARTJS,__HO_CHARTJS, __SELECT2 ]),
-  "2015_states": concatDefault([ "map.js", "hex2rgba.js", "2015_states.js"], [__MATERIAL_LITE, __D3, __TOPOJSON, __CHARTJS ]),
+  "2015_states": concatDefault([ "map2.js", "hex2rgba.js", "2015_states.js"], [__MATERIAL_LITE, __D3, __TOPOJSON, __CHARTJS ]),
   "2010_parliaments": concatDefault([ "2010_parliaments.js"], [__MATERIAL_LITE, __D3, __TOPOJSON, __CHARTJS ]),
   "circle_test": concatDefault([ "circle_test.js"], [__MATERIAL_LITE, __D3, __TOPOJSON ])
 };
