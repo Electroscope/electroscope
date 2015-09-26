@@ -260,6 +260,19 @@
     $('.party_list').select2({
         placeholder : 'Please select the party'
     }).on('select2:select',function(e){
+        $('#agegroup-canvas').remove(); 
+        $('.agegroup-canvas').append("<canvas id='agegroup-canvas' width='300px' height='300px'></canvas>");
+        $('#gender-canvas').remove(); 
+        $('.gender-canvas').append("<canvas id='gender-canvas' width='300px' height='300px'></canvas>");
+        $('#religion-canvas').remove(); 
+        $('.religion-canvas').append("<canvas id='religion-canvas' width='300px' height='300px'></canvas>");
+         $('#ethnicity-canvas').remove(); 
+        $('.ethnicity-canvas').append("<canvas id='ethnicity-canvas' width='300px' height='300px'></canvas>");
+        $('#bwaeya-canvas').remove(); 
+        $('.bwaeya-canvas').append("<canvas id='bwaeya-canvas' width='300px' height='300px'></canvas>");
+         $('#parliament-canvas').remove(); 
+        $('.parliament-canvas').append("<canvas id='parliament-canvas' width='300px' height='300px'></canvas>");
+       
         chartList.map(function(chartType){
           $.getJSON(baseUrl + "/api/candidates/count/by-"+chartType+"?party="+e.params.data.id, chartCallbacks[chartType]);
         });
