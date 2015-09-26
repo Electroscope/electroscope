@@ -1,7 +1,7 @@
 (function () {
 
 
-  window.electroscope.drawChoroplethMap = function(topoJSON, options){
+  window.electroscope.drawChoroplethMap = function(topoJSON, data, options){
     var defaultColor = options.defaultColor || "steelblue";
     var width = options.width || 400,
         height = options.height || 400;
@@ -9,6 +9,7 @@
     var metaKey = options.metaKey || "districts";
     var regionCodeField = options.regionCodeField || "DT_PCODE";
     var regionNameField = options.regionNameField || "name";
+    var dataField = options.dataField || "count";
     console.log(defaultColor);
     // helper functions
     var computeScaleFromBounds = function (bounds){
@@ -57,15 +58,30 @@
     var offsetT = element[0].offsetTop + 20;
     console.log("Before D3 Binding", regions.features);
 
-    var counts = regions.features.map(function(d){
-      return d.properties.count;
+    var features = regions.features.map(function(d){
+      data.map(function(item){
+        console.log("STS", item.state, d.properties.ST);
+        if(item.state === d.properties.ST){
+          d.properties.count = item.count;
+        }
+      });
+      return d;
     });
 
+    var counts = features.map(function(d){
+      return d.properties.count;
+    });
+    console.log("Counts", counts);
+
     var color = d3.scale.linear() // create a linear scale
-        .domain(d3.min(counts),d3.max(counts)])  // input uses min and max values
-        .range([.3,1]); 
+        .domain([d3.min(counts),d3.max(counts)])  // input uses min and max values
+        .range(["#fa9fb5", "#c51b8a"]);
+    // var color = d3.scale.threshold()
+    //     .domain([d3.min(counts), d3.max(counts)])
+    //     .range(["#f2f0f7", "#dadaeb", "#bcbddc", "#9e9ac8", "#756bb1", "#54278f"]);
+
     map.selectAll("path")
-              .data(regions.features)
+              .data(features)
               .enter()
               .append("path")
               .attr("d", path)
@@ -73,8 +89,9 @@
               .attr('id', function(d, i){
                 return d.properties[regionCodeField];
               })
-              .style("fill", function(d, i){                
-                return color(d.properties.count);
+              .style("fill", function(d, i){  
+
+                return color(d.properties.count ? d.properties.count : 0);
               })
               .on('click', options.onClickHandler)
               .on("mousemove", function(d,i) {
@@ -82,7 +99,7 @@
                 tooltip
                     .classed("hidden", false)
                     .attr("style", "left:"+(mouse[0]+offsetL)+"px;top:"+(mouse[1]+offsetT)+"px")
-                    .html(d.properties[regionNameField]);
+                    .html(d.properties[regionNameField] + " : " + d.properties.count + " candidates");
               })
               .on("mouseout",  function(d,i) {
                 tooltip.classed("hidden", true)
@@ -97,18 +114,19 @@
       element: '#states_choropleth',
       width: 400,
       height: 600,
-      defaultColor: defaultColor,
+      defaultColor: "red",
       metaKey: "output2",
       regionNameField: "name",
       regionCodeField: "ST_PCODE",
       onClickHandler: function(d){
         console.log("Clicked", d);
-      };
-      $.getJSON("http://localhost:3000/api/candidates/count/by-state", function(data_response){
-        console.log(topo_response);
-        console.log(data_response);
-      });
+      }
     };
+    $.getJSON("http://localhost:3000/api/candidates/count/by-state?party=NLFD", function(data_response){
+      console.log(topo_response);
+      console.log(data_response);
+      window.electroscope.drawChoroplethMap(topo_response, data_response.data[0].state_counts, options);
+    });
   })
 })();
 

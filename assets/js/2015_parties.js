@@ -1,136 +1,388 @@
 (function(){
-	var parties = null;
-	
-	var party_limit = 50;
-	var other = { party:'Other',count:0};
-	
-	var party_counting = function(party){
-		if(isNaN(party_limit)) party_limit = 0;
-		console.log(party_limit);
-		if(party.count<party_limit){
-			other.count += party.count;
-		}
-		return party.count > party_limit;
-	};
+  var callbacks = {
+    parliament: function (response) {
+      var limit = 7;
+      var data = response.data;
+      var labels = [];
+      var amh_counts = [];
+      var pth_counts = [];
+      var rgh_counts = [];
 
-	var chart = {
-		region:function(responseData){
+      data.slice(0, limit).map(function(item) {
+	labels.push(item.party);
+	pth_counts.push(0);
+	amh_counts.push(0);
+	rgh_counts.push(0);
 
-			var arr = responseData.party_counts.filter(party_counting);
-			arr.unshift(other);
-			var labels = arr.map(function(item){return item['party']});
-			var counts = arr.map(function(item){return item['count']});
-			var ctx = $('#parties-region').get(0).getContext('2d');
-			var data = {
-    		labels: labels,
-    		datasets: [
-      					{
-					        label: 'Months',
-					        fillColor: 'rgba(4,151,179,0.5)',
-					        highlightFill: 'rgba(0,163,124,0.5)',
-					        data: counts
-      					}
-    			]
-  			};
-  			var options = {
-    			barStrokeWidth : 1,
-    			responsive: true,
-    			animation: true,
-    			barShowStroke: false,
-  			};
-
-  			new Chart(ctx).HorizontalBar(data, options);	
-  			other.count = 0;
-		},
-		amh:function(responseData){
-		
-			var arr = responseData.party_counts.filter(party_counting);
-			arr.unshift(other);
-			
-			var labels = arr.map(function(item){return item['party']});
-			var counts = arr.map(function(item){return item['count']});
-			var ctx = $('#parties-amh').get(0).getContext('2d');
-			var data = {
-    		labels: labels,
-    		datasets: [
-      					{
-					        label: 'Months',
-					        fillColor: 'rgba(4,151,179,0.5)',
-					        highlightFill: 'rgba(0,163,124,0.5)',
-					        data: counts
-      					}
-    			]
-  			};
-  			var options = {
-    			barStrokeWidth : 1,
-    			responsive: true,
-    			animation: true,
-    			barShowStroke: false,
-  			};
-  			new Chart(ctx).HorizontalBar(data, options);
-  			other.count = 0;
-		},
-
-		pth:function(responseData){
-			var arr = responseData.party_counts.filter(party_counting);
-			arr.unshift(other);
-			var labels = arr.map(function(item){return item['party']});
-			var counts = arr.map(function(item){return item['count']});
-			var ctx = $('#parties-pth').get(0).getContext('2d');
-			var data = {
-    		labels: labels,
-    		datasets: [
-      					{
-					       
-					        fillColor: 'rgba(4,151,179,0.5)',
-					        highlightFill: 'rgba(0,163,124,0.5)',
-					        data: counts
-      					}
-    			]
-  			};
-  			var options = {
-    			barStrokeWidth : 1,
-    			responsive: true,
-    			animation: true,
-    			barShowStroke: false,
-    
-    
-  			};
-
-  			new Chart(ctx).HorizontalBar(data, options);
-  			other.count = 0;
-		}
-
-	};
-
-
-	
-	$('document').ready(function(){
-
-		
-			for(key in party_names_ln){
-				$('#party_names').append("<a class='collection-item'>" + party_names_ln[key] + "(" + key +  ")</a>" );			
-			}
-		
-		var baseUrl = "http://localhost:3000";
-		$.getJSON(baseUrl + "/api/candidates/count/by-party?group_by=parliament", function(response){
-			parties = response.data;
-			chart.region(parties[0]);
-			chart.pth(parties[1]);
-			chart.amh(parties[2]);
-    	});
-
-		
-		$('#party_limit').on('change',function(){
-			party_limit = parseInt($('#party_limit').val());
-			chart.region(parties[0]);
-			chart.pth(parties[1]);
-			chart.amh(parties[2]);
-
-		});
-
- 
-
+	item.parliament_counts.map(function (p) {
+	  console.log(p);
+	  if (p.parliament == "RGH") {
+	    rgh_counts[rgh_counts.length-1] = p.count;
+	  } else if (p.parliament == "AMH") {
+	    amh_counts[amh_counts.length-1] = p.count;
+	  } else {
+	    pth_counts[pth_counts.length-1] = p.count;
+	  }
 	});
+      });
 
+      labels.push("Others");
+      pth_counts.push(0);
+      amh_counts.push(0);
+      rgh_counts.push(0);
+
+      data.slice(limit, data.length).map(function(item) {
+	item.parliament_counts.map(function (p) {
+	  if (p.parliament == "RGH") {
+	    rgh_counts[limit] += p.count;
+	  } else if (p.parliament == "AMH") {
+	    amh_counts[limit] += p.count;
+	  } else {
+	    pth_counts[limit] += p.count;
+	  }
+	});
+      });
+
+      var chartData = {
+	labels: labels,
+	datasets: [
+	  {
+            label: "Amyothar Hluttaw",
+            fillColor: "rgba(220,220,220,0.5)",
+            strokeColor: "rgba(220,220,220,0.8)",
+            highlightFill: "rgba(220,220,220,0.75)",
+            highlightStroke: "rgba(220,220,220,1)",
+            data: amh_counts
+	  },
+	  {
+            label: "Pyithu Hluttaw",
+            fillColor: "rgba(151,187,205,0.5)",
+            strokeColor: "rgba(151,187,205,0.8)",
+            highlightFill: "rgba(151,187,205,0.75)",
+            highlightStroke: "rgba(151,187,205,1)",
+            data: pth_counts
+	  },
+	  {
+            label: "Regional Hluttaw",
+            fillColor: "rgba(151,187,205,0.5)",
+            strokeColor: "rgba(151,187,205,0.8)",
+            highlightFill: "rgba(151,187,205,0.75)",
+            highlightStroke: "rgba(151,187,205,1)",
+            data: rgh_counts
+	  }
+	]
+      };
+
+      var canvas = document.getElementById("candidatecount-canvas");
+      var ctx = canvas.getContext("2d");
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      var myChart = new Chart(ctx).Bar(chartData, {
+	label: "By Candidate Count",
+	fillColor: "rgba(247, 50, 50, 0.75)",
+	strokeColor: "rgba(247, 50, 50, 0.8)",
+	highlightFill: "rgba(247, 50, 50, 0.5)",
+	highlightStroke: "rgba(247, 50, 50, 1)",
+	scaleFontColor: "#fff"
+      });
+    },
+
+    gender: function (response) {
+      var limit = 7;
+      var data = response.data;
+      var labels = [];
+      var male_counts = [];
+      var female_counts = [];
+
+      data.slice(0, limit).map(function(item) {
+	labels.push(item.party);
+	item.gender_counts.map(function (p) {
+	  if (p.gender == "M") {
+	    male_counts.push(p.count);
+	  } else if (p.gender == "F") {
+	    female_counts.push(p.count);
+	  }
+	});
+      });
+
+      labels.push("Others");
+      male_counts.push(0);
+      female_counts.push(0);
+
+      data.slice(limit, data.length).map(function(item) {
+	item.gender_counts.map(function (p) {
+	  if (p.gender == "M") {
+	    male_counts[limit] += p.count;
+	  } else if (p.gender == "F") {
+	    female_counts[limit] += p.count;
+	  }
+	});
+      });
+
+      var chartData = {
+	labels: labels,
+	datasets: [
+	  {
+            label: "Male",
+            fillColor: "rgba(220,220,220,0.5)",
+            strokeColor: "rgba(220,220,220,0.8)",
+            highlightFill: "rgba(220,220,220,0.75)",
+            highlightStroke: "rgba(220,220,220,1)",
+            data: male_counts
+	  },
+	  {
+            label: "Pyithu Hluttaw",
+            fillColor: "rgba(151,187,205,0.5)",
+            strokeColor: "rgba(151,187,205,0.8)",
+            highlightFill: "rgba(151,187,205,0.75)",
+            highlightStroke: "rgba(151,187,205,1)",
+            data: female_counts
+	  },
+	]
+      };
+
+      var canvas = document.getElementById("gendercount-canvas");
+      var ctx = canvas.getContext("2d");
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      var myChart = new Chart(ctx).Bar(chartData, {
+	label: "By Gender Ratio",
+	fillColor: "rgba(247, 50, 50, 0.75)",
+	strokeColor: "rgba(247, 50, 50, 0.8)",
+	highlightFill: "rgba(247, 50, 50, 0.5)",
+	highlightStroke: "rgba(247, 50, 50, 1)",
+	scaleFontColor: "#fff"
+      });
+    },
+
+    educated: function (response) {
+      var limit = 7;
+      var data = response.data;
+      var labels = [];
+      var bwaeya_counts = [];
+      var nonbwaeya_counts = [];
+
+      data.slice(0, limit).map(function(item) {
+	labels.push(item.party);
+	item.educated_counts.map(function (p) {
+	  if (p.educated == true) {
+	    bwaeya_counts.push(p.count);
+	  } else {
+	    nonbwaeya_counts.push(p.count);
+	  }
+	});
+      });
+
+      labels.push("Others");
+      bwaeya_counts.push(0);
+      nonbwaeya_counts.push(0);
+
+      data.slice(limit, data.length).map(function(item) {
+	item.educated_counts.map(function (p) {
+	  if (p.educated == true) {
+	    bwaeya_counts[limit] += p.count;
+	  } else {
+	    nonbwaeya_counts[limit] += p.count;
+	  }
+	});
+      });
+
+      var chartData = {
+	labels: labels,
+	datasets: [
+	  {
+            label: "Male",
+            fillColor: "rgba(220,220,220,0.5)",
+            strokeColor: "rgba(220,220,220,0.8)",
+            highlightFill: "rgba(220,220,220,0.75)",
+            highlightStroke: "rgba(220,220,220,1)",
+            data: bwaeya_counts
+	  },
+	  {
+            label: "Pyithu Hluttaw",
+            fillColor: "rgba(151,187,205,0.5)",
+            strokeColor: "rgba(151,187,205,0.8)",
+            highlightFill: "rgba(151,187,205,0.75)",
+            highlightStroke: "rgba(151,187,205,1)",
+            data: nonbwaeya_counts
+	  },
+	]
+      };
+
+      var canvas = document.getElementById("bwaeya-canvas");
+      var ctx = canvas.getContext("2d");
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      var myChart = new Chart(ctx).Bar(chartData, {
+	label: "With or Without Degree",
+	fillColor: "rgba(247, 50, 50, 0.75)",
+	strokeColor: "rgba(247, 50, 50, 0.8)",
+	highlightFill: "rgba(247, 50, 50, 0.5)",
+	highlightStroke: "rgba(247, 50, 50, 1)",
+	scaleFontColor: "#fff"
+      });
+    },
+
+    ethnicity: function (response) {
+      var limit = 7;
+      var data = response.data;
+      var labels = [];
+      var burmese_counts = [];
+      var nonburmese_counts = [];
+
+      data.slice(0, limit).map(function(item) {
+	labels.push(item.party);
+	item.ethnicity_counts.map(function (p) {
+	  if (p.ethnicity == "ဗမာ") {
+	    burmese_counts.push(p.count);
+	    nonburmese_counts.push(item.total_count - p.count);
+	  }
+	});
+      });
+
+      labels.push("Others");
+      burmese_counts.push(0);
+      nonburmese_counts.push(0);
+
+      data.slice(limit, data.length).map(function(item) {
+	item.ethnicity_counts.map(function (p) {
+	  if (p.ethnicity == "ဗမာ") {
+	    burmese_counts[limit] += p.count;
+	  } else {
+	    nonburmese_counts[limit] += p.count;
+	  }
+	});
+      });
+
+      var chartData = {
+	labels: labels,
+	datasets: [
+	  {
+            label: "Burmese",
+            fillColor: "rgba(220,220,220,0.5)",
+            strokeColor: "rgba(220,220,220,0.8)",
+            highlightFill: "rgba(220,220,220,0.75)",
+            highlightStroke: "rgba(220,220,220,1)",
+            data: burmese_counts
+	  },
+	  {
+            label: "Non-Burmese",
+            fillColor: "rgba(151,187,205,0.5)",
+            strokeColor: "rgba(151,187,205,0.8)",
+            highlightFill: "rgba(151,187,205,0.75)",
+            highlightStroke: "rgba(151,187,205,1)",
+            data: nonburmese_counts
+	  },
+	]
+      };
+
+      var canvas = document.getElementById("ethnicitycount-canvas");
+      var ctx = canvas.getContext("2d");
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      var myChart = new Chart(ctx).Bar(chartData, {
+	label: "By Ethnicity Ratio",
+	fillColor: "rgba(247, 50, 50, 0.75)",
+	strokeColor: "rgba(247, 50, 50, 0.8)",
+	highlightFill: "rgba(247, 50, 50, 0.5)",
+	highlightStroke: "rgba(247, 50, 50, 1)",
+	scaleFontColor: "#fff"
+      });
+    },
+
+    agegroup: function (response) {
+      var limit = 7;
+      var data = response.data;
+      var labels = [];
+      var under_50_counts = [];
+      var over_50_counts = [];
+
+      data.slice(0, limit).map(function(item) {
+	labels.push(item.party);
+	under_50_counts.push(0);
+	over_50_counts.push(0);
+	item.agegroup_counts.map(function (p) {
+	  switch(p.agegroup) {
+	  case "20-30":
+	    under_50_counts[under_50_counts.length-1] += p.count;
+	    break;
+	  case "30-40":
+	    under_50_counts[under_50_counts.length-1] += p.count;
+	    break;
+	  case "40-50":
+	    under_50_counts[under_50_counts.length-1] += p.count;
+	    break;
+	  default:
+	    over_50_counts[over_50_counts.length-1] += p.count;
+	  }
+	});
+      });
+
+      labels.push("Others");
+      under_50_counts.push(0);
+      over_50_counts.push(0);
+
+      data.slice(limit, data.length).map(function(item) {
+	item.agegroup_counts.map(function (p) {
+	  switch(p.agegroup) {
+	  case "20-30":
+	    under_50_counts[under_50_counts.length-1] += p.count;
+	    break;
+	  case "30-40":
+	    under_50_counts[under_50_counts.length-1] += p.count;
+	    break;
+	  case "40-50":
+	    under_50_counts[under_50_counts.length-1] += p.count;
+	    break;
+	  default:
+	    over_50_counts[over_50_counts.length-1] += p.count;
+	  }
+	});
+      });
+
+      var chartData = {
+	labels: labels,
+	datasets: [
+	  {
+            label: "Under 50",
+            fillColor: "rgba(220,220,220,0.5)",
+            strokeColor: "rgba(220,220,220,0.8)",
+            highlightFill: "rgba(220,220,220,0.75)",
+            highlightStroke: "rgba(220,220,220,1)",
+            data: under_50_counts
+	  },
+	  {
+            label: "Over 50",
+            fillColor: "rgba(151,187,205,0.5)",
+            strokeColor: "rgba(151,187,205,0.8)",
+            highlightFill: "rgba(151,187,205,0.75)",
+            highlightStroke: "rgba(151,187,205,1)",
+            data: over_50_counts
+	  },
+	]
+      };
+
+      var canvas = document.getElementById("agegroupcount-canvas");
+      var ctx = canvas.getContext("2d");
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      var myChart = new Chart(ctx).Bar(chartData, {
+	label: "By Ethnicity Ratio",
+	fillColor: "rgba(247, 50, 50, 0.75)",
+	strokeColor: "rgba(247, 50, 50, 0.8)",
+	highlightFill: "rgba(247, 50, 50, 0.5)",
+	highlightStroke: "rgba(247, 50, 50, 1)",
+	scaleFontColor: "#fff"
+      });
+    }
+  };
+
+  $(document).ready(function(){
+    var chartList = [
+      "parliament",
+      "gender",
+      "ethnicity",
+      "educated",
+      "agegroup"
+    ];
+    var baseUrl = "http://localhost:3000";
+    chartList.map(function(chartType){
+      $.getJSON(baseUrl + "/api/candidates/count/by-" + chartType +"?year=2015&group_by=party", callbacks[chartType]);
+    });
+  });
 })();

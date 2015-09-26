@@ -49,5 +49,8 @@ router.get('/2015/parliments',function(req,res){
   res.render("2015/parliments",{title:"electroscope",page_name:"2015_parliments"});
 });
 
+router.get('/choropleth',function(req,res){
+  res.render("choropleth",{title:"choropleth",page_name:"choropleth"});
+});
 
 module.exports = router;
