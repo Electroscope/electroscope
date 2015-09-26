@@ -22,7 +22,7 @@
       var options = {
         element: '#state_map',
         width: 300,
-        height: 300,
+        height: 500,
         defaultColor: defaultColor,
         metaKey: state,
         regionNameField: "name",
@@ -152,7 +152,7 @@
       var state = $(this).val();
       var st_code = $(this).find(":selected").data('st_code');
       console.log(state, st_code);
-      $('.state-list-item').removeClass('active');
+      $('img.state-flag').attr('src', $(this).find(":selected").data('flag_link'));
       $(this).addClass("active");
       drawStateDetail(state);
 
