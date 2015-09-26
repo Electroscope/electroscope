@@ -40,8 +40,12 @@
         scaleFontFamily: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
         scaleFontSize: 12,
         scaleFontStyle: "normal",
-        scaleFontColor: "#fff"
+        scaleFontColor: "#757575",
+        legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span class=\"chart-legend\" style=\"background-color:<%=datasets[i].strokeColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>"
       });
+
+      document.getElementById('agegroup-legend').innerHTML = myChart.generateLegend();
+
     },
 
     gender: function(response){
@@ -68,8 +72,10 @@
       var ctx = canvas.getContext("2d");
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       var genderPieChart = new Chart(ctx).Pie(pieData, {
-          animateScale: false
+          animateScale: false,
+          legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span class=\"chart-legend\" style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>"
       });
+      document.getElementById('gender-legend').innerHTML = genderPieChart.generateLegend();
     },
 
     educated: function(response){
@@ -97,8 +103,10 @@
       var ctx = canvas.getContext("2d");
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       var genderPieChart = new Chart(ctx).Pie(pieData, {
-          animateScale: false
+          animateScale: false,
+          legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span class=\"chart-legend\" style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>"
       });
+      document.getElementById('bwaeya-legend').innerHTML = genderPieChart.generateLegend();
     },
 
     religion: function(response){
@@ -135,8 +143,10 @@
           scaleFontFamily: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
           scaleFontSize: 12,
           scaleFontStyle: "normal",
-          scaleFontColor: "#000"
+          scaleFontColor: "#000",
+          legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span class=\"chart-legend\" style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>"
       });
+      document.getElementById('religion-legend').innerHTML = radarChart.generateLegend();
     },
 
     parliament: function(response){
@@ -174,8 +184,10 @@
           scaleFontFamily: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
           scaleFontSize: 12,
           scaleFontStyle: "normal",
-          scaleFontColor: "#000"
+          scaleFontColor: "#000",
+          legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span class=\"chart-legend\" style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>"
       });
+      document.getElementById('parliament-legend').innerHTML = radarChart.generateLegend();
     },
 
     ethnicity: function(response){
@@ -217,13 +229,20 @@
           scaleFontFamily: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
           scaleFontSize: 12,
           scaleFontStyle: "normal",
-          scaleFontColor: "#000"
+          scaleFontColor: "#000",
+          legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span class=\"chart-legend\" style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>"
       });
+      document.getElementById('ethnicity-legend').innerHTML = radarChart.generateLegend();
     }
   };
 
   $(document).ready(function(){
+
+
     var baseUrl = "http://localhost:3000";
+
+
+
     $('ul.tabs').tabs();
     var chartList = [
       "agegroup",
@@ -236,6 +255,24 @@
 
     chartList.map(function(chartType){
       $.getJSON(baseUrl + "/api/candidates/count/by-"+chartType, chartCallbacks[chartType]);
+    });
+
+    $('.party_list').select2({
+        placeholder : 'Please select the party'
+    }).on('select2:select',function(e){
+        chartList.map(function(chartType){
+          $.getJSON(baseUrl + "/api/candidates/count/by-"+chartType+"?party="+e.params.data.id, chartCallbacks[chartType]);
+        });
+    });
+
+    $.getJSON(baseUrl + "/api/parties",function(response){
+
+      var party = response.data;
+      
+      for(var key  in party){
+        $('.party_list').append('<option value="' + key + '">' + party[key] + ' ( '+  key+')</option>')  
+      }
+
     });
   });
 

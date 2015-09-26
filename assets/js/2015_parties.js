@@ -1,5 +1,76 @@
 (function(){
   var callbacks = {
+    state: function (response) {
+      var limit = 7;
+      var data = response.data;
+      var labels = [];
+      var state_counts = [];
+      var region_counts = [];
+      var states = ["Bago", "Mandalay", "Magway", "Yangon", "Ayeyarwady", "Sagaing", "Tanintharyi"];
+
+      data.slice(0, limit).map(function(item) {
+	labels.push(item.party);
+	state_counts.push(0);
+	region_counts.push(0);
+
+	item.state_counts.map(function (p) {
+	  if (states.indexOf(p.state) == -1) {
+	    region_counts[region_counts.length-1] += p.count;
+	  } else {
+	    state_counts[state_counts.length-1] += p.count;
+	  }
+	});
+      });
+
+      labels.push("Others");
+      state_counts.push(0);
+      region_counts.push(0);
+
+      data.slice(limit, data.length).map(function(item) {
+	item.state_counts.map(function (p) {
+	  if (states.indexOf(p.state) == -1) {
+	    region_counts[region_counts.length-1] += p.count;
+	  } else {
+	    state_counts[state_counts.length-1] += p.count;
+	  }
+	});
+      });
+
+      var chartData = {
+	labels: labels,
+	datasets: [
+	  {
+            label: "State Winners",
+            fillColor: "rgba(220,220,220,0.5)",
+            strokeColor: "rgba(220,220,220,0.8)",
+            highlightFill: "rgba(220,220,220,0.75)",
+            highlightStroke: "rgba(220,220,220,1)",
+            data: state_counts
+	  },
+	  {
+            label: "Region Winners",
+            fillColor: "rgba(151,187,205,0.5)",
+            strokeColor: "rgba(151,187,205,0.8)",
+            highlightFill: "rgba(151,187,205,0.75)",
+            highlightStroke: "rgba(151,187,205,1)",
+            data: region_counts
+	  },
+	]
+      };
+
+      var canvas = document.getElementById("stateregioncount-canvas");
+      var ctx = canvas.getContext("2d");
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      var myChart = new Chart(ctx).Bar(chartData, {
+	label: "By Candidate Count",
+	fillColor: "rgba(247, 50, 50, 0.75)",
+	strokeColor: "rgba(247, 50, 50, 0.8)",
+	highlightFill: "rgba(247, 50, 50, 0.5)",
+	highlightStroke: "rgba(247, 50, 50, 1)",
+	scaleFontColor: "#fff"
+      });
+    },
+
     parliament: function (response) {
       var limit = 7;
       var data = response.data;
@@ -15,7 +86,7 @@
 	rgh_counts.push(0);
 
 	item.parliament_counts.map(function (p) {
-	  console.log(p);
+	  
 	  if (p.parliament == "RGH") {
 	    rgh_counts[rgh_counts.length-1] = p.count;
 	  } else if (p.parliament == "AMH") {
@@ -373,16 +444,24 @@
   };
 
   $(document).ready(function(){
+    var baseUrl = "http://localhost:3000";
+    
+    
+    
+
+    
     var chartList = [
       "parliament",
+      "state",
       "gender",
       "ethnicity",
       "educated",
       "agegroup"
     ];
-    var baseUrl = "http://localhost:3000";
     chartList.map(function(chartType){
       $.getJSON(baseUrl + "/api/candidates/count/by-" + chartType +"?year=2015&group_by=party", callbacks[chartType]);
     });
+
+    
   });
 })();
