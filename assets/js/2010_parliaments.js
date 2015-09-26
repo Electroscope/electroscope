@@ -71,17 +71,17 @@
       ]
     };
 
-
     var canvas = document.getElementById("winnerpartycount-canvas");
     var ctx = canvas.getContext("2d");
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     var myChart = new Chart(ctx).Bar(chartData, {
-      label: "By Candidate Count",
+      label: "Party",
       fillColor: "rgba(247, 50, 50, 0.75)",
       strokeColor: "rgba(247, 50, 50, 0.8)",
       highlightFill: "rgba(247, 50, 50, 0.5)",
       highlightStroke: "rgba(247, 50, 50, 1)",
-      scaleFontColor: "#fff"
+      scaleFontColor: "#fff",
+      multiTooltipTemplate: "<%= datasetLabel %> - <%= value %>"
     });
   };
 
@@ -116,7 +116,6 @@
     rgh_votes.push(0);
 
     data.slice(limit, data.length).map(function(item) {
-      console.log(item.parliament_counts);
       item.parliament_counts.map(function (p) {
 	if (p.parliament == "RGH") {
 	  rgh_votes[limit] += p.votes;
@@ -242,14 +241,11 @@
     });
   };
 
-
-
   $(document).ready(function(){
     var baseUrl = "http://localhost:3000";
     $.getJSON(baseUrl + "/api/winners/count/by-parliament?group_by=party", winnersChartByParty);
     $.getJSON(baseUrl + "/api/votes/count/by-parliament?group_by=party", votesChartByParty);
     $.getJSON(baseUrl + "/api/winners/count/by-state?group_by=party", winnersChartByStateRegion);
-
   });
 
 })();

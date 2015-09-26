@@ -5,17 +5,20 @@ block content
   .container
     .row
       .col.s10
-
   .container
     nav
       .nav-wrapper.content-center
         a Analysis of candidates on various perspective.
     .row
       .col.s12
+        div.input-field.col.s11
+          select.party_list
+    .row
+      .col.s12
         .card-panel
           h2.panel-title Age Groups
           .row
-            .chart-wrapper.col.s6
+            .chart-wrapper.col.s6.agegroup-canvas
               canvas#agegroup-canvas(width="300px", height="300px")
             .col.s6
               #agegroup-legend
@@ -24,17 +27,18 @@ block content
         .card-panel
           h2.panel-title Gender Ratio
           .row
-            .chart-wrapper.col.s6
+            .chart-wrapper.col.s6.gender-canvas
               canvas#gender-canvas(width="300px", height="300px")
             .col.s6
               #gender-legend
 
     .row
+
       .col.s12
         .card-panel
           h2.panel-title Religion Ratio
           .row
-            .chart-wrapper.col.s6
+            .chart-wrapper.col.s6.religion-canvas
               canvas#religion-canvas(width="300px", height="300px")
             .col.s6
               #religion-legend
@@ -43,17 +47,16 @@ block content
         .card-panel
           h2.panel-title Ethnicity Ratio
           .row
-            .chart-wrapper.col.s6
+            .chart-wrapper.col.s6.ethnicity-canvas
               canvas#ethnicity-canvas(width="300px", height="300px")
             .col.s6
               #ethnicity-legend
-
     .row
       .col.s12
         .card-panel
           h2.panel-title Graduated Ratio
           .row
-            .chart-wrapper.col.s6
+            .chart-wrapper.col.s6.bwaeya-canvas
               canvas#bwaeya-canvas(width="300px", height="300px")
             .col.s6
               #bwaeya-legend
@@ -62,7 +65,7 @@ block content
         .card-panel
           h2.panel-title By Parliament
           .row
-            .chart-wrapper.col.s6
+            .chart-wrapper.col.s6.parliament-canvas
               canvas#parliament-canvas(width="300px", height="300px")
             .col.s6
               #parliament-legend
