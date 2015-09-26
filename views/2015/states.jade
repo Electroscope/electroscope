@@ -1,73 +1,54 @@
 extends ../layout
 
 block content
+
+  
+  .row 
+    .col.s6
+      .input-field
+      select.browser-default.state-list-select
+        option(value='', disabled='', selected='') Choose your option
+        option(value='Ayeyarwady', data-st_code="MMR017") ဧရာဝတီ
+        option(value='Bago_East', data-st_code="MMR007") ပဲခူး အရှေ့ပိုင်း
+        option(value='Bago_West', data-st_code="MMR008") ပဲခူး အနောက်ပိုင်း
+        option(value='Chin', data-st_code="MMR004") ချင်း
+        option(value='Kachin', data-st_code="MMR001") ကချင်
+        option(value='Kayah', data-st_code="MMR002") ကယား
+        option(value='Kayin', data-st_code="MMR003") ကရင်
+        option(value='Magway', data-st_code="MMR009") မကွေး
+        option(value='Mandalay', data-st_code="MMR010") မန္တလေး
+        option(value='Mon', data-st_code="MMR011") မွန်
+        option(value='Naypyitaw_Council', data-st_code="MMR018") နေပြည်တော် ကောင်စီ
+        option(value='Rakhine', data-st_code="MMR012") ရခိုင်
+        option(value='Sagaing', data-st_code="MMR005") စစ်ကိုင်း
+        option(value='Shan_East', data-st_code="MMR016") ရှမ်းပြည်နယ် အရှေ့ပိုင်း
+        option(value='Shan_North', data-st_code="MMR015") ရှမ်းပြည်နယ် မြောက်ပိုင်း
+        option(value='Shan_South', data-st_code="MMR014") ရှမ်းပြည်နယ် တောင်ပိုင်း
+        option(value=' Tanintharyi', data-st_code="MMR006") တနင်္သာရီ
+        option(value='Yangon', data-st_code="MMR013") ရန်ကုန်
+    
+    .col.s6
+      .btn ပါတီအလိုက်　အမတ်လောင်းအရေအတွက်      
   .row
-    .col.s4
-      .collection.state-list
-        a.collection-item.state-list-item.waves-effect.waves-teal(data-st_code="MMR017")
-          | Ayeyarwady
-        a.collection-item.state-list-item.waves-effect.waves-teal(data-st_code="MMR007")
-          | Bago_East
-        a.collection-item.state-list-item.waves-effect.waves-teal(data-st_code="MMR008")
-          | Bago_West
-        a.collection-item.state-list-item.waves-effect.waves-teal(data-st_code="MMR004")
-          | Chin
-        a.collection-item.state-list-item.waves-effect.waves-teal(data-st_code="MMR001")
-          | Kachin
-        a.collection-item.state-list-item.waves-effect.waves-teal(data-st_code="MMR002")
-          | Kayah
-        a.collection-item.state-list-item.waves-effect.waves-teal(data-st_code="MMR003")
-          | Kayin
-        a.collection-item.state-list-item.waves-effect.waves-teal(data-st_code="MMR009")
-          | Magway
-        a.collection-item.state-list-item.waves-effect.waves-teal(data-st_code="MMR010")
-          | Mandalay
-        a.collection-item.state-list-item.waves-effect.waves-teal.active(data-st_code="MMR011")
-          | Mon
-        a.collection-item.state-list-item.waves-effect.waves-teal(data-st_code="MMR018")
-          | Naypyitaw  Council
-        a.collection-item.state-list-item.waves-effect.waves-teal(data-st_code="MMR012")
-          | Rakhine
-        a.collection-item.state-list-item.waves-effect.waves-teal(data-st_code="MMR005")
-          | Sagaing
-        a.collection-item.state-list-item.waves-effect.waves-teal(data-st_code="MMR016")
-          | Shan_East
-        a.collection-item.state-list-item.waves-effect.waves-teal(data-st_code="MMR015")
-          | Shan_North
-        a.collection-item.state-list-item.waves-effect.waves-teal(data-st_code="MMR014")
-          | Shan_South
-        a.collection-item.state-list-item.waves-effect.waves-teal(data-st_code="MMR006")
-          | Tanintharyi
-        a.collection-item.state-list-item.waves-effect.waves-teal(data-st_code="MMR013")
-          | Yangon
+    .col.s6
+      #state_map
+    .col.s6
+      #legislature_counts
+        .row
+          .candidate-count.col.s6.content-center#AMH-canvas
+          .candidate-count.col.s6.content-right#AMH-legends
+          p.content-center အမျိုးသားလွှတ်တော်
+        .row
+          .candidate-count.col.s6.content-center#PTH-canvas
+          .candidate-count.col.s6.content-right#PTH-legends
+          p.content-center ပြည်သူ့လွှတ်တော်
+        .row
+          .candidate-count.col.s6.content-center#RGH-canvas
+          .candidate-count.col.s6.content-right#RGH-legends
+          p.content-center တိုင်းဒေသကြီး/ပြည်နယ် လွှတ်တော်
 
-    .col.s8
-      nav
-        .nav-wrapper
-          .col.offset-s4.s4#state_map_label
-          
-      .row
-        .col.s6
-          #state_map
-        .col.s6
-          .row
-            .btn ပါတီအလိုက်　အမတ်လောင်းအရေအတွက်
-          #legislature_counts
-            .row
-              .candidate-count.col.s6.content-center#AMH-canvas
-              .candidate-count.col.s6.content-right#AMH-legends
-              p.content-center အမျိုးသားလွှတ်တော်
-            .row
-              .candidate-count.col.s6.content-center#PTH-canvas
-              .candidate-count.col.s6.content-right#PTH-legends
-              p.content-center ပြည်သူ့လွှတ်တော်
-            .row
-              .candidate-count.col.s6.content-center#RGH-canvas
-              .candidate-count.col.s6.content-right#RGH-legends
-              p.content-center တိုင်းဒေသကြီး/ပြည်နယ် လွှတ်တော်
-
-      .row
-        #state-details
+  .row
+    #state-details
 
 
 

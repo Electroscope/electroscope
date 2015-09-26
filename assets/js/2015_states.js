@@ -31,18 +31,18 @@
       electroscope.drawD3Map(data, options)
         .on('click', function(d){
           console.log("Clicking");
-          d3.selectAll(".map_region")
+          d3.selectAll("path")
             .style("fill", defaultColor);
           d3.select(this)
             .style("fill", "red");         
-      })
-      .on("mousemove", function(d,i) {
-        var html = '<a class="waves-effect waves-light btn center">' + d.properties.constituency_name_en + "-" + d.properties.constituency_number +'</a>';
-        $('#state_map_label').html(html);
-      })
-      .on("mouseout",  function(d,i) {
-        $('#state_map_label').html('');
-      })
+        })
+        .on("mousemove", function(d,i) {
+          var html = '<a class="waves-effect waves-light btn center">' + d.properties.constituency_name_en + "-" + d.properties.constituency_number +'</a>';
+          $('#state_map_label').html(html);
+        })
+        .on("mouseout",  function(d,i) {
+          $('#state_map_label').html('');
+        })
 
     });
     var parliaments = ["AMH", "PTH", "RGH"];
@@ -148,9 +148,10 @@
 
     drawStateDetail("Mandalay");
     renderIndividualParliamentData("MMR010");
-    $('.state-list-item').on('click', function(){
-      var state = $(this).text();
-      var st_code = $(this).data('st_code');
+    $('select.state-list-select').on('change', function(){
+      var state = $(this).val();
+      var st_code = $(this).find(":selected").data('st_code');
+      console.log(state, st_code);
       $('.state-list-item').removeClass('active');
       $(this).addClass("active");
       drawStateDetail(state);
