@@ -177,6 +177,17 @@ header, main, footer {
     margin-top: 3px;
 }
 
+.horizontal-legend {
+	overflow: hidden;
+	margin-left: 70px;
+}
+
+.horizontal-legend ul li {
+	display: inline-block;
+	float:left;
+	margin-right: 15px;
+}
+
 /* Icon Class */
 .electroscope-icons {
  	height: 45px;
