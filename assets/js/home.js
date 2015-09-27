@@ -309,21 +309,30 @@ var $amhStates;
       if (state == "") { return; }
 
       if (states.indexOf(state) == -1) {
-	state_labels.push(state);
-	state_populations.push(census18PopData[state]);
+  state_labels.push(state);
+  state_populations.push(census18PopData[state]);
       } else {
-	region_labels.push(state);
-	region_populations.push(census18PopData[state]);
+  region_labels.push(state);
+  region_populations.push(census18PopData[state]);
       }
 
       item.parliament_counts.map(function (s){
-	if (states.indexOf(state) == -1) {
-	  state_parliament_votes[s.parliament].push(s.votes);
-	} else {
-	  region_parliament_votes[s.parliament].push(s.votes);
-	}
+  if (states.indexOf(state) == -1) {
+    state_parliament_votes[s.parliament].push(s.votes);
+  } else {
+    region_parliament_votes[s.parliament].push(s.votes);
+  }
       });
     });
+
+    // console.log(state_labels);
+    // console.log(state_parliament_votes['RGH']);
+    // console.log(state_parliament_votes['PTH']);
+    // console.log(state_parliament_votes['AMH']);
+    // console.log(state_labels);
+    // console.log(state_parliament_votes['RGH']);
+    // console.log(state_parliament_votes['PTH']);
+    // console.log(state_parliament_votes['AMH']);
 
     var statechartData = {
       labels: state_labels,
@@ -352,17 +361,58 @@ var $amhStates;
         pointColor: "rgba(205,151,187,1)",
         pointStrokeColor: "#fff",
         pointHighlightFill: "#fff",
-        pointHighlightStroke: "rgba(205,151,187,1)",
+        pointHighlightStroke: "rgba(220,220,220,1)",
         data: state_parliament_votes['AMH']
       }, {
         label: "Population",
-        fillColor: "rgba(255,235,59,0.2)",
-        strokeColor: "rgba(255,235,59,1)",
-        pointColor: "rgba(255,235,59,1)",
+        fillColor: "rgba(220,220,220,0.2)",
+        strokeColor: "rgba(220,220,220,1)",
+        pointColor: "rgba(220,220,220,1)",
         pointStrokeColor: "#fff",
         pointHighlightFill: "#fff",
-        pointHighlightStroke: "rgba(255,235,59,1)",
+        pointHighlightStroke: "rgba(220,220,220,1)",
         data: state_populations
+      }]
+    };
+
+    var regionchartData = {
+      labels: region_labels,
+      datasets: [{
+        label: "Regional Hluttaw",
+        fillColor: "rgba(151,187,205,0.2)",
+        strokeColor: "rgba(151,187,205,1)",
+        pointColor: "rgba(151,187,205,1)",
+        pointStrokeColor: "#fff",
+        pointHighlightFill: "#fff",
+        pointHighlightStroke: "rgba(151,187,205,1)",
+        data: region_parliament_votes['RGH']
+      }, {
+        label: "Pyithu Hluttaw",
+        fillColor: "rgba(220,220,220,0.2)",
+        strokeColor: "rgba(220,220,220,1)",
+        pointColor: "rgba(220,220,220,1)",
+        pointStrokeColor: "#fff",
+        pointHighlightFill: "#fff",
+        pointHighlightStroke: "rgba(220,220,220,1)",
+        data: region_parliament_votes['PTH']
+      }, {
+        label: "Amyothar Hluttaw",
+        fillColor: "rgba(205,151,187,0.2)",
+        strokeColor: "rgba(205,151,187,1)",
+        pointColor: "rgba(205,151,187,1)",
+        pointStrokeColor: "#fff",
+        pointHighlightFill: "#fff",
+        pointHighlightStroke: "rgba(220,220,220,1)",
+        data: region_parliament_votes['AMH']
+      }, {
+        label: "Population",
+        fillColor: "rgba(220,220,220,0.2)",
+        strokeColor: "rgba(220,220,220,1)",
+        pointColor: "rgba(220,220,220,1)",
+        pointStrokeColor: "#fff",
+        pointHighlightFill: "#fff",
+        pointHighlightStroke: "rgba(220,220,220,1)",
+        data: region_populations
       }]
     };
 
@@ -373,13 +423,28 @@ var $amhStates;
       label: "Radar",
       fillColor: "#ffffff",
       highlightFill: "#ffffff",
-      scaleLineColor: "#66f",
-      scaleGridLineColor: "#66f",
-      angleLineColor: "#66f",
+      scaleLineColor: "#666",
+      scaleGridLineColor: "#666",
       highlightStroke: "#ffffff",
       pointLabelFontColor: "#ffffff",
-      pointLabelFontSize: 24,
-      pointLabelFontFamily: "Quicksand",
+      pointLabelFontSize: 12,
+      scaleFontColor: "#ffffff",
+      responsive: true,
+      multiTooltipTemplate: "<%= datasetLabel %> - <%= value %>"
+    });
+
+    var canvas2 = document.getElementById("regionvoterscount-canvas");
+    var ctx2 = canvas2.getContext("2d");
+    ctx2.clearRect(0, 0, 0, 0);
+    var myChart2 = new Chart(ctx2).Radar(regionchartData, {
+      label: "Radar",
+      fillColor: "#ffffff",
+      highlightFill: "#ffffff",
+      scaleLineColor: "#66f",
+      scaleGridLineColor: "#66f",
+      highlightStroke: "#ffffff",
+      pointLabelFontColor: "#ffffff",
+      pointLabelFontSize: 12,
       scaleFontColor: "#ffffff",
       responsive: true,
       multiTooltipTemplate: "<%= datasetLabel %> - <%= value %>"
