@@ -23,10 +23,10 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'bower_components')));
 
-app.use(vhost("electroscope.kny.co", routes));
-app.use(vhost("test.kny.co", routes));
-app.use(vhost("localhost", routes));
-// app.use('/', routes);
+// app.use(vhost("electroscope.kny.co", routes));
+// app.use(vhost("test.kny.co", routes));
+// app.use(vhost("localhost", routes));
+app.use('/', routes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
