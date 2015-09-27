@@ -425,7 +425,7 @@
     }
   };
   $(document).ready(function() {
-    var baseUrl = "http://127.0.0.1:3000";
+    var baseUrl = "http://128.199.69.68:3000";
     var chartList = [
       "parliament",
       "state",

@@ -17,7 +17,7 @@ jQuery(function(){
 	});
 
 	
-	$.ajax({url:"http://127.0.0.1:3000/api/parties",async:false,success:function(response){
+	$.ajax({url:"http://128.199.69.68:3000/api/parties",async:false,success:function(response){
         window.party_names_ln = response.data;
     }});
 
