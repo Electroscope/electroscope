@@ -305,21 +305,23 @@ var $amhStates;
     var region_populations = [];
 
     data.map(function(item) {
-      var parliament = item.parliament;
-      item.state_counts.map(function(s) {
-        if (s.state == "") {} else if (states.indexOf(s.state) == -1) {
-          if (region_labels.indexOf(s.state) == -1) {
-            region_labels.push(s.state);
-            region_populations.push(census18PopData[s.state]);
-          }
-          region_parliament_votes[parliament].push(s.votes);
-        } else {
-          if (state_labels.indexOf(s.state) == -1) {
-            state_labels.push(s.state);
-            state_populations.push(census18PopData[s.state]);
-          }
-          state_parliament_votes[parliament].push(s.votes);
-        }
+      var state = item.state;
+      if (state == "") { return; }
+
+      if (states.indexOf(state) == -1) {
+	state_labels.push(state);
+	state_populations.push(census18PopData[state]);
+      } else {
+	region_labels.push(state);
+	region_populations.push(census18PopData[state]);
+      }
+
+      item.parliament_counts.map(function (s){
+	if (states.indexOf(state) == -1) {
+	  state_parliament_votes[s.parliament].push(s.votes);
+	} else {
+	  region_parliament_votes[s.parliament].push(s.votes);
+	}
       });
     });
 
@@ -386,7 +388,7 @@ var $amhStates;
 
   $(document).ready(function() {
     var baseUrl = "http://128.199.69.68:3000";
-    $.getJSON(baseUrl + "/api/votes/count/by-state?group_by=parliament", votersCountByPopulation);
+    $.getJSON(baseUrl + "/api/votes/count/by-parliament?group_by=state", votersCountByPopulation);
   });
 
 })();

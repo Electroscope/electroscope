@@ -128,8 +128,8 @@
         };
       });
 
-      var others = { 
-        value: 0, 
+      var others = {
+        value: 0,
         label: "Others",
         color: colors[4],
         highlight : highlight_colors[4]
@@ -219,8 +219,8 @@
         count: 0
       };
 
-      var others = { 
-        value: 0, 
+      var others = {
+        value: 0,
         label: "Others",
         color: colors[9],
         highlight: highlight_colors[9]
@@ -250,7 +250,7 @@
   $(document).ready(function(){
 
 
-    var baseUrl = "http://128.199.69.68:3000";
+    var baseUrl = "http://192.168.1.82:3000";
 
 
 
@@ -294,7 +294,7 @@
        $('.cho_map').append("<div id='states_choropleth'></div>");
 
         //draw map again
-        $.getJSON("http://128.199.69.68:3000/states_regions.topojson", function(topo_response){
+        $.getJSON("http://192.168.1.82:3000/states_regions.topojson", function(topo_response){
           var options = {
             element: '#states_choropleth',
             width: 400,
@@ -307,7 +307,7 @@
               //console.log("Clicked", d);
           }
         };
-    $.getJSON("http://128.199.69.68:3000/api/candidates/count/by-state?party="+e.params.data.id, function(data_response){
+    $.getJSON("http://192.168.1.82:3000/api/candidates/count/by-state?party="+e.params.data.id, function(data_response){
 
       window.electroscope.drawChoroplethMap(topo_response, data_response.data[0].state_counts, options);
     });
@@ -335,7 +335,7 @@
 
     });
 
-     $.getJSON("http://128.199.69.68:3000/states_regions.topojson", function(topo_response){
+     $.getJSON("http://192.168.1.82:3000/states_regions.topojson", function(topo_response){
     var options = {
       element: '#states_choropleth',
       width: 400,
@@ -349,7 +349,7 @@
       }
     };
 
-    $.getJSON("http://128.199.69.68:3000/api/candidates/count/by-state", function(data_response){
+    $.getJSON("http://192.168.1.82:3000/api/candidates/count/by-state", function(data_response){
       window.electroscope.drawChoroplethMap(topo_response, data_response.data[0].state_counts, options);
     });
 
