@@ -96,11 +96,11 @@ var $amhStates;
     + "<h5>{team5} {team5Percentage}%"
     + "<h5>Other {other}%"
 
-  $.getJSON("http://128.199.69.68:3000/api/candidates/count/by-party?group_by=state_code&parliament=PTH", function (data) {
+  $.getJSON("http://127.0.0.1:3000/api/candidates/count/by-party?group_by=state_code&parliament=PTH", function (data) {
     $pthStates = data.data;
   });
 
-  $.getJSON("http://128.199.69.68:3000/api/candidates/count/by-party?group_by=state_code&parliament=AMH", function (data) {
+  $.getJSON("http://127.0.0.1:3000/api/candidates/count/by-party?group_by=state_code&parliament=AMH", function (data) {
     $amhStates = data.data;
   });
 
@@ -116,7 +116,7 @@ var $amhStates;
         + state.name.replace("_", " ", "g") + "</a>");
     }
 
-    $.getJSON("http://128.199.69.68:3000/seperate_topo_lower/" + state.path, function(data){
+    $.getJSON("http://127.0.0.1:3000/seperate_topo_lower/" + state.path, function(data){
       var defaultColor = "#ffffff";
       var statePartyCountCache = null;
       var options = {
@@ -259,7 +259,7 @@ var $amhStates;
     var chartList = [
       "agegroup"
     ];
-    var baseUrl = "http://128.199.69.68:3000";
+    var baseUrl = "http://127.0.0.1:3000";
     chartList.map(function(chartType){
       $.getJSON(baseUrl + "/api/candidates/count/by-" + chartType +"?year=2015&group_by=party", callbacks[chartType]);
     });
@@ -305,21 +305,23 @@ var $amhStates;
     var region_populations = [];
 
     data.map(function(item) {
-      var parliament = item.parliament;
-      item.state_counts.map(function(s) {
-        if (s.state == "") {} else if (states.indexOf(s.state) == -1) {
-          if (region_labels.indexOf(s.state) == -1) {
-            region_labels.push(s.state);
-            region_populations.push(census18PopData[s.state]);
-          }
-          region_parliament_votes[parliament].push(s.votes);
-        } else {
-          if (state_labels.indexOf(s.state) == -1) {
-            state_labels.push(s.state);
-            state_populations.push(census18PopData[s.state]);
-          }
-          state_parliament_votes[parliament].push(s.votes);
-        }
+      var state = item.state;
+      if (state == "") { return; }
+
+      if (states.indexOf(state) == -1) {
+	state_labels.push(state);
+	state_populations.push(census18PopData[state]);
+      } else {
+	region_labels.push(state);
+	region_populations.push(census18PopData[state]);
+      }
+
+      item.parliament_counts.map(function (s){
+	if (states.indexOf(state) == -1) {
+	  state_parliament_votes[s.parliament].push(s.votes);
+	} else {
+	  region_parliament_votes[s.parliament].push(s.votes);
+	}
       });
     });
 
@@ -385,8 +387,8 @@ var $amhStates;
   };
 
   $(document).ready(function() {
-    var baseUrl = "http://128.199.69.68:3000";
-    $.getJSON(baseUrl + "/api/votes/count/by-state?group_by=parliament", votersCountByPopulation);
+    var baseUrl = "http://127.0.0.1:3000";
+    $.getJSON(baseUrl + "/api/votes/count/by-parliament?group_by=state", votersCountByPopulation);
   });
 
 })();

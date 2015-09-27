@@ -1,6 +1,6 @@
 (function(electroscope){
 
-  $.getJSON("http://128.199.69.68:3000/states_regions.topojson", function(data){
+  $.getJSON("http://127.0.0.1:3000/states_regions.topojson", function(data){
 
     
 
@@ -84,7 +84,7 @@
 
         if(!statePartyCountCache){
           console.log("Getting from Server");
-          $.getJSON("http://128.199.69.68:3000/api/candidates/count?group_by=state,party,parliament", function(response){
+          $.getJSON("http://127.0.0.1:3000/api/candidates/count?group_by=state,party,parliament", function(response){
             statePartyCountCache = response.data;
             updateList(statePartyCountCache, d.properties.ST);
           });
