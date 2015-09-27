@@ -422,7 +422,7 @@
   };
 
   $(document).ready(function() {
-    var baseUrl = "http://192.168.1.82:3000";
+    var baseUrl = "http://128.199.69.68:3000";
     $.getJSON(baseUrl + "/api/winners/count/by-parliament?group_by=party", winnersChartByParty);
     $.getJSON(baseUrl + "/api/votes/count/by-parliament?group_by=party", votesChartByParty);
     $.getJSON(baseUrl + "/api/winners/count/by-state?group_by=party", winnersChartByStateRegion);

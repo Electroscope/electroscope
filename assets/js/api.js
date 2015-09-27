@@ -1,6 +1,6 @@
 var electroscope = (function () {
   var base = "https:/immense-plateau-8391.herokuapp.com";
-  base = "http://localhost:5000";
+  base = "http://128.199.69.68:5000";
 
   function makeGetRequest(data, callback) {
     $.ajax(data)
