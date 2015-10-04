@@ -4,7 +4,6 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var vhost = require('vhost');
 
 var routes = require('./routes/index');
 
@@ -23,9 +22,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'bower_components')));
 
-// app.use(vhost("electroscope.kny.co", routes));
-// app.use(vhost("test.kny.co", routes));
-// app.use(vhost("localhost", routes));
 app.use('/', routes);
 
 // catch 404 and forward to error handler

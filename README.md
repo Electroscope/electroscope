@@ -1,15 +1,17 @@
 Electroscope
-The microscope like electroscope for Myanmar elections
+============
+Analytics Platform for Myanmar elections.
 
 ## Pre requirement
 
-- npm
+- nodejs 4.x
 - bower
+- nodemon (for developement mode runtime)
 
-## Get start
+## Installation step
 
 `npm install`
 
-If you install `serve` start by it
+## Run at dev-mode
 
-`serve . -p 4000`
+`npm start`
