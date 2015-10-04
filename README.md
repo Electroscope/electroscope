@@ -1,3 +1,6 @@
+Electroscope
+The microscope like electroscope for Myanmar elections
+
 ## Pre requirement
 
 - npm
