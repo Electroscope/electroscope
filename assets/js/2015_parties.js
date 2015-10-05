@@ -425,7 +425,7 @@
     }
   };
   $(document).ready(function() {
-    var baseUrl = "http://api.electroscope.info";
+    var baseUrl = "https://api.electroscope.info";
     var chartList = [
       "parliament",
       "state",

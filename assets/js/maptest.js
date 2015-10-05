@@ -1,6 +1,6 @@
 (function(electroscope){
 
-  $.getJSON("http://api.electroscope.info/states_regions.topojson", function(data){
+  $.getJSON("https://api.electroscope.info/states_regions.topojson", function(data){
 
     
 
@@ -84,7 +84,7 @@
 
         if(!statePartyCountCache){
           console.log("Getting from Server");
-          $.getJSON("http://api.electroscope.info/api/candidates/count?group_by=state,party,parliament", function(response){
+          $.getJSON("https://api.electroscope.info/api/candidates/count?group_by=state,party,parliament", function(response){
             statePartyCountCache = response.data;
             updateList(statePartyCountCache, d.properties.ST);
           });

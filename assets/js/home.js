@@ -96,11 +96,11 @@ var $amhStates;
     + "<h5>{team5} {team5Percentage}%"
     + "<h5>Other {other}%"
 
-  $.getJSON("http://api.electroscope.info/api/candidates/count/by-party?group_by=state_code&parliament=PTH", function (data) {
+  $.getJSON("https://api.electroscope.info/api/candidates/count/by-party?group_by=state_code&parliament=PTH", function (data) {
     $pthStates = data.data;
   });
 
-  $.getJSON("http://api.electroscope.info/api/candidates/count/by-party?group_by=state_code&parliament=AMH", function (data) {
+  $.getJSON("https://api.electroscope.info/api/candidates/count/by-party?group_by=state_code&parliament=AMH", function (data) {
     $amhStates = data.data;
   });
 
@@ -116,7 +116,7 @@ var $amhStates;
         + state.name.replace("_", " ", "g") + "</a>");
     }
 
-    $.getJSON("http://api.electroscope.info/seperate_topo_lower/" + state.path, function(data){
+    $.getJSON("https://api.electroscope.info/seperate_topo_lower/" + state.path, function(data){
       var defaultColor = "#ffffff";
       var statePartyCountCache = null;
       var options = {
@@ -259,7 +259,7 @@ var $amhStates;
     var chartList = [
       "agegroup"
     ];
-    var baseUrl = "http://api.electroscope.info";
+    var baseUrl = "https://api.electroscope.info";
     chartList.map(function(chartType){
       $.getJSON(baseUrl + "/api/candidates/count/by-" + chartType +"?year=2015&group_by=party", callbacks[chartType]);
     });
@@ -452,7 +452,7 @@ var $amhStates;
   };
 
   $(document).ready(function() {
-    var baseUrl = "http://api.electroscope.info";
+    var baseUrl = "https://api.electroscope.info";
     $.getJSON(baseUrl + "/api/votes/count/by-parliament?group_by=state", votersCountByPopulation);
   });
 

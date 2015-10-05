@@ -17,7 +17,7 @@ jQuery(function(){
 	});
 
 	
-	$.ajax({url:"http://api.electroscope.info/api/parties",async:false,success:function(response){
+	$.ajax({url:"https://api.electroscope.info/api/parties",async:false,success:function(response){
         window.party_names_ln = response.data;
     }});
 
