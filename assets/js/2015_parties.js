@@ -425,7 +425,7 @@
     }
   };
   $(document).ready(function() {
-    var baseUrl = "http://128.199.69.68:3000";
+    var baseUrl = "http://api.electroscope.info";
     var chartList = [
       "parliament",
       "state",

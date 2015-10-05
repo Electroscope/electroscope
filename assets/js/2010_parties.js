@@ -73,7 +73,7 @@
     });
   };
   $(document).ready(function() {
-    var baseUrl = "http://128.199.69.68:3000";
+    var baseUrl = "http://api.electroscope.info";
     $.getJSON(baseUrl + "/api/candidates/count/by-parliament?year=2010&group_by=party", function(response) {
       renderCandidateCountByParty(response.data, 5);
     });

@@ -17,7 +17,7 @@ jQuery(function(){
 	});
 
 	
-	$.ajax({url:"http://128.199.69.68:3000/api/parties",async:false,success:function(response){
+	$.ajax({url:"http://api.electroscope.info/api/parties",async:false,success:function(response){
         window.party_names_ln = response.data;
     }});
 

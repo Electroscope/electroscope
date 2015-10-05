@@ -2,7 +2,7 @@
   
 
 
-  $.getJSON("http://128.199.69.68:3000/states_regions.topojson", function(data){
+  $.getJSON("http://api.electroscope.info/states_regions.topojson", function(data){
     
     var defaultColor = "steelblue";
     var statePartyCountCache = null;
@@ -58,7 +58,7 @@
 
         if(!statePartyCountCache){
           console.log("Getting from Server");
-          $.getJSON("http://128.199.69.68:3000/api/candidates/count/by-party?year=2015", function(response){
+          $.getJSON("http://api.electroscope.info/api/candidates/count/by-party?year=2015", function(response){
             statePartyCountCache = response.data;
             updateList(statePartyCountCache, d.properties.ST_PCODE);
           });
