@@ -8,8 +8,8 @@
       var pth_counts = [];
       var rgh_counts = [];
       data.slice(0, limit).map(function(item) {
-	if(item.party == "NUP") return;
-	if(item.party == "NDP") return;
+      	// if(item.party == "NUP") return;
+      	// if(item.party == "NDP") return;
 
         labels.push(item.party);
         pth_counts.push(0);
@@ -31,6 +31,7 @@
       amh_counts.push(0);
       rgh_counts.push(0);
 
+      console.log(labels);
       data.slice(limit, data.length).map(function(item) {
         item.parliament_counts.map(function(p) {
           if (p.parliament == "RGH") {

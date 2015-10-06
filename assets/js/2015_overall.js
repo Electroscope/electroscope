@@ -6,8 +6,8 @@
       var data = response.data[0];
 
       data["agegroup_counts"]= data["agegroup_counts"].sort(function(first, second){
-	//console.log(first.agegroup, second.agegroup);
-	return first.agegroup.localeCompare(second.agegroup);
+      	//console.log(first.agegroup, second.agegroup);
+      	return first.agegroup.localeCompare(second.agegroup);
       });
 
       var labels = data["agegroup_counts"].map(function(item){
@@ -228,7 +228,7 @@
       /*others.base = colors[Math.floor(Math.random() * colors.length) ];
       others.highlight = colors[Math.floor(Math.random() * colors.length) ];*/
       data["ethnicity_counts"].slice(8,data["ethnicity_counts"].length).map(function(item, index){
-	others.value += item["count"];
+	     others.value += item["count"];
       });
       polarData.push(others);
 
@@ -266,9 +266,16 @@
 
     $.getJSON(baseUrl + "/api/candidates/count/by-parliament", function(response){
       var data = response.data[0].parliament_counts;
-      $('#upper_house_count').text(data[2].count);
-      $('#lower_house_count').text(data[1].count);
-      $('#state_region_count').text(data[0].count);
+      data.map(function(item){
+        if(item.parliament === "AMH"){
+          $('#upper_house_count').text(item.count);
+        }else if(item.parliament === "PTH"){
+          $('#lower_house_count').text(item.count);
+        }else{
+          $('#state_region_count').text(data[0].count);
+        }
+      });
+      
     });
 
     chartList.map(function(chartType){
@@ -294,7 +301,7 @@
        $('.cho_map').append("<div id='states_choropleth'></div>");
 
         //draw map again
-        $.getJSON("https://api.electroscope.info/states_regions.topojson", function(topo_response){
+        $.getJSON(baseUrl + "/states_regions.topojson", function(topo_response){
           var options = {
             element: '#states_choropleth',
             width: 400,
@@ -307,7 +314,7 @@
               //console.log("Clicked", d);
           }
         };
-    $.getJSON("https://api.electroscope.info/api/candidates/count/by-state?party="+e.params.data.id, function(data_response){
+    $.getJSON(baseUrl + "/api/candidates/count/by-state?party="+e.params.data.id, function(data_response){
 
       window.electroscope.drawChoroplethMap(topo_response, data_response.data[0].state_counts, options);
     });
@@ -335,21 +342,21 @@
 
     });
 
-     $.getJSON("https://api.electroscope.info/states_regions.topojson", function(topo_response){
-    var options = {
-      element: '#states_choropleth',
-      width: 400,
-      height: 600,
-      defaultColor: "red",
-      metaKey: "output2",
-      regionNameField: "name",
-      regionCodeField: "ST_PCODE",
-      onClickHandler: function(d){
-        //console.log("Clicked", d);
-      }
+     $.getJSON(baseUrl + "/states_regions.topojson", function(topo_response){
+      var options = {
+        element: '#states_choropleth',
+        width: 400,
+        height: 600,
+        defaultColor: "red",
+        metaKey: "output2",
+        regionNameField: "name",
+        regionCodeField: "ST_PCODE",
+        onClickHandler: function(d){
+          //console.log("Clicked", d);
+        }
     };
 
-    $.getJSON("https://api.electroscope.info/api/candidates/count/by-state", function(data_response){
+    $.getJSON(baseUrl + "/api/candidates/count/by-state", function(data_response){
       window.electroscope.drawChoroplethMap(topo_response, data_response.data[0].state_counts, options);
     });
 
