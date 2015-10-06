@@ -6,7 +6,7 @@ html
     link(rel='stylesheet' href='https://fonts.googleapis.com/icon?family=Material+Icons')
     link(rel="stylesheet", href="https://fonts.googleapis.com/css?family=Quicksand")
     link(rel='stylesheet', href='/font-awesome/css/font-awesome.min.css')
-    link(rel="stylesheet", href="http://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css")
+    link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css")
     link(rel="stylesheet", href="/select2/dist/css/select2.min.css")
 
     block style
@@ -42,6 +42,14 @@ html
             a.waves-effect.waves-teal.nav-menu(href='/2010/results')
               i.material-icons stars
               | Results
+          li.bold(class="#{ page_name === 'aboutus' ? 'active' : ''}")
+            a.waves-effect.waves-teal.nav-menu(href='/aboutus')
+              i.material-icons info 
+              | About us 
+          li.bold(class="#{ page_name === 'data-reference' ? 'active' : ''}")
+            a.waves-effect.waves-teal.nav-menu(href='/data-reference')
+              i.material-icons receipt 
+              | Data Reference 
     main
       block content
 

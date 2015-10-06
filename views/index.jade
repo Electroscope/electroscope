@@ -1,79 +1,71 @@
-doctype html
-html
-  head
-    title= title
-    link(rel='stylesheet', href='/Materialize/dist/css/materialize.min.css')
-    link(rel='stylesheet', href='/font-awesome/css/font-awesome.min.css')
-    link(rel='stylesheet' href='https://fonts.googleapis.com/icon?family=Material+Icons')
-    link(rel="stylesheet", href="https://fonts.googleapis.com/css?family=Quicksand")
-    link(rel="stylesheet", href="http://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css")
-    link(rel='stylesheet', href='/css/#{page_name}.css')
-  body
-    main
-      section.title-section.white-text
-        .row
-          .col.s12
-            center
-              h1 Electroscope
-              h3 Analytics Platform for historic Myanmar election
-      section.section.section-one.white-text
-        br
-        .row
-          .map-view
-            center
-              h4 The Candidate Counts of Lower House On Each Region
-              br
-            .col.s4.offset-s1
-              center
-                #maps
-            .col.s6
-              center
-                #vs
-                br
-                br
-                a(href="/2015/states").waves-effect.waves-light.btn-large Learn more
-          .col.s10.offset-s1
-            center
-              br
-              div#statesListDropdown
-      section.icon-section.white-text
-        .row
-          .col.s10.offset-s1
-            .row
-              center.col.s4
-                h1 38
-                  small M
-                h3 Peoples
-              center.col.s4
-                h1 6
-                  small K
-                h3 Candidates
-              center.col.s4
-                h1 480+
-                h3 Seats
-      section.section-image
-        .cover-image
-      section.section.section-two.white-text
-        .row
-          .col.s12
-            center
-              h1 Every chart tells a story.
-              h5 See this one. NLD has younger candidates!
-              .row
-                .col.s12
-                  center
-                    canvas#agegroupcount-canvas(height="400px", width="800px")
-              a(href="/2015/parties").waves-effect.waves-light.btn-large Learn more
-      section.section.section-three
-        center.head.white-text
-          h1 Dig and see into the past.
-        .row
-          .col.s10.offset-s1
-            center
-              h5.white-text In Rakhine, the 2010 votes cast are even higher than population data.
-              br
-              canvas#statevoterscount-canvas
-              br
-              a(href="/2010/results").waves-effect.waves-light.btn-large Learn more
+extends clean-layout
 
-    script(src="/js/#{page_name}/app.min.js").
+block content
+  main
+    section.title-section.white-text
+      .row
+        .col.s12
+          center
+            h1 Electroscope
+            h3 Analytics Platform for historic Myanmar election
+    section.section.section-one.white-text
+      br
+      .row
+        .map-view
+          center
+            h4 The Candidate Counts of Lower House On Each Region
+            br
+          .col.s4.offset-s1
+            center
+              #maps
+          .col.s6
+            center
+              #vs
+              br
+              br
+              a(href="/2015/states").waves-effect.waves-light.btn-large Learn more
+        .col.s10.offset-s1
+          center
+            br
+            div#statesListDropdown
+    section.icon-section.white-text
+      .row
+        .col.s10.offset-s1
+          .row
+            center.col.s4
+              h1 38
+                small M
+              h3 Peoples
+            center.col.s4
+              h1 6
+                small K
+              h3 Candidates
+            center.col.s4
+              h1 480+
+              h3 Seats
+    section.section-image
+      .cover-image
+    section.section.section-two.white-text
+      .row
+        .col.s12
+          center
+            h1 Every chart tells a story.
+            h5 See this one. NLD has younger candidates!
+            .row
+              .col.s12
+                center
+                  canvas#agegroupcount-canvas(height="400px", width="800px")
+            a(href="/2015/parties").waves-effect.waves-light.btn-large Learn more
+    section.section.section-three
+      center.head.white-text
+        h1 Dig and see into the past.
+      .row
+        .col.s10.offset-s1
+          center
+            h5.white-text In Rakhine, the 2010 votes cast are even higher than population data.
+            br
+            canvas#statevoterscount-canvas
+            br
+            a(href="/2010/results").waves-effect.waves-light.btn-large Learn more
+
+  script(src="/js/#{page_name}/app.min.js").

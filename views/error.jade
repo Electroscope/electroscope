@@ -3,7 +3,16 @@ html
   head
     title 404
     meta(charset='utf-8')
+    link(rel='stylesheet', href='/Materialize/dist/css/materialize.min.css')
+    link(rel='stylesheet' href='https://fonts.googleapis.com/icon?family=Material+Icons')
+    link(rel="stylesheet", href="https://fonts.googleapis.com/css?family=Quicksand")
+    link(rel='stylesheet', href='/css/style.css')
+
   body
-    h1= message
-    h2= error.status
-    pre #{error.stack}
+    .main
+      .container
+        .row
+          .col.s12
+            h1= message
+            h2= error.status
+            pre #{error.stack}
