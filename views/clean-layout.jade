@@ -1,0 +1,15 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/Materialize/dist/css/materialize.min.css')
+    link(rel='stylesheet', href='/font-awesome/css/font-awesome.min.css')
+    link(rel='stylesheet' href='https://fonts.googleapis.com/icon?family=Material+Icons')
+    link(rel="stylesheet", href="https://fonts.googleapis.com/css?family=Quicksand")
+    link(rel="stylesheet", href="http://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css")
+    link(rel='stylesheet', href='/css/#{page_name}.css')
+  body
+    block content
+
+    script(src="/js/#{page_name}/app.min.js").
+    block script
