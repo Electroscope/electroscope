@@ -42,14 +42,14 @@ html
             a.waves-effect.waves-teal.nav-menu(href='/2010/results')
               i.material-icons stars
               | Results
-          li.bold(class="#{ page_name === 'aboutus' ? 'active' : ''}")
-            a.waves-effect.waves-teal.nav-menu(href='/aboutus')
-              i.material-icons info 
-              | About us 
+          li.bold(class="#{ page_name === 'about' ? 'active' : ''}")
+            a.waves-effect.waves-teal.nav-menu(href='/about')
+              i.material-icons info
+              | About
           li.bold(class="#{ page_name === 'data-reference' ? 'active' : ''}")
             a.waves-effect.waves-teal.nav-menu(href='/data-reference')
-              i.material-icons receipt 
-              | Data Reference 
+              i.material-icons receipt
+              | Data Reference
     main
       block content
 

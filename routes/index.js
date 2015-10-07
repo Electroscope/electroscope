@@ -24,8 +24,8 @@ router.get('/2010/results',function(req,res){
   res.render("2010/results",{title:"electroscope",page_name:"2010_results"});
 });
 
-router.get('/aboutus',function(req,res){
-  res.render("aboutus",{title:"electroscope",page_name:"aboutus"});
+router.get('/about',function(req,res){
+  res.render("about",{title:"electroscope",page_name:"aboutus"});
 });
 
 router.get('/data-reference',function(req,res){
