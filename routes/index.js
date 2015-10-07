@@ -27,10 +27,11 @@ router.get('/2010/results',function(req,res){
 router.get('/about',function(req,res){
   res.render("about",{title:"electroscope",page_name:"aboutus"});
 });
-
+/*
 router.get('/data-reference',function(req,res){
   res.render("data-reference",{title:"electroscope",page_name:"data-reference"});
 });
+*/
 
 
 module.exports = router;

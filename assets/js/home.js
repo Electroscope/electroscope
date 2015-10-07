@@ -1,23 +1,23 @@
-  var stateMaps = [
-    {name: "Ayeyarwady", path: "Ayeyarwady.topojson"},
-    {name: "Bago_East", path: "Bago_East.topojson"},
-    {name: "Bago_West", path: "Bago_West.topojson"},
-    {name: "Chin", path: "Chin.topojson"},
-    {name: "Kachin", path: "Kachin.topojson"},
-    {name: "Kayah", path: "Kayah.topojson"},
-    {name: "Kayin", path: "Kayin.topojson"},
-    {name: "Magway", path: "Magway.topojson"},
-    {name: "Mandalay", path: "Mandalay.topojson"},
-    {name: "Mon", path: "Mon.topojson"},
-    {name: "Nay_Pyi_Taw", path: "Nay_Pyi_Taw.topojson"},
-    {name: "Rakhine", path: "Rakhine.topojson"},
-    {name: "Sagaing", path: "Sagaing.topojson"},
-    {name: "Shan_East", path: "Shan_East.topojson"},
-    {name: "Shan_North", path: "Shan_North.topojson"},
-    {name: "Shan_South", path: "Shan_South.topojson"},
-    {name: "Tanintharyi", path: "Tanintharyi.topojson"},
-    {name: "Yangon", path: "Yangon.topojson"}
-  ];
+var stateMaps = [
+  {name: "Ayeyarwady", path: "Ayeyarwady.topojson"},
+  {name: "Bago_East", path: "Bago_East.topojson"},
+  {name: "Bago_West", path: "Bago_West.topojson"},
+  {name: "Chin", path: "Chin.topojson"},
+  {name: "Kachin", path: "Kachin.topojson"},
+  {name: "Kayah", path: "Kayah.topojson"},
+  {name: "Kayin", path: "Kayin.topojson"},
+  {name: "Magway", path: "Magway.topojson"},
+  {name: "Mandalay", path: "Mandalay.topojson"},
+  {name: "Mon", path: "Mon.topojson"},
+  {name: "Nay_Pyi_Taw", path: "Nay_Pyi_Taw.topojson"},
+  {name: "Rakhine", path: "Rakhine.topojson"},
+  {name: "Sagaing", path: "Sagaing.topojson"},
+  {name: "Shan_East", path: "Shan_East.topojson"},
+  {name: "Shan_North", path: "Shan_North.topojson"},
+  {name: "Shan_South", path: "Shan_South.topojson"},
+  {name: "Tanintharyi", path: "Tanintharyi.topojson"},
+  {name: "Yangon", path: "Yangon.topojson"}
+];
 
 var $states = {};
 
