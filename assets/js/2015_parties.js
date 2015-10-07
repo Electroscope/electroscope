@@ -96,8 +96,8 @@
       var states = ["Bago", "Mandalay", "Magway", "Yangon", "Ayeyarwady", "Sagaing", "Tanintharyi"];
 
       data.slice(0, limit).map(function(item) {
-	if (item.party == "NUP") return;
-	if (item.party == "NDP") return;
+        if (item.party == "NUP") return;
+        if (item.party == "NDP") return;
         labels.push(item.party);
         state_counts.push(0);
         region_counts.push(0);
@@ -151,7 +151,7 @@
         scaleShowVerticalLines: false,
         responsive: true,
         scaleFontColor: "#ffffff",
-	multiTooltipTemplate: "<%= datasetLabel %> - <%= value %>",
+        multiTooltipTemplate: "<%= datasetLabel %> - <%= value %>",
         legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span class=\"chart-legend\" style=\"background-color:<%=datasets[i].strokeColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>"
       });
       document.getElementById('state-region-legend').innerHTML = myChart.generateLegend();
@@ -339,7 +339,7 @@
         scaleShowVerticalLines: false,
         responsive: true,
         scaleFontColor: "#ffffff",
-	multiTooltipTemplate: "<%= datasetLabel %> - <%= value %>",
+      	multiTooltipTemplate: "<%= datasetLabel %> - <%= value %>",
         legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span class=\"chart-legend\" style=\"background-color:<%=datasets[i].strokeColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>"
       });
       document.getElementById('burmese-none-legend').innerHTML = myChart.generateLegend();
