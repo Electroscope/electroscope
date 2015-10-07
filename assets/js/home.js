@@ -309,19 +309,19 @@ var $amhStates;
       if (state == "") { return; }
 
       if (states.indexOf(state) == -1) {
-  state_labels.push(state);
-  state_populations.push(census18PopData[state]);
+        state_labels.push(state);
+        state_populations.push(census18PopData[state]);
       } else {
-  region_labels.push(state);
-  region_populations.push(census18PopData[state]);
+        region_labels.push(state);
+        region_populations.push(census18PopData[state]);
       }
 
       item.parliament_counts.map(function (s){
-  if (states.indexOf(state) == -1) {
-    state_parliament_votes[s.parliament].push(s.votes);
-  } else {
-    region_parliament_votes[s.parliament].push(s.votes);
-  }
+        if (states.indexOf(state) == -1) {
+          state_parliament_votes[s.parliament].push(s.votes);
+        } else {
+          region_parliament_votes[s.parliament].push(s.votes);
+        }
       });
     });
 

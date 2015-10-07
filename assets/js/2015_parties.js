@@ -81,7 +81,7 @@
         scaleShowVerticalLines: false,
         responsive: true,
         scaleFontColor: "#999",
-	multiTooltipTemplate: "<%= datasetLabel %> - <%= value %>",
+      	multiTooltipTemplate: "<%= datasetLabel %> - <%= value %>",
         legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span class=\"chart-legend\" style=\"background-color:<%=datasets[i].strokeColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>"
       });
       document.getElementById('candidatecount-legend').innerHTML = myChart.generateLegend();
@@ -213,7 +213,7 @@
         scaleShowVerticalLines: false,
         responsive: true,
         scaleFontColor: "#ffffff",
-	multiTooltipTemplate: "<%= datasetLabel %> - <%= value %>",
+      	multiTooltipTemplate: "<%= datasetLabel %> - <%= value %>",
         legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span class=\"chart-legend\" style=\"background-color:<%=datasets[i].strokeColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>"
       });
       document.getElementById('gendercount-legend').innerHTML = myChart.generateLegend();
@@ -275,7 +275,7 @@
         scaleShowVerticalLines: false,
         responsive: true,
         scaleFontColor: "#ffffff",
-	multiTooltipTemplate: "<%= datasetLabel %> - <%= value %>",
+      	multiTooltipTemplate: "<%= datasetLabel %> - <%= value %>",
         legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span class=\"chart-legend\" style=\"background-color:<%=datasets[i].strokeColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>"
       });
       document.getElementById('education-legend').innerHTML = myChart.generateLegend();
@@ -288,8 +288,8 @@
       var burmese_counts = [];
       var nonburmese_counts = [];
       data.slice(0, limit).map(function(item) {
-	if(item.party == "MFDP") return;
-	if(item.party == "NDP") return;
+      	if(item.party == "MFDP") return;
+      	if(item.party == "NDP") return;
         labels.push(item.party);
         item.ethnicity_counts.map(function(p) {
           if (p.ethnicity == "ဗမာ") {
@@ -419,7 +419,7 @@
         scaleShowVerticalLines: false,
         responsive: true,
         scaleFontColor: "#ffffff",
-	multiTooltipTemplate: "<%= datasetLabel %> - <%= value %>",
+      	multiTooltipTemplate: "<%= datasetLabel %> - <%= value %>",
         legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span class=\"chart-legend\" style=\"background-color:<%=datasets[i].strokeColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>"
       });
       document.getElementById('candidate-count-legend').innerHTML = myChart.generateLegend();
