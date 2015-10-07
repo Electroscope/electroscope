@@ -34,7 +34,7 @@
           d3.selectAll(".map_region")
             .style("fill", defaultColor);
           d3.select(this)
-            .style("fill", "red");
+            .style("fill", "blue");
       })
       .on("mousemove", function(d,i) {
         var html = '<a class="waves-effect waves-light btn center">' + d.properties.constituency_name_en + "-" + d.properties.constituency_number +'</a>';

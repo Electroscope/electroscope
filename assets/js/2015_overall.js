@@ -1,7 +1,22 @@
 (function(){
+  var mm2enEthnic = {
+    "ဗမာ": "Burmese",
+    "ရှမ်း": "Shan",
+    "မြန်မာ": "Myanmar (Burmese)",
+    "ရခိုင်": "Rakhine",
+    "ကရင်": "Kayin",
+    "ချင်း": "Chin",
+    "ကချင်": "Kachin",
+    "မွန်": "Mon"
+  };
 
+  var mm2enReligon = {
+    "ဗုဒ္ဓ": "Buddhism",
+    "ခရစ်ယာန်": "Christianity",
+  };
 
   var chartCallbacks = {
+
     agegroup: function(response){
       var data = response.data[0];
 
@@ -18,34 +33,34 @@
       });
 
       var chartData = {
-          labels: labels,
-          datasets: [
-              {
-                  label: "Age Groups",
-                  fillColor: "rgba(247, 50, 50, 0.75)",
-                  strokeColor: "rgba(247, 50, 50, 0.8)",
-                  highlightFill: "rgba(247, 50, 50, 0.5)",
-                  highlightStroke: "rgba(247, 50, 50, 1)",
-                  data: counts
-              }
-          ]
+        labels: labels,
+        datasets: [
+          {
+            label: "Age Groups",
+            fillColor: "rgba(220,220,220,0.2)",
+            strokeColor: "rgba(255,255,255,1)",
+            pointHighlightFill: "#fff",
+            pointHighlightStroke: "rgba(255,255,255,1)",
+            data: counts
+          }
+        ]
       };
 
       var canvas = document.getElementById("agegroup-canvas");
       var ctx = canvas.getContext("2d");
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      var myChart = new Chart(ctx).Bar(chartData, {
+      ctx.clearRect(0, 0, 0, 0);
+      var myChart = new Chart(ctx).Line(chartData, {
         barShowStroke: false,
-        // Options for Labels
-        scaleFontFamily: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
+        scaleLineColor: "#ffffff",
+        scaleGridLineColor: "#ffffff",
+        scaleShowVerticalLines: false,
+        responsive: true,
+        scaleFontColor: "white",
         scaleFontSize: 12,
-        scaleFontStyle: "normal",
-        scaleFontColor: "#757575",
         legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span class=\"chart-legend\" style=\"background-color:<%=datasets[i].strokeColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>"
       });
 
       document.getElementById('agegroup-legend').innerHTML = myChart.generateLegend();
-
     },
 
     gender: function(response){
@@ -56,24 +71,27 @@
 
       var pieData = [
         {
-            value: maleCount,
-            color:"#2196f3",
-            highlight: "#42a5f5",
-            label: "Male"
+          value: maleCount,
+          color:"#1a237e",
+          highlight: "#1a237e",
+          label: "Male"
         },
         {
-            value: femaleCount,
-            color: "#e91e63",
-            highlight: "#f06292",
-            label: "Female"
+          value: femaleCount,
+          color: "blue",
+          highlight: "blue",
+          label: "Female"
         }
       ];
       var canvas = document.getElementById('gender-canvas');
       var ctx = canvas.getContext("2d");
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.clearRect(0, 0, 0, 0);
       var genderPieChart = new Chart(ctx).Pie(pieData, {
-          animateScale: false,
-          legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span class=\"chart-legend\" style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>"
+        responsive: true,
+        segmentStrokeColor : "#fff",
+        segmentStrokeWidth : 1,
+        animateScale: false,
+        legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span class=\"chart-legend\" style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>"
       });
       document.getElementById('gender-legend').innerHTML = genderPieChart.generateLegend();
     },
@@ -86,25 +104,28 @@
 
       var pieData = [
         {
-            value: bwaeya,
-            color:"#F7464A",
-            highlight: "#FF5A5E",
-            label: "with degree"
+          value: bwaeya,
+          color:"#4CAF50",
+          highlight: "#4CAF50",
+          label: "with degree"
         },
         {
-            value: not_bwaeya,
-            color: "#46BFBD",
-            highlight: "#5AD3D1",
-            label: "w/o degree"
+          value: not_bwaeya,
+          color: "#5AD3D1",
+          highlight: "#5AD3D1",
+          label: "without degree"
         }
       ];
 
       var canvas = document.getElementById('bwaeya-canvas');
       var ctx = canvas.getContext("2d");
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.clearRect(0, 0, 0, 0);
       var genderPieChart = new Chart(ctx).Pie(pieData, {
-          animateScale: false,
-          legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span class=\"chart-legend\" style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>"
+        responsive: true,
+        segmentStrokeColor : "#fff",
+        segmentStrokeWidth : 1,
+        animateScale: false,
+        legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span class=\"chart-legend\" style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>"
       });
       document.getElementById('bwaeya-legend').innerHTML = genderPieChart.generateLegend();
     },
@@ -115,24 +136,23 @@
         return second.count - first.count;
       });
 
-      var colors = ["#9c27b0", "#2196f3", "#f44336", "#8bc34a", "#009688"];
-      var highlight_colors = ["#4a148c", "#0d47a1", "#b71c1c", "#33691e", "#004d40"]
+      var colors = ["#4caf50", "#fff176", "#eceff1"];
+      var highlight_colors = ["#2e7d32", "#ffeb3b", "#cfd8dc"]
       var polarData = data["religion_counts"].slice(0,2).map(function(item, index){
-        var base = colors[Math.floor(Math.random() * colors.length) ];
-        var highlight = colors[Math.floor(Math.random() * colors.length) ];
+        console.log(index, colors[index])
         return {
           value: item["count"],
           color: colors[index],
           highlight: highlight_colors[index],
-          label: item["religion"]
+          label: mm2enReligon[item["religion"]]
         };
       });
 
       var others = {
         value: 0,
         label: "Others",
-        color: colors[4],
-        highlight : highlight_colors[4]
+        color: "#102070",
+        highlight : "#1A237E"
       };
       /*others.base = colors[4];
       others.highlight = colors[4];*/
@@ -143,10 +163,11 @@
 
       var canvas = document.getElementById('religion-canvas');
       var ctx = canvas.getContext("2d");
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.clearRect(0, 0, 0, 0);
       var radarChart = new Chart(ctx).Doughnut(polarData, {
           segmentStrokeColor: "#ffffff",
-          scaleFontFamily: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
+          segmentStrokeWidth : 1,
+          responsive: true,
           scaleFontSize: 12,
           scaleFontStyle: "normal",
           scaleFontColor: "#000",
@@ -158,43 +179,44 @@
     parliament: function(response){
       var data = response.data[0];
 
-      var labels = ['Amyothar Hluttaw', "Pyithu Hluttaw", "Regional Hluttaw"];
+      // var labels = ['Amyothar Hluttaw', "Pyithu Hluttaw", "Regional Hluttaw"];
 
-      var polarData = [];
-      polarData.push({
-        value: data['parliament_counts'][0].count,
-        color: "#46BFBD",
-        highlight: "#2ca02c",
-        label: "Regional Parliament"
-      });
+      // var polarData = [];
+      // polarData.push({
+      //   value: data['parliament_counts'][0].count,
+      //   color: "#46BFBD",
+      //   highlight: "#2ca02c",
+      //   label: "Regional Parliament"
+      // });
 
-      polarData.push({
-        value:data['parliament_counts'][1].count,
-        color: "#9467bd",
-        highlight: "#d62728",
-        label: "Pyithu Parliament"
-      });
+      // polarData.push({
+      //   value:data['parliament_counts'][1].count,
+      //   color: "#9467bd",
+      //   highlight: "#d62728",
+      //   label: "Pyithu Parliament"
+      // });
 
-      polarData.push({
-        value:data['parliament_counts'][2].count,
-        color: "#e377c2",
-        highlight: "#8c564b",
-        label: "Amyothar Parliament"
-      });
+      // polarData.push({
+      //   value:data['parliament_counts'][2].count,
+      //   color: "#e377c2",
+      //   highlight: "#8c564b",
+      //   label: "Amyothar Parliament"
+      // });
 
-      //console.log(polarData);
-      var canvas = document.getElementById('parliament-canvas');
-      var ctx = canvas.getContext("2d");
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      var radarChart = new Chart(ctx).Doughnut(polarData, {
-          segmentStrokeColor: "#ffffff",
-          scaleFontFamily: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
-          scaleFontSize: 12,
-          scaleFontStyle: "normal",
-          scaleFontColor: "#000",
-          legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span class=\"chart-legend\" style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>"
-      });
-      document.getElementById('parliament-legend').innerHTML = radarChart.generateLegend();
+      // //console.log(polarData);
+      // var canvas = document.getElementById('parliament-canvas');
+      // var ctx = canvas.getContext("2d");
+      // ctx.clearRect(0, 0, 0, 0);
+      // var radarChart = new Chart(ctx).Doughnut(polarData, {
+      //     segmentStrokeColor: "#ffffff",
+      //     responsive: true,
+      //     scaleFontFamily: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
+      //     scaleFontSize: 12,
+      //     scaleFontStyle: "normal",
+      //     scaleFontColor: "#000",
+      //     legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span class=\"chart-legend\" style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>"
+      // });
+      // document.getElementById('parliament-legend').innerHTML = radarChart.generateLegend();
     },
 
     ethnicity: function(response){
@@ -203,14 +225,14 @@
         return second.count - first.count;
       });
 
-        var colors = ["#4caf50", "#03a9f4", "#673ab7", "#f44336", "#3f51b5", "#00bcd4", "#8bc34a", "#cddc39", "#ff9800", "#607d8b"];
-        var highlight_colors = ["#2e7d32", "#0277bd", "#512da8", "#c62828", "#303f9f", "#0097a7", "#689f38", "#afb42b", "#f57c00", "#455a64"]
-        var polarData = data["ethnicity_counts"].slice(0,8).map(function(item, index){
+      var colors = ["#4caf50", "#03a9f4", "#673ab7", "#f44336", "#3f51b5", "#00bcd4", "#8bc34a", "#cddc39", "#ff9800", "#607d8b"];
+      var highlight_colors = ["#2e7d32", "#0277bd", "#512da8", "#c62828", "#303f9f", "#0097a7", "#689f38", "#afb42b", "#f57c00", "#455a64"]
+      var polarData = data["ethnicity_counts"].slice(0,8).map(function(item, index){
         return {
           value: item["count"],
           color: colors[index],
           highlight: highlight_colors[index],
-          label: item["ethnicity"]
+          label: mm2enEthnic[item["ethnicity"]]
         };
       });
 
@@ -234,14 +256,15 @@
 
       var canvas = document.getElementById('ethnicity-canvas');
       var ctx = canvas.getContext("2d");
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.clearRect(0, 0, 0, 0);
       var radarChart = new Chart(ctx).Doughnut(polarData, {
-          segmentStrokeColor: "#ffffff",
-          scaleFontFamily: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
-          scaleFontSize: 12,
-          scaleFontStyle: "normal",
-          scaleFontColor: "#000",
-          legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span class=\"chart-legend\" style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>"
+        segmentStrokeColor : "#fff",
+        segmentStrokeWidth : 1,
+        responsive: true,
+        scaleFontSize: 12,
+        scaleFontStyle: "normal",
+        scaleFontColor: "#000",
+        legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span class=\"chart-legend\" style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>"
       });
       document.getElementById('ethnicity-legend').innerHTML = radarChart.generateLegend();
     }
@@ -249,10 +272,7 @@
 
   $(document).ready(function(){
 
-
     var baseUrl = "https://api.electroscope.info";
-
-
 
     $('ul.tabs').tabs();
     var chartList = [
@@ -282,9 +302,9 @@
       $.getJSON(baseUrl + "/api/candidates/count/by-"+chartType, chartCallbacks[chartType]);
     });
 
-    $('.party_list').select2({
+      $('.party_list').select2({
         placeholder : 'Please select the party'
-    }).on('select2:select',function(e){
+      }).on('select2:select',function(e){
         $('#agegroup-canvas').remove();
         $('.agegroup-canvas').append("<canvas id='agegroup-canvas' width='300px' height='300px'></canvas>");
         $('#gender-canvas').remove();
@@ -298,7 +318,7 @@
          $('#parliament-canvas').remove();
         $('.parliament-canvas').append("<canvas id='parliament-canvas' width='300px' height='300px'></canvas>");
         $('#states_choropleth').remove();
-       $('.cho_map').append("<div id='states_choropleth'></div>");
+        $('.cho_map').append("<div id='states_choropleth'></div>");
 
         //draw map again
         $.getJSON(baseUrl + "/states_regions.topojson", function(topo_response){
@@ -314,22 +334,21 @@
               //console.log("Clicked", d);
           }
         };
-    $.getJSON(baseUrl + "/api/candidates/count/by-state?party="+e.params.data.id, function(data_response){
-
-      window.electroscope.drawChoroplethMap(topo_response, data_response.data[0].state_counts, options);
-    });
-
-    $.getJSON(baseUrl + "/api/candidates/count/by-parliament?party="+e.params.data.id, function(response){
-      var data = response.data[0].parliament_counts;
-      $('#upper_house_count').text(data[2].count);
-      $('#lower_house_count').text(data[1].count);
-      $('#state_region_count').text(data[0].count);
-    });
-  })
-
-        chartList.map(function(chartType){
-          $.getJSON(baseUrl + "/api/candidates/count/by-"+chartType+"?party="+e.params.data.id, chartCallbacks[chartType]);
+        $.getJSON(baseUrl + "/api/candidates/count/by-state?party="+e.params.data.id, function(data_response){
+          window.electroscope.drawChoroplethMap(topo_response, data_response.data[0].state_counts, options);
         });
+
+        $.getJSON(baseUrl + "/api/candidates/count/by-parliament?party="+e.params.data.id, function(response){
+          var data = response.data[0].parliament_counts;
+          $('#upper_house_count').text(data[2].count);
+          $('#lower_house_count').text(data[1].count);
+          $('#state_region_count').text(data[0].count);
+        });
+      });
+
+      chartList.map(function(chartType){
+        $.getJSON(baseUrl + "/api/candidates/count/by-"+chartType+"?party="+e.params.data.id, chartCallbacks[chartType]);
+      });
     });
 
     $.getJSON(baseUrl + "/api/parties",function(response){
@@ -342,18 +361,18 @@
 
     });
 
-     $.getJSON(baseUrl + "/states_regions.topojson", function(topo_response){
+    $.getJSON(baseUrl + "/states_regions.topojson", function(topo_response){
       var options = {
-        element: '#states_choropleth',
-        width: 400,
-        height: 600,
-        defaultColor: "red",
-        metaKey: "output2",
-        regionNameField: "name",
-        regionCodeField: "ST_PCODE",
-        onClickHandler: function(d){
-          //console.log("Clicked", d);
-        }
+      element: '#states_choropleth',
+      width: 400,
+      height: 600,
+      defaultColor: "red",
+      metaKey: "output2",
+      regionNameField: "name",
+      regionCodeField: "ST_PCODE",
+      onClickHandler: function(d){
+        //console.log("Clicked", d);
+      }
     };
 
     $.getJSON(baseUrl + "/api/candidates/count/by-state", function(data_response){
