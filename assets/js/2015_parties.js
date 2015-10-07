@@ -395,17 +395,17 @@
         labels: labels,
         datasets: [{
           label: "Under 50",
-          fillColor: "#4CAF50",
-          strokeColor: "#4CAF50",
-          highlightFill: "#4CAF50",
-          highlightStroke: "#4CAF50",
+          fillColor: "#aed581",
+          strokeColor: "#aed581",
+          highlightFill: "#aed581",
+          highlightStroke: "#aed581",
           data: under_50_counts
         }, {
           label: "Over 50",
-          fillColor: "#009688",
-          strokeColor: "#009688",
-          highlightFill: "#009688",
-          highlightStroke: "#009688",
+          fillColor: "#5D4037",
+          strokeColor: "#5D4037",
+          highlightFill: "#5D4037",
+          highlightStroke: "#5D4037",
           data: over_50_counts
         }]
       };

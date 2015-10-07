@@ -153,7 +153,7 @@
 
     var canvas = document.getElementById("votespartycount-canvas");
     var ctx = canvas.getContext("2d");
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.clearRect(0, 0, 0, 0);
     var myChart = new Chart(ctx).Bar(chartData, {
       label: "By Candidate Count",
       scaleLineColor: "#ffffff",
@@ -224,7 +224,7 @@
 
     var canvas = document.getElementById("winnerstatecount-canvas");
     var ctx = canvas.getContext("2d");
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.clearRect(0, 0, 0, 0);
     var myChart = new Chart(ctx).Bar(chartData, {
       label: "By Candidate Count",
       scaleLineColor: "#999",
@@ -279,30 +279,21 @@
       if (state == "") { return; }
 
       if (states.indexOf(state) == -1) {
-	state_labels.push(state);
-	state_populations.push(census18PopData[state]);
+        state_labels.push(state);
+        state_populations.push(census18PopData[state]);
       } else {
-	region_labels.push(state);
-	region_populations.push(census18PopData[state]);
+        region_labels.push(state);
+        region_populations.push(census18PopData[state]);
       }
 
       item.parliament_counts.map(function (s){
-	if (states.indexOf(state) == -1) {
-	  state_parliament_votes[s.parliament].push(s.votes);
-	} else {
-	  region_parliament_votes[s.parliament].push(s.votes);
-	}
+        if (states.indexOf(state) == -1) {
+          state_parliament_votes[s.parliament].push(s.votes);
+        } else {
+          region_parliament_votes[s.parliament].push(s.votes);
+        }
       });
     });
-
-    // console.log(state_labels);
-    // console.log(state_parliament_votes['RGH']);
-    // console.log(state_parliament_votes['PTH']);
-    // console.log(state_parliament_votes['AMH']);
-    // console.log(state_labels);
-    // console.log(state_parliament_votes['RGH']);
-    // console.log(state_parliament_votes['PTH']);
-    // console.log(state_parliament_votes['AMH']);
 
     var statechartData = {
       labels: state_labels,
@@ -391,14 +382,12 @@
     ctx.clearRect(0, 0, 0, 0);
     var myChart = new Chart(ctx).Radar(statechartData, {
       label: "Radar",
-      fillColor: "#ffffff",
-      highlightFill: "#ffffff",
-      scaleLineColor: "#666",
-      scaleGridLineColor: "#666",
       highlightStroke: "#ffffff",
       pointLabelFontColor: "#ffffff",
+      angleLineColor: "rgba(220,220,220,.3)",
+      scaleLineColor: "rgba(220,220,220,.3)",
       pointLabelFontSize: 12,
-      scaleFontColor: "#ffffff",
+      pointLabelFontFamily: "Quicksand",
       responsive: true,
       multiTooltipTemplate: "<%= datasetLabel %> - <%= value %>"
     });
@@ -408,14 +397,12 @@
     ctx2.clearRect(0, 0, 0, 0);
     var myChart2 = new Chart(ctx2).Radar(regionchartData, {
       label: "Radar",
-      fillColor: "#ffffff",
-      highlightFill: "#ffffff",
-      scaleLineColor: "#66f",
-      scaleGridLineColor: "#66f",
       highlightStroke: "#ffffff",
       pointLabelFontColor: "#ffffff",
+      angleLineColor: "rgba(220,220,220,.3)",
+      scaleLineColor: "rgba(220,220,220,.3)",
       pointLabelFontSize: 12,
-      scaleFontColor: "#ffffff",
+      pointLabelFontFamily: "Quicksand",
       responsive: true,
       multiTooltipTemplate: "<%= datasetLabel %> - <%= value %>"
     });

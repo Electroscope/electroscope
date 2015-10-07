@@ -325,94 +325,44 @@ var $amhStates;
       });
     });
 
-    // console.log(state_labels);
-    // console.log(state_parliament_votes['RGH']);
-    // console.log(state_parliament_votes['PTH']);
-    // console.log(state_parliament_votes['AMH']);
-    // console.log(state_labels);
-    // console.log(state_parliament_votes['RGH']);
-    // console.log(state_parliament_votes['PTH']);
-    // console.log(state_parliament_votes['AMH']);
-
     var statechartData = {
       labels: state_labels,
       datasets: [{
-        label: "Regional Hluttaw",
-        fillColor: "rgba(151,187,205,0.2)",
-        strokeColor: "rgba(151,187,205,1)",
-        pointColor: "rgba(151,187,205,1)",
+        label: "Population",
+        fillColor: "rgba(255, 235, 59,0.2)",
+        strokeColor: "rgba(255, 235, 59,1)",
+        pointColor: "rgba(255, 235, 59,1)",
         pointStrokeColor: "#fff",
         pointHighlightFill: "#fff",
-        pointHighlightStroke: "rgba(151,187,205,1)",
+        pointHighlightStroke: "rgba(38, 166, 154,1)",
+        data: state_populations
+      }, {
+        label: "Regional Hluttaw",
+        fillColor: "rgba(220,220,220,0.2)",
+        strokeColor: "rgba(220,220,220,1)",
+        pointColor: "rgba(220,220,220,1)",
+        pointStrokeColor: "#fff",
+        pointHighlightFill: "#fff",
+        pointHighlightStroke: "rgba(220,220,220,1)",
         data: state_parliament_votes['RGH']
       }, {
         label: "Pyithu Hluttaw",
-        fillColor: "rgba(220,220,220,0.2)",
-        strokeColor: "rgba(220,220,220,1)",
-        pointColor: "rgba(220,220,220,1)",
+        fillColor: "rgba(0, 105, 92, 0.2)",
+        strokeColor: "rgba(0, 105, 92, 1)",
+        pointColor: "rgba(0, 105, 92, 1)",
         pointStrokeColor: "#fff",
         pointHighlightFill: "#fff",
-        pointHighlightStroke: "rgba(220,220,220,1)",
+        pointHighlightStroke: "rgba(0, 105, 92, 1)",
         data: state_parliament_votes['PTH']
       }, {
         label: "Amyothar Hluttaw",
-        fillColor: "rgba(205,151,187,0.2)",
-        strokeColor: "rgba(205,151,187,1)",
-        pointColor: "rgba(205,151,187,1)",
+        fillColor: "rgba(38, 166, 154,0.2)",
+        strokeColor: "rgba(38, 166, 154,1)",
+        pointColor: "rgba(38, 166, 154,1)",
         pointStrokeColor: "#fff",
         pointHighlightFill: "#fff",
-        pointHighlightStroke: "rgba(220,220,220,1)",
+        pointHighlightStroke: "rgba(255, 235, 59,1)",
         data: state_parliament_votes['AMH']
-      }, {
-        label: "Population",
-        fillColor: "rgba(220,220,220,0.2)",
-        strokeColor: "rgba(220,220,220,1)",
-        pointColor: "rgba(220,220,220,1)",
-        pointStrokeColor: "#fff",
-        pointHighlightFill: "#fff",
-        pointHighlightStroke: "rgba(220,220,220,1)",
-        data: state_populations
-      }]
-    };
-
-    var regionchartData = {
-      labels: region_labels,
-      datasets: [{
-        label: "Regional Hluttaw",
-        fillColor: "rgba(151,187,205,0.2)",
-        strokeColor: "rgba(151,187,205,1)",
-        pointColor: "rgba(151,187,205,1)",
-        pointStrokeColor: "#fff",
-        pointHighlightFill: "#fff",
-        pointHighlightStroke: "rgba(151,187,205,1)",
-        data: region_parliament_votes['RGH']
-      }, {
-        label: "Pyithu Hluttaw",
-        fillColor: "rgba(220,220,220,0.2)",
-        strokeColor: "rgba(220,220,220,1)",
-        pointColor: "rgba(220,220,220,1)",
-        pointStrokeColor: "#fff",
-        pointHighlightFill: "#fff",
-        pointHighlightStroke: "rgba(220,220,220,1)",
-        data: region_parliament_votes['PTH']
-      }, {
-        label: "Amyothar Hluttaw",
-        fillColor: "rgba(205,151,187,0.2)",
-        strokeColor: "rgba(205,151,187,1)",
-        pointColor: "rgba(205,151,187,1)",
-        pointStrokeColor: "#fff",
-        pointHighlightFill: "#fff",
-        pointHighlightStroke: "rgba(220,220,220,1)",
-        data: region_parliament_votes['AMH']
-      }, {
-        label: "Population",
-        fillColor: "rgba(220,220,220,0.2)",
-        strokeColor: "rgba(220,220,220,1)",
-        pointColor: "rgba(220,220,220,1)",
-        pointStrokeColor: "#fff",
-        pointHighlightFill: "#fff",
-        pointHighlightStroke: "rgba(220,220,220,1)",
-        data: region_populations
       }]
     };
 
@@ -421,34 +371,16 @@ var $amhStates;
     ctx.clearRect(0, 0, 0, 0);
     var myChart = new Chart(ctx).Radar(statechartData, {
       label: "Radar",
-      fillColor: "#ffffff",
-      highlightFill: "#ffffff",
-      scaleLineColor: "#666",
-      scaleGridLineColor: "#666",
       highlightStroke: "#ffffff",
       pointLabelFontColor: "#ffffff",
-      pointLabelFontSize: 12,
-      scaleFontColor: "#ffffff",
+      angleLineColor: "rgba(220,220,220,.3)",
+      scaleLineColor: "rgba(220,220,220,.3)",
+      pointLabelFontSize: 18,
+      pointLabelFontFamily: "Quicksand",
       responsive: true,
       multiTooltipTemplate: "<%= datasetLabel %> - <%= value %>"
     });
 
-    var canvas2 = document.getElementById("regionvoterscount-canvas");
-    var ctx2 = canvas2.getContext("2d");
-    ctx2.clearRect(0, 0, 0, 0);
-    var myChart2 = new Chart(ctx2).Radar(regionchartData, {
-      label: "Radar",
-      fillColor: "#ffffff",
-      highlightFill: "#ffffff",
-      scaleLineColor: "#66f",
-      scaleGridLineColor: "#66f",
-      highlightStroke: "#ffffff",
-      pointLabelFontColor: "#ffffff",
-      pointLabelFontSize: 12,
-      scaleFontColor: "#ffffff",
-      responsive: true,
-      multiTooltipTemplate: "<%= datasetLabel %> - <%= value %>"
-    });
   };
 
   $(document).ready(function() {

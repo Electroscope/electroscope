@@ -3,21 +3,21 @@
 
   var drawStateDetail = function(state){
 
-    var preloader =   '<div class="preloader-wrapper big active">\
-                          <div class="spinner-layer spinner-blue-only">\
-                            <div class="circle-clipper left">\
-                              <div class="circle"></div>\
-                            </div><div class="gap-patch">\
-                              <div class="circle"></div>\
-                            </div><div class="circle-clipper right">\
-                              <div class="circle"></div>\
-                            </div>\
+    var preloader = '<div class="preloader-wrapper big active">\
+                        <div class="spinner-layer spinner-blue-only">\
+                          <div class="circle-clipper left">\
+                            <div class="circle"></div>\
+                          </div><div class="gap-patch">\
+                            <div class="circle"></div>\
+                          </div><div class="circle-clipper right">\
+                            <div class="circle"></div>\
                           </div>\
-                        </div>';
+                        </div>\
+                      </div>';
 
     $('#state-map').html(preloader);
     $.getJSON("https://api.electroscope.info/states_regions.topojson", function(data){
-      var defaultColor = "#F0EDE5";
+      var defaultColor = "#DDE6D5";
       var statePartyCountCache = null;
       var options = {
         element: '#state_map',
@@ -56,7 +56,7 @@
         .on("mouseout",  function(d,i) {
           $('#state_map_label').html('');
         })
-        .style("stroke", "#bbb")
+        .style("stroke", "#fff")
         .style("stroke-width", "1px");
 
     });
