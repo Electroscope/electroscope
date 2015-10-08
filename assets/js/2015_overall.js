@@ -272,7 +272,7 @@
         }else if(item.parliament === "PTH"){
           $('#lower_house_count').text(item.count);
         }else{
-          $('#state_region_count').text(data[0].count);
+          $('#state_region_count').text(item.count);
         }
       });
       
