@@ -47,7 +47,8 @@ var PAGES = {
   "2015_parties": concatDefault([ "2015_parties.js"], [__MATERIAL_LITE, __D3, __TOPOJSON, __CHARTJS,__HO_CHARTJS, __SELECT2 ]),
   "2015_states": concatDefault([ "map2.js", "hex2rgba.js", "2015_states.js"], [__MATERIAL_LITE, __D3, __TOPOJSON, __CHARTJS ]),
   "circle_test": concatDefault([ "circle_test.js"], [__MATERIAL_LITE, __D3, __TOPOJSON ]),
-  "aboutus": concatDefault([ ], [ __JQUERY, __MATERIAL_LITE ])
+  "aboutus": concatDefault([ ], [ __JQUERY, __MATERIAL_LITE ]),
+  "data-reference": concatDefault([ ], [ __JQUERY, __MATERIAL_LITE ])
 };
 
 // Watch task for gulp

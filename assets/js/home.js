@@ -1,23 +1,23 @@
-  var stateMaps = [
-    {name: "Ayeyarwady", path: "Ayeyarwady.topojson"},
-    {name: "Bago_East", path: "Bago_East.topojson"},
-    {name: "Bago_West", path: "Bago_West.topojson"},
-    {name: "Chin", path: "Chin.topojson"},
-    {name: "Kachin", path: "Kachin.topojson"},
-    {name: "Kayah", path: "Kayah.topojson"},
-    {name: "Kayin", path: "Kayin.topojson"},
-    {name: "Magway", path: "Magway.topojson"},
-    {name: "Mandalay", path: "Mandalay.topojson"},
-    {name: "Mon", path: "Mon.topojson"},
-    {name: "Nay_Pyi_Taw", path: "Nay_Pyi_Taw.topojson"},
-    {name: "Rakhine", path: "Rakhine.topojson"},
-    {name: "Sagaing", path: "Sagaing.topojson"},
-    {name: "Shan_East", path: "Shan_East.topojson"},
-    {name: "Shan_North", path: "Shan_North.topojson"},
-    {name: "Shan_South", path: "Shan_South.topojson"},
-    {name: "Tanintharyi", path: "Tanintharyi.topojson"},
-    {name: "Yangon", path: "Yangon.topojson"}
-  ];
+var stateMaps = [
+  {name: "Ayeyarwady", path: "Ayeyarwady.topojson"},
+  {name: "Bago_East", path: "Bago_East.topojson"},
+  {name: "Bago_West", path: "Bago_West.topojson"},
+  {name: "Chin", path: "Chin.topojson"},
+  {name: "Kachin", path: "Kachin.topojson"},
+  {name: "Kayah", path: "Kayah.topojson"},
+  {name: "Kayin", path: "Kayin.topojson"},
+  {name: "Magway", path: "Magway.topojson"},
+  {name: "Mandalay", path: "Mandalay.topojson"},
+  {name: "Mon", path: "Mon.topojson"},
+  {name: "Nay_Pyi_Taw", path: "Nay_Pyi_Taw.topojson"},
+  {name: "Rakhine", path: "Rakhine.topojson"},
+  {name: "Sagaing", path: "Sagaing.topojson"},
+  {name: "Shan_East", path: "Shan_East.topojson"},
+  {name: "Shan_North", path: "Shan_North.topojson"},
+  {name: "Shan_South", path: "Shan_South.topojson"},
+  {name: "Tanintharyi", path: "Tanintharyi.topojson"},
+  {name: "Yangon", path: "Yangon.topojson"}
+];
 
 var $states = {};
 
@@ -309,110 +309,60 @@ var $amhStates;
       if (state == "") { return; }
 
       if (states.indexOf(state) == -1) {
-  state_labels.push(state);
-  state_populations.push(census18PopData[state]);
+        state_labels.push(state);
+        state_populations.push(census18PopData[state]);
       } else {
-  region_labels.push(state);
-  region_populations.push(census18PopData[state]);
+        region_labels.push(state);
+        region_populations.push(census18PopData[state]);
       }
 
       item.parliament_counts.map(function (s){
-  if (states.indexOf(state) == -1) {
-    state_parliament_votes[s.parliament].push(s.votes);
-  } else {
-    region_parliament_votes[s.parliament].push(s.votes);
-  }
+        if (states.indexOf(state) == -1) {
+          state_parliament_votes[s.parliament].push(s.votes);
+        } else {
+          region_parliament_votes[s.parliament].push(s.votes);
+        }
       });
     });
-
-    // console.log(state_labels);
-    // console.log(state_parliament_votes['RGH']);
-    // console.log(state_parliament_votes['PTH']);
-    // console.log(state_parliament_votes['AMH']);
-    // console.log(state_labels);
-    // console.log(state_parliament_votes['RGH']);
-    // console.log(state_parliament_votes['PTH']);
-    // console.log(state_parliament_votes['AMH']);
 
     var statechartData = {
       labels: state_labels,
       datasets: [{
-        label: "Regional Hluttaw",
-        fillColor: "rgba(151,187,205,0.2)",
-        strokeColor: "rgba(151,187,205,1)",
-        pointColor: "rgba(151,187,205,1)",
+        label: "Population",
+        fillColor: "rgba(255, 235, 59,0.2)",
+        strokeColor: "rgba(255, 235, 59,1)",
+        pointColor: "rgba(255, 235, 59,1)",
         pointStrokeColor: "#fff",
         pointHighlightFill: "#fff",
-        pointHighlightStroke: "rgba(151,187,205,1)",
+        pointHighlightStroke: "rgba(38, 166, 154,1)",
+        data: state_populations
+      }, {
+        label: "Regional Hluttaw",
+        fillColor: "rgba(220,220,220,0.2)",
+        strokeColor: "rgba(220,220,220,1)",
+        pointColor: "rgba(220,220,220,1)",
+        pointStrokeColor: "#fff",
+        pointHighlightFill: "#fff",
+        pointHighlightStroke: "rgba(220,220,220,1)",
         data: state_parliament_votes['RGH']
       }, {
         label: "Pyithu Hluttaw",
-        fillColor: "rgba(220,220,220,0.2)",
-        strokeColor: "rgba(220,220,220,1)",
-        pointColor: "rgba(220,220,220,1)",
+        fillColor: "rgba(0, 105, 92, 0.2)",
+        strokeColor: "rgba(0, 105, 92, 1)",
+        pointColor: "rgba(0, 105, 92, 1)",
         pointStrokeColor: "#fff",
         pointHighlightFill: "#fff",
-        pointHighlightStroke: "rgba(220,220,220,1)",
+        pointHighlightStroke: "rgba(0, 105, 92, 1)",
         data: state_parliament_votes['PTH']
       }, {
         label: "Amyothar Hluttaw",
-        fillColor: "rgba(205,151,187,0.2)",
-        strokeColor: "rgba(205,151,187,1)",
-        pointColor: "rgba(205,151,187,1)",
+        fillColor: "rgba(38, 166, 154,0.2)",
+        strokeColor: "rgba(38, 166, 154,1)",
+        pointColor: "rgba(38, 166, 154,1)",
         pointStrokeColor: "#fff",
         pointHighlightFill: "#fff",
-        pointHighlightStroke: "rgba(220,220,220,1)",
+        pointHighlightStroke: "rgba(255, 235, 59,1)",
         data: state_parliament_votes['AMH']
-      }, {
-        label: "Population",
-        fillColor: "rgba(220,220,220,0.2)",
-        strokeColor: "rgba(220,220,220,1)",
-        pointColor: "rgba(220,220,220,1)",
-        pointStrokeColor: "#fff",
-        pointHighlightFill: "#fff",
-        pointHighlightStroke: "rgba(220,220,220,1)",
-        data: state_populations
-      }]
-    };
-
-    var regionchartData = {
-      labels: region_labels,
-      datasets: [{
-        label: "Regional Hluttaw",
-        fillColor: "rgba(151,187,205,0.2)",
-        strokeColor: "rgba(151,187,205,1)",
-        pointColor: "rgba(151,187,205,1)",
-        pointStrokeColor: "#fff",
-        pointHighlightFill: "#fff",
-        pointHighlightStroke: "rgba(151,187,205,1)",
-        data: region_parliament_votes['RGH']
-      }, {
-        label: "Pyithu Hluttaw",
-        fillColor: "rgba(220,220,220,0.2)",
-        strokeColor: "rgba(220,220,220,1)",
-        pointColor: "rgba(220,220,220,1)",
-        pointStrokeColor: "#fff",
-        pointHighlightFill: "#fff",
-        pointHighlightStroke: "rgba(220,220,220,1)",
-        data: region_parliament_votes['PTH']
-      }, {
-        label: "Amyothar Hluttaw",
-        fillColor: "rgba(205,151,187,0.2)",
-        strokeColor: "rgba(205,151,187,1)",
-        pointColor: "rgba(205,151,187,1)",
-        pointStrokeColor: "#fff",
-        pointHighlightFill: "#fff",
-        pointHighlightStroke: "rgba(220,220,220,1)",
-        data: region_parliament_votes['AMH']
-      }, {
-        label: "Population",
-        fillColor: "rgba(220,220,220,0.2)",
-        strokeColor: "rgba(220,220,220,1)",
-        pointColor: "rgba(220,220,220,1)",
-        pointStrokeColor: "#fff",
-        pointHighlightFill: "#fff",
-        pointHighlightStroke: "rgba(220,220,220,1)",
-        data: region_populations
       }]
     };
 
@@ -421,34 +371,16 @@ var $amhStates;
     ctx.clearRect(0, 0, 0, 0);
     var myChart = new Chart(ctx).Radar(statechartData, {
       label: "Radar",
-      fillColor: "#ffffff",
-      highlightFill: "#ffffff",
-      scaleLineColor: "#666",
-      scaleGridLineColor: "#666",
       highlightStroke: "#ffffff",
       pointLabelFontColor: "#ffffff",
-      pointLabelFontSize: 12,
-      scaleFontColor: "#ffffff",
+      angleLineColor: "rgba(220,220,220,.3)",
+      scaleLineColor: "rgba(220,220,220,.3)",
+      pointLabelFontSize: 18,
+      pointLabelFontFamily: "Quicksand",
       responsive: true,
       multiTooltipTemplate: "<%= datasetLabel %> - <%= value %>"
     });
 
-    var canvas2 = document.getElementById("regionvoterscount-canvas");
-    var ctx2 = canvas2.getContext("2d");
-    ctx2.clearRect(0, 0, 0, 0);
-    var myChart2 = new Chart(ctx2).Radar(regionchartData, {
-      label: "Radar",
-      fillColor: "#ffffff",
-      highlightFill: "#ffffff",
-      scaleLineColor: "#66f",
-      scaleGridLineColor: "#66f",
-      highlightStroke: "#ffffff",
-      pointLabelFontColor: "#ffffff",
-      pointLabelFontSize: 12,
-      scaleFontColor: "#ffffff",
-      responsive: true,
-      multiTooltipTemplate: "<%= datasetLabel %> - <%= value %>"
-    });
   };
 
   $(document).ready(function() {

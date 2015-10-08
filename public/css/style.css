@@ -194,13 +194,14 @@ header, main, footer {
     float: left;
     width: 20px;
     height: 15px;
+    border-radius: 4px;
     margin-right: 7px;
     margin-top: 3px;
 }
 
 .horizontal-legend {
 	overflow: hidden;
-	margin-left: 70px;
+	/*margin-left: 70px;*/
 }
 
 .horizontal-legend ul li {

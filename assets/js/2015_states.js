@@ -3,21 +3,21 @@
 
   var drawStateDetail = function(state){
 
-    var preloader =   '<div class="preloader-wrapper big active">\
-                          <div class="spinner-layer spinner-blue-only">\
-                            <div class="circle-clipper left">\
-                              <div class="circle"></div>\
-                            </div><div class="gap-patch">\
-                              <div class="circle"></div>\
-                            </div><div class="circle-clipper right">\
-                              <div class="circle"></div>\
-                            </div>\
+    var preloader = '<div class="preloader-wrapper big active">\
+                        <div class="spinner-layer spinner-blue-only">\
+                          <div class="circle-clipper left">\
+                            <div class="circle"></div>\
+                          </div><div class="gap-patch">\
+                            <div class="circle"></div>\
+                          </div><div class="circle-clipper right">\
+                            <div class="circle"></div>\
                           </div>\
-                        </div>';
+                        </div>\
+                      </div>';
 
     $('#state-map').html(preloader);
     $.getJSON("https://api.electroscope.info/states_regions.topojson", function(data){
-      var defaultColor = "steelblue";
+      var defaultColor = "#DDE6D5";
       var statePartyCountCache = null;
       var options = {
         element: '#state_map',
@@ -34,7 +34,7 @@
           d3.selectAll("path")
             .style("fill", defaultColor);
           d3.select(this)
-            .style("fill", "red");
+            .style("fill", "#00796B");
           var state = d.properties.ST;
           var st_code = d.properties.ST_PCODE;
           console.log(state, st_code);
@@ -56,6 +56,8 @@
         .on("mouseout",  function(d,i) {
           $('#state_map_label').html('');
         })
+        .style("stroke", "#fff")
+        .style("stroke-width", "1px");
 
     });
     var parliaments = ["AMH", "PTH", "RGH"];
@@ -63,11 +65,6 @@
       $("#" + parliament + "total-count").html(preloader);
     });
 
-    // $.getJSON("https://api.electroscope.info/api/candidates/count/by-parliament?state=" + state, function(response){
-    //   response.data[0].parliament_counts.map(function(item){
-    //     $("#" + item.parliament + "-total-count").text(item.count);
-    //   });
-    // });
   }
   var renderIndividualParliamentData = function(state){
 

@@ -1,5 +1,12 @@
 extends ../layout
 
+block style
+  style.
+    .content-center {
+      margin: 0 10px;
+      position: relative;
+    }
+
 block content
 
   .main
@@ -9,83 +16,68 @@ block content
           select.party_list
     .row
       .col.s4
-        .card-panel.count-card.content-center.blue.lighten-1.white-text
+        .card-panel.count-card.content-center.blue.white-text
           h2.panel-title House of Nationalities
-          p#upper_house_count.candidate-count 0
+          h1#upper_house_count.candidate-count 0
       .col.s4
-        .card-panel.count-card.content-center.green.lighten-1.white-text
+        .card-panel.count-card.content-center.green.white-text
           h2.panel-title House of Representatives
-          p#lower_house_count.candidate-count 0
+          h1#lower_house_count.candidate-count 0
       .col.s4
-        .card-panel.count-card.content-center.orange.lighten-1.white-text
+        .card-panel.count-card.content-center.orange.white-text
           h2.panel-title State and Region Assemblies
-          p#state_region_count.candidate-count 0
-    .row 
-      //FIRST COLUMN
+          h1#state_region_count.candidate-count 0
+    .row
       .col.s12.m6
-        //Region Cholomap
-        .card.cho_map
-          .card-action.red.lighten-2.white-text
-            h5 Candidates by Region
-          .card-content.red.lighten-5
-            .content-center
-              #states_choropleth
-        //Gender
-        .card
-          .card-action.light-blue.lighten-2.white-text
-            h5 Gender Ratio
-          .card-content.light-blue.lighten-5
-            .row
-              .chart-wrapper.col.s9.gender-canvas.content-center
-                canvas#gender-canvas(width="300px", height="300px")
-              .col.s3
-                #gender-legend
-        .card
-          .card-action.blue-grey.lighten-2.white-text
-            h5 Ethnicity Ratio
-          .card-content.blue-grey.lighten-5
-            .row
-              .chart-wrapper.col.s9.ethnicity-canvas.content-center
-                canvas#ethnicity-canvas(width="300px", height="300px")
-              .col.s3
-                #ethnicity-legend
-      //SECOND COLUMN
+        .row
+          .col.s12
+            .card
+              .card-action.brown.darken-2.white-text
+                h5 Candidates by Region
+              .card-content
+                .content-center
+                  #states_choropleth
+          .col.s12
+            .card.blue.darken-2.white-text
+              .card-action.blue.darken-4
+                h5 Gender Ratio
+              .card-content
+                .content-center
+                  canvas#gender-canvas
+                  #gender-legend.horizontal-legend
+          .col.s12
+            .card.green.darken-4.white-text
+              .card-action.green.darken-2
+                h5 Ethnicity Ratio
+              .card-content
+                .content-center
+                  //- .chart-wrapper.col.s9.ethnicity-canvas.content-center
+                  canvas#ethnicity-canvas
+                  #ethnicity-legend.horizontal-legend
       .col.s12.m6
-        //Graduated
-        .card
-          .card-action.teal.lighten-2.white-text
-            h5 Graduated Ratio
-          .card-content.teal.lighten-5
-            .row
-              .chart-wrapper.col.s9.bwaeya-canvas.content-center
-                canvas#bwaeya-canvas(width="300px", height="300px")
-              .col.s3
-                #bwaeya-legend
-        //Age
-        .card
-          .card-action.deep-orange.lighten-2.white-text
-            h5 Age Groups
-          .card-content.deep-orange.lighten-5
-            .row
-              .chart-wrapper.col.s12.agegroup-canvas.content-center
-                canvas#agegroup-canvas(width="300px", height="300px")
-              .col.s3
-                #agegroup-legend
-        //Religion
-        .card
-          .card-action.grey.lighten-2
-            h5 Religion Ratio
-          .card-content.grey.lighten-5
-            .row
-              .chart-wrapper.col.s9.religion-canvas.content-center
-                canvas#religion-canvas(width="300px", height="300px")
-              .col.s3
-                #religion-legend
-        //.card
-          //h2.panel-title By Parliament
-          //.row
-            //.chart-wrapper.col.s9.parliament-canvas
-              //canvas#parliament-canvas(width="300px", height="300px")
-            //.col.s12
-              //#parliament-legend
+        .row
+          .col.s12
+            .card.teal.darken-4.white-text
+              .card-action.teal.darken-2
+                h5 Graduated Ratio
+              .card-content
+                .content-center
+                  canvas#bwaeya-canvas
+                  #bwaeya-legend.horizontal-legend
+          .col.s12
+            .card.light-blue.darken-2.white-text
+              .card-action.light-blue
+                h5 Age Groups
+              .card-content
+                .content-center
+                  canvas#agegroup-canvas
+                  #agegroup-legend.horizontal-legend
+          .col.s12
+            .card.brown.darken-2.white-text
+              .card-action.brown
+                h5 Religion Ratio
+              .card-content
+                .content-center
+                  canvas#religion-canvas
+                  #religion-legend.horizontal-legend
 
