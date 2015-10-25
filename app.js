@@ -55,14 +55,5 @@ app.use(function(err, req, res, next) {
   });
 });
 
-var exec = require('child_process').exec;
-
-child = exec("gulp", function (error, stdout, stderr) {
-    console.log('gulp out: ' + stdout);
-    console.log('gulp err: ' + stderr);
-    if (error !== null) {
-      console.log('exec error: ' + error);
-    }
-});
 
 module.exports = app;

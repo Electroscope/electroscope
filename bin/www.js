@@ -88,3 +88,15 @@ function onListening() {
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
 }
+
+var exec = require('child_process').exec;
+
+if (app.get("env") === "development") {
+  child = exec("gulp", function (error, stdout, stderr) {
+    console.log('gulp out: ' + stdout);
+    console.log('gulp err: ' + stderr);
+    if (error !== null) {
+      console.log('exec error: ' + error);
+    }
+  });
+}
