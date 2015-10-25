@@ -4,11 +4,11 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Electroscope', page_name: "home" });
+  res.render('index', {title: 'Electroscope', page_name: "home"});
 });
 
 router.get('/2015/overall', function(req, res){
-  res.render("2015/overall", { title: "electroscope", page_name: "2015_overall"});
+  res.render("2015/overall", {title: "electroscope", page_name: "2015_overall"});
 });
 
 // 2015 Route group

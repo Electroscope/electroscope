@@ -409,11 +409,10 @@
   };
 
   $(document).ready(function() {
-    var baseUrl = "https://api.electroscope.info";
-    $.getJSON(baseUrl + "/api/winners/count/by-parliament?group_by=party", winnersChartByParty);
-    $.getJSON(baseUrl + "/api/votes/count/by-parliament?group_by=party", votesChartByParty);
-    $.getJSON(baseUrl + "/api/winners/count/by-state?group_by=party", winnersChartByStateRegion);
-    $.getJSON(baseUrl + "/api/votes/count/by-parliament?group_by=state", votersCountByPopulation);
+    electroscope.getJSON("/api/winners/count/by-parliament?group_by=party", winnersChartByParty);
+    electroscope.getJSON("/api/votes/count/by-parliament?group_by=party", votesChartByParty);
+    electroscope.getJSON("/api/winners/count/by-state?group_by=party", winnersChartByStateRegion);
+    electroscope.getJSON("/api/votes/count/by-parliament?group_by=state", votersCountByPopulation);
   });
 
 })();

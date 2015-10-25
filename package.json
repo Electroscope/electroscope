@@ -1,10 +1,10 @@
 {
-  "name": "Election",
+  "name": "Electroscope",
   "version": "0.2.0",
   "private": true,
   "scripts": {
     "postinstall": "bower install && gulp production",
-    "start": "nodemon ./bin/www.js && gulp && gulp"
+    "start": "nodemon ./bin/www.js"
   },
   "dependencies": {
     "body-parser": "~1.13.2",

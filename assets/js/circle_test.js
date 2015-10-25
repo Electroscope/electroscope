@@ -30,7 +30,6 @@
   };
   $(document).ready(function(){
     $.getJSON("http://api.maepaysoh.org/geo/upperhouse?token=2a12ac8c-184c-57dc-a8e6-5e57ff488cac&no_geo=true&per_page=400", function(response){
-      console.log(response);
       drawCircles(response.data);
     });
   });

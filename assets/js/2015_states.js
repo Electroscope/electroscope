@@ -16,7 +16,7 @@
                       </div>';
 
     $('#state-map').html(preloader);
-    $.getJSON("https://api.electroscope.info/states_regions.topojson", function(data){
+    electroscope.getJSON("/states_regions.topojson", function(data){
       var defaultColor = "#DDE6D5";
       var statePartyCountCache = null;
       var options = {
@@ -68,7 +68,7 @@
   }
   var renderIndividualParliamentData = function(state){
 
-    $.getJSON("https://api.electroscope.info/api/candidates/count/by-party?group_by=parliament&state=" + state, function(response){
+    electroscope.getJSON("/api/candidates/count/by-party?group_by=parliament&state=" + state, function(response){
 
       var drawPieChart = function(parliament, partyCounts){
         var element = parliament + "-canvas";

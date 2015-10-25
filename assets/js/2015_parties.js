@@ -426,7 +426,6 @@
     }
   };
   $(document).ready(function() {
-    var baseUrl = "https://api.electroscope.info";
     var chartList = [
       "parliament",
       "state",
@@ -436,7 +435,7 @@
       "agegroup"
     ];
     chartList.map(function(chartType) {
-      $.getJSON(baseUrl + "/api/candidates/count/by-" + chartType + "?year=2015&group_by=party", callbacks[chartType]);
+      electroscope.getJSON("/api/candidates/count/by-" + chartType + "?year=2015&group_by=party", callbacks[chartType]);
     });
   });
 })();

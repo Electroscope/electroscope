@@ -1,9 +1,8 @@
 var electroscope = (function () {
-  var base = "https:/immense-plateau-8391.herokuapp.com";
-  base = "http://128.199.69.68:5000";
+  var host = "https://api.electroscope.info";
 
   function makeGetRequest(data, callback) {
-    $.ajax(data)
+    electroscope.getJSON(data)
       .error(function (xhr, errorText, err) {
         console.log(xhr, errorText, err);
         callback(err);
@@ -14,29 +13,8 @@ var electroscope = (function () {
   }
 
   var api = {
-    getCandidatesByLocation: function (query, callback) {
-      if (!callback && typeof query === "function")
-        callback = query;
-      makeGetRequest({
-        url: base + "/api/candidate-locations",
-        data: query
-      }, callback);
-    },
-    getCandidateBy: function (query, callback) {
-      if (!callback && typeof query === "function")
-        callback = query;
-      makeGetRequest({
-        url: base + "/api/candidate-locations",
-        data: query
-      }, callback);
-    },
-    countByParty: function (query, callback) {
-      if (!callback && typeof query === "function")
-        callback = query;
-      makeGetRequest({
-        url: base + "/api/candidates/count-by-party",
-        data: query
-      }, callback);
+    getJSON: function (url, callback){
+      $.getJSON(host + url, callback);
     }
   };
 
