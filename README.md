@@ -14,4 +14,4 @@ Analytics Platform for Myanmar elections.
 
 ## Run at dev-mode
 
-`npm start`
+`NODE_ENV=developement npm start`

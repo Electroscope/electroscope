@@ -1,0 +1,3 @@
+{
+  "ignore": ["assert/js/*.js", "public/js/*.js", "gulpfile.js"]
+}
