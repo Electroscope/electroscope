@@ -10,18 +10,28 @@
     "မွန်": "Mon"
   };
 
+  var chartList = [
+    "agegroup",
+    "gender",
+    "religion",
+    "ethnicity",
+    "educated",
+    "parliament"
+  ];
+
+  var topoResponse;
+  var topoOption;
+
   var mm2enReligon = {
     "ဗုဒ္ဓ": "Buddhism",
     "ခရစ်ယာန်": "Christianity",
   };
 
   var chartCallbacks = {
-
     agegroup: function(response){
       var data = response.data[0];
 
       data["agegroup_counts"]= data["agegroup_counts"].sort(function(first, second){
-      	//console.log(first.agegroup, second.agegroup);
       	return first.agegroup.localeCompare(second.agegroup);
       });
 
@@ -270,17 +280,37 @@
     }
   };
 
-  $(document).ready(function(){
+  /*
+   * On select a party on select box
+   */
+  function selectParty(e) {
+    $("#states_choropleth").find("svg").remove();
 
-    $('ul.tabs').tabs();
-    var chartList = [
-      "agegroup",
-      "gender",
-      "religion",
-      "ethnicity",
-      "educated",
-      "parliament"
-    ];
+    if (e.params.data.id === "all")
+      return showAll();
+
+    electroscope.getJSON("/api/candidates/count/by-state?party="+e.params.data.id, function(data_response){
+      window.electroscope.drawChoroplethMap(topoResponse, data_response.data[0].state_counts, topoOption);
+    });
+
+    // First 3 BOX
+    electroscope.getJSON("/api/candidates/count/by-parliament?party="+e.params.data.id, function(response){
+      var data = response.data[0].parliament_counts;
+      $("#upper_house_count").text(data[2].count);
+      $("#lower_house_count").text(data[1].count);
+      $("#state_region_count").text(data[0].count);
+    });
+
+    chartList.forEach(function(chartType){
+      electroscope.getJSON("/api/candidates/count/by-"+chartType+"?party="+e.params.data.id, chartCallbacks[chartType]);
+    });
+  }
+
+  function showAll() {
+    $("#states_choropleth").find("svg").remove();
+    electroscope.getJSON("/api/candidates/count/by-state", function(data_response){
+      window.electroscope.drawChoroplethMap(topoResponse, data_response.data[0].state_counts, topoOption);
+    });
 
     electroscope.getJSON("/api/candidates/count/by-parliament", function(response){
       var data = response.data[0].parliament_counts;
@@ -293,92 +323,67 @@
           $('#state_region_count').text(item.count);
         }
       });
-      
     });
 
-    chartList.map(function(chartType){
+    chartList.forEach(function(chartType){
+      electroscope.getJSON("/api/candidates/count/by-"+chartType, chartCallbacks[chartType]);
+    });
+  }
+
+  $(document).ready(function(){
+
+    $('ul.tabs').tabs();
+
+    // Add parties list
+    electroscope.getJSON("/api/parties",function(response){
+      var party = response.data;
+      $('.party_list').append('<option value="all">All</option>')
+      for(var key  in party){
+        $('.party_list').append('<option value="' + key + '">' + party[key] + ' ('+  key+')</option>')
+      }
+    });
+
+    // First 3 BOX
+    electroscope.getJSON("/api/candidates/count/by-parliament", function(response){
+      var data = response.data[0].parliament_counts;
+      data.map(function(item){
+        if(item.parliament === "AMH"){
+          $('#upper_house_count').text(item.count);
+        }else if(item.parliament === "PTH"){
+          $('#lower_house_count').text(item.count);
+        }else{
+          $('#state_region_count').text(item.count);
+        }
+      });
+    });
+
+    chartList.forEach(function(chartType){
       electroscope.getJSON("/api/candidates/count/by-"+chartType, chartCallbacks[chartType]);
     });
 
-      $('.party_list').select2({
-        placeholder : 'Please select the party'
-      }).on('select2:select',function(e){
-        $('#agegroup-canvas').remove();
-        $('.agegroup-canvas').append("<canvas id='agegroup-canvas' width='300px' height='300px'></canvas>");
-        $('#gender-canvas').remove();
-        $('.gender-canvas').append("<canvas id='gender-canvas' width='300px' height='300px'></canvas>");
-        $('#religion-canvas').remove();
-        $('.religion-canvas').append("<canvas id='religion-canvas' width='300px' height='300px'></canvas>");
-         $('#ethnicity-canvas').remove();
-        $('.ethnicity-canvas').append("<canvas id='ethnicity-canvas' width='300px' height='300px'></canvas>");
-        $('#bwaeya-canvas').remove();
-        $('.bwaeya-canvas').append("<canvas id='bwaeya-canvas' width='300px' height='300px'></canvas>");
-         $('#parliament-canvas').remove();
-        $('.parliament-canvas').append("<canvas id='parliament-canvas' width='300px' height='300px'></canvas>");
-        $('#states_choropleth').remove();
-        $('.cho_map').append("<div id='states_choropleth'></div>");
-
-        //draw map again
-        electroscope.getJSON("/states_regions.topojson", function(topo_response){
-          var options = {
-            element: '#states_choropleth',
-            width: 400,
-            height: 600,
-            defaultColor: "red",
-            metaKey: "output2",
-            regionNameField: "name",
-            regionCodeField: "ST_PCODE",
-            onClickHandler: function(d){
-              //console.log("Clicked", d);
-          }
-        };
-        electroscope.getJSON("/api/candidates/count/by-state?party="+e.params.data.id, function(data_response){
-          window.electroscope.drawChoroplethMap(topo_response, data_response.data[0].state_counts, options);
-        });
-
-        electroscope.getJSON("/api/candidates/count/by-parliament?party="+e.params.data.id, function(response){
-          var data = response.data[0].parliament_counts;
-          $('#upper_house_count').text(data[2].count);
-          $('#lower_house_count').text(data[1].count);
-          $('#state_region_count').text(data[0].count);
-        });
-      });
-
-      chartList.map(function(chartType){
-        electroscope.getJSON("/api/candidates/count/by-"+chartType+"?party="+e.params.data.id, chartCallbacks[chartType]);
-      });
-    });
-
-    electroscope.getJSON("/api/parties",function(response){
-
-      var party = response.data;
-
-      for(var key  in party){
-        $('.party_list').append('<option value="' + key + '">' + party[key] + ' ( '+  key+')</option>')
-      }
-
-    });
-
     electroscope.getJSON("/states_regions.topojson", function(topo_response){
-      var options = {
-      element: '#states_choropleth',
-      width: 400,
-      height: 600,
-      defaultColor: "red",
-      metaKey: "output2",
-      regionNameField: "name",
-      regionCodeField: "ST_PCODE",
-      onClickHandler: function(d){
-        //console.log("Clicked", d);
-      }
-    };
+      topoResponse = topo_response;
+      topoOption = {
+        element: "#states_choropleth",
+        width: 400,
+        height: 600,
+        defaultColor: "red",
+        metaKey: "output2",
+        regionNameField: "name",
+        regionCodeField: "ST_PCODE",
+        onClickHandler: function(d){
+          //console.log("Clicked", d);
+        }
+      };
 
-    electroscope.getJSON("/api/candidates/count/by-state", function(data_response){
-      window.electroscope.drawChoroplethMap(topo_response, data_response.data[0].state_counts, options);
+      electroscope.getJSON("/api/candidates/count/by-state", function(data_response){
+        window.electroscope.drawChoroplethMap(topoResponse, data_response.data[0].state_counts, topoOption);
+      });
     });
 
-  });
+    $('.party_list').select2({
+      placeholder : 'Please select the party'
+    }).on('select2:select', selectParty);
 
   });
-
 })();

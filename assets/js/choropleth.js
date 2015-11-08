@@ -1,7 +1,7 @@
 (function () {
 
-
   window.electroscope.drawChoroplethMap = function(topoJSON, data, options){
+
     var defaultColor = options.defaultColor || "steelblue";
     var width = options.width || 400,
         height = options.height || 400;
@@ -10,7 +10,7 @@
     var regionCodeField = options.regionCodeField || "DT_PCODE";
     var regionNameField = options.regionNameField || "name";
     var dataField = options.dataField || "count";
-    console.log(defaultColor);
+
     // helper functions
     var computeScaleFromBounds = function (bounds){
       var left = bounds[0][0];
@@ -81,35 +81,30 @@
     //     .range(["#f2f0f7", "#dadaeb", "#bcbddc", "#9e9ac8", "#756bb1", "#54278f"]);
 
     map.selectAll("path")
-              .data(features)
-              .enter()
-              .append("path")
-              .attr("d", path)
-              .attr("class", "map_region")
-              .attr('id', function(d, i){
-                return d.properties[regionCodeField];
-              })
-              .style("fill", function(d, i){
+      .data(features)
+      .enter()
+      .append("path")
+      .attr("d", path)
+      .attr("class", "map_region")
+      .attr('id', function(d, i){
+        return d.properties[regionCodeField];
+      })
+      .style("fill", function(d, i){
 
-                return color(d.properties.count ? d.properties.count : 0);
-              })
-              .on('click', options.onClickHandler)
-              .on("mousemove", function(d,i) {
-                var mouse = d3.mouse(svg.node()).map( function(d) { return parseInt(d); } );
-                console.log(d.properties);
+        return color(d.properties.count ? d.properties.count : 0);
+      })
+      .on('click', options.onClickHandler)
+      .on("mousemove", function(d,i) {
+        var mouse = d3.mouse(svg.node()).map( function(d) { return parseInt(d); } );
+        console.log(d.properties);
 
-                tooltip
-                    .classed("hidden", false)
-                    .attr("style", "left:"+(mouse[0]+offsetL)+"px;top:"+(mouse[1]+offsetT)+"px")
-                    .html(d.properties[regionNameField] + " - " + d.properties.count + "");
-              })
-              .on("mouseout",  function(d,i) {
-                tooltip.classed("hidden", true)
-              })
-              ;
+        tooltip.classed("hidden", false)
+        .attr("style", "left:"+(mouse[0]+offsetL)+"px;top:"+(mouse[1]+offsetT)+"px")
+        .html(d.properties[regionNameField] + " - " + d.properties.count + "");
+      })
+      .on("mouseout",  function(d,i) {
+        tooltip.classed("hidden", true);
+      });
   };
-
-
-
 
 })();

@@ -1,5 +1,8 @@
 var electroscope = (function () {
   var host = "https://api.electroscope.info";
+  // var host = "http://localhost:3000";
+
+  var memory = {};
 
   function makeGetRequest(data, callback) {
     electroscope.getJSON(data)
@@ -14,10 +17,17 @@ var electroscope = (function () {
 
   var api = {
     getJSON: function (url, callback){
-      $.getJSON(host + url, callback);
+
+      if (memory[url]) {
+        callback(memory[url]);
+      } else {
+        $.getJSON(host + url, function (res) {
+          memory[url] = res;
+          callback(res);
+        }); 
+      }
     }
   };
-
   return api;
 }());
 
