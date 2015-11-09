@@ -36,6 +36,14 @@ router.get('/2015/states',function(req,res){
   });
 });
 
+router.get('/2015/results',function(req,res){
+  res.render("2015/results",{
+    title:"Electroscope, 2015 Myanmar Election result analytic",
+    page_name:"2015_results",
+    baseUrl: req.baseUrl
+  });
+});
+
 router.get('/2010/results',function(req,res){
   res.render("2010/results",{
     title:"Electroscope, 2010 Myanmar Election result analytic",

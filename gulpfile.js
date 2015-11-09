@@ -21,6 +21,7 @@ var __TOPOJSON = path.join(__BOWER, "topojson/topojson.js");
 var __CHARTJS = path.join(__BOWER, "Chart.js/Chart.js");
 var __HO_CHARTJS = path.join(__BOWER,"Chart.HorizontalBar.js/Chart.HorizontalBar.js");
 var __SELECT2 = path.join(__BOWER, "select2/dist/js/select2.full.min.js");
+var __LIQUIDFILL = path.join(__dirname, "assets/js/liquidFill.js");
 // Internal Library
 var __LIBS = path.join(__dirname, "app/assets/js/libs");
 
@@ -44,6 +45,7 @@ var PAGES = {
   "2015_overall": concatDefault(["choropleth.js","2015_overall.js"], [__MATERIAL_LITE, __D3, __TOPOJSON, __CHARTJS ]),
   "choropleth": concatDefault(["choropleth.js"], [__MATERIAL_LITE, __D3, __TOPOJSON, __CHARTJS ]),
   "2010_results": concatDefault([ "2010_results.js"], [__MATERIAL_LITE, __D3, __TOPOJSON, __CHARTJS,__HO_CHARTJS ]),
+  "2015_results": concatDefault([ "2015_results.js"], [__MATERIAL_LITE, __D3, __TOPOJSON, __CHARTJS,__HO_CHARTJS, __LIQUIDFILL ]),
   "2015_parties": concatDefault([ "2015_parties.js"], [__MATERIAL_LITE, __D3, __TOPOJSON, __CHARTJS,__HO_CHARTJS, __SELECT2 ]),
   "2015_states": concatDefault([ "map2.js", "hex2rgba.js", "2015_states.js"], [__MATERIAL_LITE, __D3, __TOPOJSON, __CHARTJS ]),
   "circle_test": concatDefault([ "circle_test.js"], [__MATERIAL_LITE, __D3, __TOPOJSON ]),

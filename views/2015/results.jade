@@ -1,0 +1,29 @@
+extends ../layout
+
+block style
+  style.
+    .content-center {
+      margin: 0 10px;
+      position: relative;
+    }
+
+block content
+  .row
+    .col.s12
+      .card.cyan.darken-2.white-text
+        .card-action
+          h5 Results Countdown 
+            .input-field.pull-right(style="width: 250px")
+              select.party_list
+        .card-content.cyan
+          .row
+            center.col.s4
+              svg(width="100%", height="250")#upperHouse
+              h5 Amyothar Hluttaw 
+            center.col.s4
+              svg(width="100%", height="250")#lowerHouse
+              h5 Pyithu Hluttaw
+            center.col.s4
+              svg(width="100%", height="250")#regionHouse
+              h5 Regional Hluttaw
+      
