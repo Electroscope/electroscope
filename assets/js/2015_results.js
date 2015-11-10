@@ -1,4 +1,13 @@
 (function () {
+  // Add parties list
+  electroscope.getJSON("/api/parties",function(response){
+    var party = response.data;
+    $('.party_list').append('<option value="all">All</option>')
+    for(var key  in party){
+      $('.party_list').append('<option value="' + key + '">' + party[key] + ' ('+  key+')</option>')
+    }
+  });
+
   var config1 = liquidFillGaugeDefaultSettings();
   config1.circleColor = "#FFFFFF";
   config1.textColor = "#FFFFFF";

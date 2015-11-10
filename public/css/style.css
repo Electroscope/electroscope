@@ -262,6 +262,6 @@ header, main, footer {
 	display:none;
 }
 
-.pull-right {
-  float: right;
+h5 .input-field {
+  font-size: 14px;
 }
